@@ -1,0 +1,70 @@
+#!/bin/bash
+set -euo pipefail
+
+declare -a pids
+declare -A urls
+declare -A filenames
+
+dl() {
+  local filename=$1
+  local url=$2
+  curl -Ss -o "$filename" -w "Downloaded %{url_effective} to $filename\n" "$url" &
+  pid=$!
+  pids+=("$pid")
+  urls[$pid]="$url"
+  filenames[$pid]="$filename"
+}
+
+dl_eddsa_artifacts() {
+  for ext in wasm zkey; do
+    dl "eddsa.${ext}" \
+      "https://zkkit.cedoor.dev/eddsa-proof/eddsa-proof.${ext}"
+  done
+}
+
+dl_poseidon_artifacts() {
+  for ext in wasm zkey; do
+    for i in {1..16}; do
+      dl "poseidon-${i}.${ext}" \
+        "https://zkkit.cedoor.dev/poseidon-proof/artifacts/${i}/poseidon-proof.${ext}"
+    done
+  done
+}
+
+dl_semaphore_artifacts() {
+  for ext in wasm zkey; do
+    for i in {1..12}; do
+      dl "semaphore-${i}.${ext}" \
+        "https://semaphore.cedoor.dev/artifacts/${i}/semaphore.${ext}"
+    done
+  done
+}
+
+check() {
+  for pid in "${pids[@]}"; do
+    wait "$pid"
+    exit_code=$?
+
+    if [ $exit_code -ne 0 ]; then
+      echo "Failed to download ${urls[$pid]}"
+      exit 1
+    fi
+
+    if [ ! -s "${filenames[$pid]}" ]; then
+      echo "Downloaded ${filename[$pid]} is empty"
+      exit 1
+    fi
+
+    echo "Downloaded ${urls[$pid]}"
+  done
+
+}
+
+main() {
+  dl_eddsa_artifacts
+  dl_poseidon_artifacts
+  dl_semaphore_artifacts
+  check
+}
+
+main
