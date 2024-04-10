@@ -8,7 +8,7 @@ declare -A filenames
 dl() {
   local filename=$1
   local url=$2
-  curl -Ss -o "$filename" -w "Downloaded %{url_effective} to $filename\n" "$url" &
+  curl -Ss -o "$filename" "$url" &
   pid=$!
   pids+=("$pid")
   urls[$pid]="$url"
@@ -51,11 +51,11 @@ check() {
     fi
 
     if [ ! -s "${filenames[$pid]}" ]; then
-      echo "Downloaded ${filename[$pid]} is empty"
+      echo "Downloaded ${filenames[$pid]} is empty"
       exit 1
     fi
 
-    echo "Downloaded ${urls[$pid]}"
+    echo "Downloaded ${urls[$pid]} to ${filenames[$pid]}"
   done
 
 }
