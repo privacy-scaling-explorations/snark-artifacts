@@ -47,7 +47,7 @@ check() {
 
 print_usage() {
   cat <<EOF
-Usage: $0 [--yes|-y] [path]
+Usage: ./download-artifacts [--yes|-y] [path]
   - Without arguments: downloads artifacts to the current directory.
   - path: downloads artifacts to the specified path, ask to create it if it doesn't exist.
   - --yes, -y: auto-create the specified path if it doesn't exist.
