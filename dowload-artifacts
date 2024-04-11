@@ -6,9 +6,26 @@ declare -a pids
 declare -A urls
 declare -A filenames
 
+trap cleanup EXIT
+
+cleanup() {
+  for pid in "${pids[@]}"; do
+    kill "$pid" 2>/dev/null || true
+  done
+}
+
+print_error() {
+  echo -e "\e[31m$1\e[0m" >&2
+}
+
+exit_error() {
+  print_error "$1"
+  exit "${2:-1}"
+}
+
 dl() {
-  local filename=$1
-  curl -LSs -o "$filename" "$url/$artifact" &
+  local filename="$1"
+  curl -LSs -o "$dest/$filename" "$url/$artifact" &
   pid=$!
   pids+=("$pid")
   urls[$pid]="$url/$artifact"
@@ -20,26 +37,67 @@ check() {
     wait "$pid"
     exit_code=$?
 
-    if [ $exit_code -ne 0 ]; then
-      echo "Failed to download ${urls[$pid]}"
-      exit 1
-    fi
-
-    if [ ! -s "${filenames[$pid]}" ]; then
-      echo "Downloaded ${filenames[$pid]} is empty"
-      exit 1
-    fi
+    [[ $exit_code -ne 0 ]] && exit_error "Failed to download ${urls[$pid]}"
+    [[ ! -s "${filenames[$pid]}" ]] && exit_error "Downloaded ${filenames[$pid]} is empty"
 
     echo "Downloaded ${urls[$pid]}"
   done
 
 }
 
+print_usage() {
+  cat <<EOF
+Usage: $0 [--yes|-y] [path]
+  - Without arguments: downloads artifacts to the current directory.
+  - path: downloads artifacts to the specified path, ask to create it if it doesn't exist.
+  - --yes, -y: auto-create the specified path if it doesn't exist.
+EOF
+}
+
+parse_args() {
+  local auto_create=0
+  local path=""
+  local extra_args=0
+
+  for arg in "$@"; do
+    case "$arg" in
+    --yes | -y) auto_create=1 ;;
+    -h | --help) print_usage && exit 0 ;;
+    *)
+      [[ -n "$path" ]] && {
+        extra_args=1
+        break
+      }
+      path="$arg"
+      ;;
+    esac
+  done
+
+  [[ $extra_args -eq 1 ]] && {
+    print_error "Extra arguments provided"
+    print_usage
+    exit 1
+  }
+  readonly dest="${path:-.}"
+
+  if [[ ! -d "$dest" ]]; then
+    if [[ $auto_create -eq 1 ]]; then
+      mkdir -p "$dest"
+    else
+      read -r -p "Directory $dest does not exist. Create it? [y/N] " yn
+      [[ "$yn" =~ ^[Yy]$ ]] || exit 1
+      mkdir -p "$dest"
+    fi
+    echo "Created directory $dest"
+  fi
+}
+
 main() {
+  parse_args "$@"
   for artifact in {eddsa,poseidon-{1..16},semaphore-{1..12}}.{wasm,zkey}; do
     dl "$artifact"
   done
   check
 }
 
-main
+main "$@"
