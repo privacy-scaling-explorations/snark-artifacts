@@ -1,0 +1,19 @@
+{
+  "name": "snark-artifacts",
+  "version": "1.0.0",
+  "description": "Snark artifacts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "circom",
+    "zk-snarks",
+    "zero-knowledge"
+  ],
+  "license": "AGPL-3.0",
+  "packageManager": "pnpm@8.15.6",
+  "devDependencies": {
+    "rollup": "^4.14.2"
+  }
+}
