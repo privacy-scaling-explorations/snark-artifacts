@@ -1,14 +1,23 @@
 {
-    "name":"@zk-kit/eddsa-artifacts",
-    "description":"zk-kit eddsa artifacts",
-    "license":"AGPL-3.0",
-    "version":"1.0.0",
-    "main":"index.js",
-    "scripts":{
-        "test":"echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": "",
-    "publishConfig": {
-        "access": "public"
-    }
+	"name": "@zk-kit/poseidon-artifacts",
+	"description": "zk-kit poseidon artifacts",
+	"license": "AGPL-3.0",
+	"version": "0.0.1",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
+	},
+	"homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts//tree/main/poseidon",
+
+	"repository": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/poseidon",
+	"bugs": {
+		"url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }
