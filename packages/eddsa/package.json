@@ -1,17 +1,17 @@
 {
-	"name": "@sripwoud/eddsa-artifacts",
-	"description": "zk-kit eddsa artifacts",
-	"license": "AGPL-3.0",
-	"version": "0.1.1",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
-	},
-	"homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts//tree/main/eddsa",
-	"bugs": {
-		"url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@sripwoud/eddsa-artifacts",
+  "description": "zk-kit eddsa artifacts",
+  "license": "AGPL-3.0",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
+  },
+  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts//tree/main/eddsa",
+  "bugs": {
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

@@ -1,13 +1,13 @@
 {
-	"name": "snark-artifacts-root",
-	"private": true,
-	"scripts": {
-		"changeset": "changeset"
-	},
-	"devDependencies": {
-		"@changesets/cli": "^2.27.1"
-	},
-	"workspaces": [
-		"packages/*"
-	]
+  "name": "snark-artifacts-root",
+  "private": true,
+  "scripts": {
+    "changeset": "changeset"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
