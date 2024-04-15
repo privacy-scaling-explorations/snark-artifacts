@@ -2,14 +2,14 @@ name: Release
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
     paths:
       [
-        '.github/workflows/release.yml',
-        '.changeset/*.md',
-        'packages/**/package.json',
-        'packages/**/*.wasm',
-        'packages/**/*.zkey'
+        ".github/workflows/release.yml",
+        ".changeset/*.md",
+        "packages/**/package.json",
+        "packages/**/*.wasm",
+        "packages/**/*.zkey",
       ]
   workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
