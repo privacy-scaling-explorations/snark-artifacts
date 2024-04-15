@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      [
+        ".github/workflows/release.yml",
+        ".changeset/*.md",
+        "packages/**/package.json",
+        "packages/**/*.wasm",
+        "packages/**/*.zkey",
+      ]
+  workflow_dispatch:
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm i
+
+      - name: Release
+        uses: changesets/action@v1
+        with:
+          publish: npm exec changeset version && npm exec changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
