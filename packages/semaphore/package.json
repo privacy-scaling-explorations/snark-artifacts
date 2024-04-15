@@ -1,8 +1,8 @@
 {
-	"name": "@zk-kit/semaphore-artifacts",
+	"name": "@sripwoud/semaphore-artifacts",
 	"description": "zk-kit semaphore artifacts",
 	"license": "AGPL-3.0",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
