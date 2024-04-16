@@ -23,7 +23,7 @@ Instead you should consider fetching them at runtime from [`unpkg.com`](https://
 
 ### Scripts
 - [download-artifacts-init](./download-artifacts-init): Initial artifacts download from [zkkit.cedoor.dev](https://zkkit.cedoor.dev) and [semaphore.cedoor.dev](https://semaphore.cedoor.dev) (see [download-artifacts-init](./download-artifacts-init)).
-- [download-artifacts](./download-artifacts): download all artifacts from this repository/
+- [download-artifacts](./download-artifacts): download all artifacts from this repository
   ```shell
   bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/dowload-artifacts) -h
   ```
