@@ -18,8 +18,8 @@
 </p>
 
 Snark artifacts (`wasm` and `zkit`) npm packages especially for use in [zk-kit](https://github.com/privacy-scaling-explorations/zk-kit).  
-We don't recommende using them as explicit npm dependenices in your project to avoid bloating it.  
-Instead you should consider fetching them from [`unpkg.com`](https://unpkg.com/) (approach followed by [zk-kit](https://github.com/privacy-scaling-explorations/zk-kit)).  
+We don't recommend using them as explicit npm dependenices in your project to avoid bloating it.  
+Instead you should consider fetching them at runtime from [`unpkg.com`](https://unpkg.com/) (approach followed by [zk-kit](https://github.com/privacy-scaling-explorations/zk-kit)).  
 
 ### Scripts
 - [download-artifacts-init](./download-artifacts-init): Initial artifacts download from [zkkit.cedoor.dev](https://zkkit.cedoor.dev) and [semaphore.cedoor.dev](https://semaphore.cedoor.dev) (see [download-artifacts-init](./download-artifacts-init)).
