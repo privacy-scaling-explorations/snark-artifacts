@@ -3,12 +3,11 @@
   "description": "zk-kit poseidon artifacts",
   "license": "AGPL-3.0",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
   },
-  "repository": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/poseidon",
-  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts//tree/main/poseidon",
+  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/poseidon",
   "bugs": {
     "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
   },
