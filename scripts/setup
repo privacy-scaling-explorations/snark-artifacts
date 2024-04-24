@@ -51,10 +51,8 @@ maybe_init_sparse_checkout() {
 
   if ! git config --local --get core.sparseCheckout; then
     git sparse-checkout init --cone
-    # git sparse-checkout set '*' '!:packages/**/*.zkey' '!:packages/**/*.wasm'
+    git sparse-checkout add scripts
   fi
-  # Setting a basic pattern initially to avoid warnings about untracked files
-  #git sparse-checkout set 'packages/*/'
 }
 
 add_package_to_sparse_checkout() {
