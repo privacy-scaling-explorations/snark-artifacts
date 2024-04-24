@@ -23,7 +23,7 @@ read_input() {
   local input=""
 
   while [[ -z "$input" ]]; do
-    print "$message"
+    print "$message: "
     read -r input
     [[ -z "$input" ]] && print_red "$input_name cannot be empty. Please enter a valid $input_name."
   done
@@ -35,8 +35,8 @@ clone_repository() {
   local repo_url
   local clone_dir
 
-  repo_url=$(read_input "Enter the URL of the repository to clone:" "URL")
-  clone_dir=$(read_input "Enter the directory to clone into:" "directory")
+  repo_url=$(read_input "Enter the URL of the repository to clone" "URL")
+  clone_dir=$(read_input "Enter the directory to clone into" "directory")
 
   print "Cloning repository..."
   git clone --filter=blob:none "$repo_url" "$clone_dir" --sparse
@@ -63,13 +63,13 @@ add_package_to_sparse_checkout() {
   maybe_init_sparse_checkout "$repo_dir"
 
   while [[ ! $choice =~ ^(eddsa|e|poseidon|p|semaphore|p)$ ]]; do
-    printf "%s\n" "Which package would you like to sparse-checkout? (${BROWN}e$RESET)ddsa/(${BROWN}p$RESET)oseidon/(${BROWN}s$RESET)emaphore:"
+    printf "%s" "Which package would you like to sparse-checkout? (${BROWN}e$RESET)ddsa/(${BROWN}p$RESET)oseidon/(${BROWN}s$RESET)emaphore: "
     read -r choice
     case "$choice" in
     "e") choice="eddsa" ;;
     "p") choice="poseidon" ;;
     "s") choice="semaphore" ;;
-    *) printf "%s\n%s\n" "${RED}Invalid input.$RESET" "Please enter ${BROWN}e$RESET (eddsa), ${BROWN}p$RESET (poseidon) or ${BROWN}s$RESET (semaphore)." ;;
+    *) printf "%s %s\n" "${RED}Invalid input.$RESET" "Enter ${BROWN}e$RESET (eddsa), ${BROWN}p$RESET (poseidon) or ${BROWN}s$RESET (semaphore)." ;;
     esac
   done
 
