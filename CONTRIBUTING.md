@@ -18,17 +18,19 @@ Pull requests are great if you want to add a feature or fix a bug. Here's a quic
 
 1. Fork the repo.
 
-2. Run the tests. We only take pull requests with passing tests.
+1. Fork the repo.
 
-3. Add a test for your change. Only refactoring and documentation changes require no new tests.
+<!-- 2. Run the tests. We only take pull requests with passing tests. -->
 
-4. Make sure to check out the [Style Guide](/CONTRIBUTING.md#style-guide) and ensure that your code complies with the rules.
+<!-- 3. Add a test for your change. Only refactoring and documentation changes require no new tests. -->
 
-5. Make the test pass.
+<!-- 4. Make sure to check out the [Style Guide](/CONTRIBUTING.md#style-guide) and ensure that your code complies with the rules. -->
 
-6. Commit your changes.
+<!-- 5. Make the test pass. -->
 
-7. Push to your fork and submit a pull request on our `main` branch. Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
+2. Commit your changes.
+
+3. Push to your fork and submit a pull request on our `main` branch. Please provide us with some explanation of why you made the changes you made. For new features make sure to explain a standard use case to us.
 
 ## Style Guide
 
