@@ -148,6 +148,22 @@ To add a new set of artifacts for your project, simply add your NPM package to t
 
 You can also create [issue](https://github.com/privacy-scaling-explorations/snark-artifacts/issues/new/choose) and let the core contributors add your files.
 
+### Partial clone
+
+For a more manageable clone that includes only the packages relevant to you or none of them, you can use git's [`sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) and [`--filter`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt) features. This will reduce clone time and improve git performance.
+
+```bash
+git clone --sparse --filter=blob:none <forkedUrl>
+```
+
+And finally, if you need a specific package:
+
+```bash
+git sparse-checkout add packages/<package>
+```
+
+### Downloading artifacts
+
 ZK-Kit provides a set of functions to automatically download your artifacts. For example:
 
 ```ts
