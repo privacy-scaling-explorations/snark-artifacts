@@ -1,9 +1,41 @@
 <p align="center">
     <h1 align="center">
-        🗝 Snark Artifacts
+        🗄️ SNARK Artifacts
     </h1>
     <p align="center">A streamlined mechanism for distributing SNARK artifacts.</p>
 </p>
+
+| [P0tion](https://github.com/privacy-scaling-explorations/p0tion) has made conducting SNARK phase 2 trusted setup ceremonies easier for many zero-knowledge projects. However, there still seems to be no simple mechanism for distributing the artifacts generated in ceremonies. This project aims to build step-by-step a simple and easily accessible mechanism for distributing zero-knowledge artifacts (`wasm`/`zkey` files). |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+For more info here see: [OVERVIEW.md](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/OVERVIEW.md).
+
+Interested in contributing to this project? See the [board](https://github.com/orgs/privacy-scaling-explorations/projects/45/views/1) and upcoming issues to work on or [propose other ideas](https://github.com/privacy-scaling-explorations/snark-artifacts/issues).
+
+> [!NOTE]  
+> This system is probably best suited to small and medium-sized circuits.
+
+<div align="center">
+    <h4>
+        <a href="/CONTRIBUTING.md">
+            👥 Contributing
+        </a>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="/CODE_OF_CONDUCT.md">
+            🤝 Code of conduct
+        </a>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/issues/new/choose">
+            🔎 Issues
+        </a>
+        <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+        <a href="https://discord.com/invite/sF5CT5rzrR">
+            🗣️ Chat &amp; Support
+        </a>
+    </h4>
+</div>
+
+## Artifacts
 
 <table>
     <th>Package</th>
@@ -102,27 +134,19 @@
     <tbody>
 </table>
 
-| [P0tion](https://github.com/privacy-scaling-explorations/p0tion) has made conducting SNARK phase 2 trusted setup ceremonies easier for many zero-knowledge projects. However, there still seems to be no simple mechanism for distributing the artifacts generated in ceremonies. This project aims to build step-by-step a simple and easily accessible mechanism for distributing zero-knowledge artifacts (`wasm`/`zkey` files). |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-For more info here see: [snark-artifacts-distribution.md](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/snark-artifacts-distribution.md).
-
-Interested in contributing to this project? See the [board](https://github.com/orgs/privacy-scaling-explorations/projects/45/views/1) and upcoming issues to work on or [propose other ideas](https://github.com/privacy-scaling-explorations/snark-artifacts/issues).
-
-> [!NOTE]  
-> This system is probably best suited to small and medium-sized circuits.
-
 ## 🚀 Features
 
-- ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications across major CDNs.
-- ⏳ **Easy Integration**: Seamless integration with existing cryptographic frameworks and systems through utility functions.
-- ⏳ **Linear versioning mechanism**: A simple and consistent versioning system that reflects changes in relative circuits.
-- ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
-- ❌ **Automated Distribution**: A system that automatically distributes artifacts after the ceremony (possibly through [P0tion](https://github.com/privacy-scaling-explorations/p0tion)).
+-   ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications across major CDNs.
+-   ⏳ **Easy Integration**: Seamless integration with existing cryptographic frameworks and systems through utility functions.
+-   ⏳ **Linear versioning mechanism**: A simple and consistent versioning system that reflects changes in relative circuits.
+-   ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
+-   ❌ **Automated Distribution**: A system that automatically distributes artifacts after the ceremony (possibly through [P0tion](https://github.com/privacy-scaling-explorations/p0tion)).
 
 ## 📜 Getting Started
 
 To add a new set of artifacts for your project, simply add your NPM package to the [`packages`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages) folder. The packages are published on NPM and made available on your preferred CDN (e.g. https://unpkg.com).
+
+You can also create [issue](https://github.com/privacy-scaling-explorations/snark-artifacts/issues/new/choose) and let the core contributors add your files.
 
 ### Partial clone
 
@@ -160,4 +184,3 @@ You can download all artifacts from this repository with:
 ```bash
 bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/dowload-artifacts) -h
 ```
-
