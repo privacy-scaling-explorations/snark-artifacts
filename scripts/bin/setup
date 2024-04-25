@@ -1,0 +1,31 @@
+#!/bin/bash
+set -eou pipefail
+
+lib_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd ../lib && pwd)"
+sourcerel_lib_path="$lib_path/sourcerel.bash"
+find "$lib_path" \
+  -type f \
+  -name "*.bash" ! -name "sourcerel.bash" \
+  -exec bash -c '
+#source "$0"
+source "$1"
+#echo "sourced $1"
+' "$sourcerel_lib_path" {} \;
+
+main() {
+  local repo_dir
+  repo_dir=$(find_repo)
+
+  if [[ $repo_dir ]]; then
+    printf "%s%s\n" "Repository already cloned at " "$(print_brown "$repo_dir")"
+  else
+    repo_dir=$(clone_repository)
+    maybe_init_sparse_checkout "$repo_dir"
+  fi
+
+  sparse_checkout_action "$(get_action)" "$repo_dir"
+}
+
+exec 3>/dev/tty
+main
+exec 3>&-
