@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eou pipefail
 
-download_lib() {
+fetch_lib() {
   local url="$1/$3"
   local dest="$2/$3"
 
@@ -9,27 +9,46 @@ download_lib() {
   curl -sSL "$url" -o "$dest"
 }
 
-fetch_and_source_libs() {
+fetch_libs() {
   local libs_base_url="$1"
-  local libs_dest_dir
-  libs_dest_dir=$(mktemp -d)
+  local libs_dest_dir="$2"
+  shift 2
 
-  shift
   for lib in "$@"; do
     download_lib "$libs_base_url" "$libs_dest_dir" "$lib" &
   done
   wait
+}
 
-  # shellcheck source=/dev/null
-  for lib in "$@"; do source "$libs_dest_dir/$lib"; done
+# shellcheck source=/dev/null
+source_libs() {
+  local libs_dir="$1"
+  shift
+  for lib in "$@"; do source "$libs_dir/$lib"; done
+}
+
+maybe_fetch_then_source_libs() {
+  local libs_dir=""
+  local fetch="$1"
+  local libs_base_url="$2"
+  shift 2
+
+  if [[ $fetch = "fetch" ]];then
+    libs_dir=$(mktemp -d)
+    fetch_libs "$libs_base_url" "$libs_dir" "$@"
+  fi
+
+  # we are in the repo, so we can source the libs from the repo
+  source_libs "${libs_dir:-"$(dirname "${BASH_SOURCE[0]}")/../lib"}" "$@"
 }
 
 main() {
-  local branch=${1:-main}
+  local fetch="${1-""}"
+  local branch=${2:-main}
   local libs_base_url="https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/$branch/scripts/lib"
   local libs=("clone.bash" "direction.bash" "find-repo.bash" "print.bash" "prompts.bash" "sparse-checkout.bash" "consts/colors.bash" "consts/remote-url.bash")
 
-  fetch_and_source_libs "$libs_base_url" "${libs[@]}"
+  maybe_fetch_then_source_libs "$fetch" "$libs_base_url" "${libs[@]}"
 
   local action
   local repo_dir
@@ -45,9 +64,9 @@ main() {
 
   cd "$repo_dir"
   action=$(read_action)
-  edit_sparse_checkout "$action" "$(read_package action)"
+  edit_sparse_checkout "$action" "$(read_package "$action")"
 }
 
 exec 3>/dev/tty
-main "$1"
+main "$@"
 exec 3>&-
