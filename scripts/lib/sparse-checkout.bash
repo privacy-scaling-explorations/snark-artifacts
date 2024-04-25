@@ -33,5 +33,4 @@ add_to_sparse_checkout() {
 remove_from_sparse_checkout() {
   sed -i "/packages\/$package/d" ".git/info/sparse-checkout"
   git sparse-checkout reapply
-  rm -rf "packages/$package"
 }
