@@ -13,17 +13,24 @@ edit_sparse_checkout() {
   local package="$2"
 
   maybe_init_sparse_checkout
+
   case "$action" in
   add) add_to_sparse_checkout "$package" ;;
-  remove) remove_from_sparce_checkout "$package" ;;
+  remove) remove_from_sparse_checkout "$package" ;;
   esac
 
-  print "packages/$(brown "$package") ${action}ed $(direction "$action") sparse checkout."
+  verb="${action}ed"
+  verb="${verb/%eed/ed}"
+  print "packages/$(brown "$package") $verb $(direction "$action") sparse checkout."
 }
 
-add_to_sparse_checkout() { git sparse-checkout add "packages/$1"; }
+add_to_sparse_checkout() {
+  git sparse-checkout add "packages/$1";
+  git checkout HEAD "packages/$1";
+}
 
-remove_from_sparce_checkout() {
+remove_from_sparse_checkout() {
   sed -i "/packages\/$package/d" ".git/info/sparse-checkout"
   git sparse-checkout reapply
+  rm -rf "packages/$package"
 }
