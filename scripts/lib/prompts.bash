@@ -8,7 +8,7 @@ read_input() {
   until [[ "$input" ]]; do
     print "$message: "
     read -r input
-    [[ -z "$input" ]] && print_red "$input_name cannot be empty. Please enter a valid $input_name."
+    [[ -z "$input" ]] && print_error "$input_name cannot be empty. Please enter a valid $input_name."
   done
 
   echo "$input"
@@ -18,12 +18,15 @@ get_action() {
   local action=""
 
   until [[ $action =~ ^[ar]$ ]]; do
-    print "Do you want to add or remove a package from sparse-checkout? (${BROWN}a${RESET}dd/${BROWN}r${RESET}emove): "
+    print_no_newline "Do you want to add or remove a package from/to sparse-checkout? ($(brown a))dd/($(brown r))emove: "
     read -r action
     case $action in
     "a") echo "add" ;;
     "r") echo "remove" ;;
-    *) print_red "Invalid action. Please enter ${BROWN}a${RESET} (add) or ${BROWN}r${RESET} (remove)." ;;
+    *)
+      print_error "Invalid action."
+      print "Please enter $(brown a) (add) or $(brown r) (remove)."
+      ;;
     esac
   done
 }
@@ -41,16 +44,19 @@ sparse_checkout_action() {
   local package=""
 
   until [[ $choice =~ ^[eps]$ ]]; do
-    printf "%s" "Which package would you like to $action $direction sparse-checkout? (${BROWN}e$RESET)ddsa/(${BROWN}p$RESET)oseidon/(${BROWN}s$RESET)emaphore: "
+    print_no_newline "Which package would you like to $action $direction sparse-checkout? ($(brown e))ddsa/($(brown p))oseidon/($(brown s))emaphore: "
     read -r choice
     case $choice in
     "e") package="eddsa" ;;
     "p") package="poseidon" ;;
     "s") package="semaphore" ;;
-    *) printf "%s %s\n" "${RED}Invalid input.$RESET" "Enter ${BROWN}e$RESET (eddsa), ${BROWN}p$RESET (poseidon) or ${BROWN}s$RESET (semaphore)." ;;
+    *)
+      print-error "Invalid input."
+      print "Enter $(brown e) (eddsa), $(brown p) (poseidon) or $(brown s) (semaphore).\n"
+      ;;
     esac
   done
 
-  git sparse-checkout $action "packages/$package"
-  print_brown "Packages/$package $action from sparse checkout."
+  git sparse-checkout "$action" "packages/$package"
+  print "Packages/$(brown $package) $action from sparse checkout."
 }

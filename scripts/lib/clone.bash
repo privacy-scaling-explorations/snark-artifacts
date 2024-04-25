@@ -7,7 +7,7 @@ clone_repository() {
 
   print "Cloning repository..."
   git clone --filter=blob:none "$repo_url" "$clone_dir" --sparse
-  print_brown "Repository cloned to $clone_dir"
+  print "Repository cloned to $(brown "$clone_dir")"
 
   echo "$clone_dir"
 }
