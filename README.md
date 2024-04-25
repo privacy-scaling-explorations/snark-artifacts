@@ -156,7 +156,7 @@ For convenience we provide an interactive [`setup`](https://github.com/privacy-s
 It will ask you where to clone the repository, and what packages you want to sparse checkout.
 
 ``` bash
-bash $(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup) fetch
+bash <(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup) fetch
 ```
 
 After the first time clone, you can use the following npm scripts:
