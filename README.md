@@ -8,13 +8,6 @@
 | [P0tion](https://github.com/privacy-scaling-explorations/p0tion) has made conducting SNARK phase 2 trusted setup ceremonies easier for many zero-knowledge projects. However, there still seems to be no simple mechanism for distributing the artifacts generated in ceremonies. This project aims to build step-by-step a simple and easily accessible mechanism for distributing zero-knowledge artifacts (`wasm`/`zkey` files). |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-For more info here see: [OVERVIEW.md](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/OVERVIEW.md).
-
-Interested in contributing to this project? See the [board](https://github.com/orgs/privacy-scaling-explorations/projects/45/views/1) and upcoming issues to work on or [propose other ideas](https://github.com/privacy-scaling-explorations/snark-artifacts/issues).
-
-> [!NOTE]  
-> This system is probably best suited to small and medium-sized circuits.
-
 <div align="center">
     <h4>
         <a href="/CONTRIBUTING.md">
@@ -34,6 +27,13 @@ Interested in contributing to this project? See the [board](https://github.com/o
         </a>
     </h4>
 </div>
+
+For more info here see: [OVERVIEW.md](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/OVERVIEW.md).
+
+Interested in contributing to this project? See the [board](https://github.com/orgs/privacy-scaling-explorations/projects/45/views/1) and upcoming issues to work on or [propose other ideas](https://github.com/privacy-scaling-explorations/snark-artifacts/issues).
+
+> [!NOTE]  
+> This system is probably best suited to small and medium-sized circuits.
 
 ## Artifacts
 
