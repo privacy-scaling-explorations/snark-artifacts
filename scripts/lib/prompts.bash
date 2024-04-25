@@ -14,7 +14,7 @@ read_input() {
   echo "$input"
 }
 
-get_action() {
+read_action() {
   local action=""
 
   until [[ $action =~ ^[ar]$ ]]; do
@@ -31,32 +31,21 @@ get_action() {
   done
 }
 
-sparse_checkout_action() {
-  local action="$1" # get_action ensures this will always be 'add' or 'remove'
-  local repo_dir="$2"
-  local choice=""
-  local direction=${action/add/to}
-  direction=${direction/remove/from}
-
-  cd "$repo_dir"
-  maybe_init_sparse_checkout "$repo_dir"
-
+read_package() {
+  local action="$1"
   local package=""
 
-  until [[ $choice =~ ^[eps]$ ]]; do
-    print_no_newline "Which package would you like to $action $direction sparse-checkout? ($(brown e))ddsa/($(brown p))oseidon/($(brown s))emaphore: "
-    read -r choice
-    case $choice in
-    "e") package="eddsa" ;;
-    "p") package="poseidon" ;;
-    "s") package="semaphore" ;;
+  until [[ $package =~ ^[eps]$ ]]; do
+    print_no_newline "Which package would you like to $action $(direction "$action") sparse-checkout? ($(brown e))ddsa/($(brown p))oseidon/($(brown s))emaphore: "
+    read -r package
+    case $package in
+    "e") echo "eddsa" ;;
+    "p") echo "poseidon" ;;
+    "s") echo "semaphore" ;;
     *)
-      print-error "Invalid input."
-      print "Enter $(brown e) (eddsa), $(brown p) (poseidon) or $(brown s) (semaphore).\n"
+      print_error "Invalid package."
+      print "Please enter $(brown e) (eddsa), $(brown p) (poseidon) or $(brown s) (semaphore)."
       ;;
     esac
   done
-
-  git sparse-checkout "$action" "packages/$package"
-  print "Packages/$(brown $package) $action from sparse checkout."
 }
