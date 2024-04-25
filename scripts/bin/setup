@@ -15,7 +15,7 @@ fetch_libs() {
   shift 2
 
   for lib in "$@"; do
-    download_lib "$libs_base_url" "$libs_dest_dir" "$lib" &
+    fetch_lib "$libs_base_url" "$libs_dest_dir" "$lib" &
   done
   wait
 }
