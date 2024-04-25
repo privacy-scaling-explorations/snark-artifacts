@@ -11,4 +11,4 @@ print_no_newline() { printf "%s" "$1" >&3; }
 print_color() { color "$1" "$2" >&3; }
 print_brown() { brown "$1" >&3; }
 print_red() { red "$1" >&3; }
-print_error() { print_red "$1\n" >&3; }
+print_error() { print "$RED$1$RESET" >&3; }
