@@ -150,17 +150,19 @@ You can also create [issue](https://github.com/privacy-scaling-explorations/snar
 
 ### Partial clone
 
-For a more manageable clone that includes only the packages relevant to you or none of them, you can use git's [`sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) and [`--filter`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt) features. This will reduce clone time and improve git performance.
+For a more manageable clone that includes only the packages relevant to you or none of them, we use git's [`sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) and [`--filter`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt) features. This will reduce clone time and improve git performance.
 
-```bash
-git clone --sparse --filter=blob:none <forkedUrl>
+For convenience we provide an interactive [`setup`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/scripts/bin/setup) script.  
+It will ask you where to clone the repository, and what packages you want to sparse checkout.
+
+``` bash
+bash $(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup) fetch
 ```
 
-And finally, if you need a specific package:
+After the first time clone, you can use the following npm scripts:
 
-```bash
-git sparse-checkout add packages/<package>
-```
+- `npm sparse-checkout`: to add/remove packages from sparse checkout.
+- `npm gprf`: pull rebase your active branch with `--filter=blob:none` to avoid downloading what you may not want (unfortunately sparse checkout alone won't prevent syncing what you haven't sparsed checkout).
 
 ### Downloading artifacts
 
