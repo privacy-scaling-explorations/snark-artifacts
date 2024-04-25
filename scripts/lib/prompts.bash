@@ -6,8 +6,12 @@ read_input() {
   local input=""
 
   until [[ "$input" ]]; do
-    print "$message: "
+    print_no_newline "$message: "
     read -r input
+    # manually expand ~ and literal $HOME to the actual home directory
+    input="${input/#~/$HOME}"
+    input="${input//\$HOME/$HOME}"
+
     [[ -z "$input" ]] && print_error "$input_name cannot be empty. Please enter a valid $input_name."
   done
 
