@@ -1,23 +1,17 @@
 #!/bin/bash
 set -eou pipefail
+shopt -s globstar
 
 lib_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd ../lib && pwd)"
-sourcerel_lib_path="$lib_path/sourcerel.bash"
-find "$lib_path" \
-  -type f \
-  -name "*.bash" ! -name "sourcerel.bash" \
-  -exec bash -c '
-#source "$0"
-source "$1"
-#echo "sourced $1"
-' "$sourcerel_lib_path" {} \;
+# shellcheck source=/dev/null
+for lib in "$lib_path"/**/*.bash; do source "$lib"; done
 
 main() {
   local repo_dir
   repo_dir=$(find_repo)
 
   if [[ $repo_dir ]]; then
-    printf "%s%s\n" "Repository already cloned at " "$(print_brown "$repo_dir")"
+    print "Repository already cloned at $(brown "$repo_dir")"
   else
     repo_dir=$(clone_repository)
     maybe_init_sparse_checkout "$repo_dir"

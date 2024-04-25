@@ -1,10 +1,14 @@
-print() { printf "%s\n" "$1" >&3; }
-
-print_color() {
+color() {
   local color="$1"
   local message="$2"
-  printf "%s%s%s\n" "$color" "$message" "$RESET" >&3
+  printf "%s" "$color$message$RESET"
 }
+brown() { color "$BROWN" "$1"; }
+red() { color "$RED" "$1"; }
 
-print_brown() { print_color "$BROWN" "$1"; }
-print_red() { print_color "$RED" "$1"; }
+print() { printf "%s\n" "$1" >&3; }
+print_no_newline() { printf "%s" "$1" >&3; }
+print_color() { color "$1" "$2" >&3; }
+print_brown() { brown "$1" >&3; }
+print_red() { red "$1" >&3; }
+print_error() { print_red "$1\n" >&3; }
