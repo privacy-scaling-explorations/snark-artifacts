@@ -2,11 +2,28 @@
 set -eou pipefail
 shopt -s globstar
 
-lib_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd ../lib && pwd)"
-# shellcheck source=/dev/null
-for lib in "$lib_path"/**/*.bash; do source "$lib"; done
+fetch_and_source_lib() {
+  local lib_base_path="https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/lib"
+  local lib_name="$1"
+  local libs_path
+  libs_path="$(mktemp -d)"
+  local lib_path="$libs_path/$lib_name"
+
+  curl -sSL "$lib_base_path/$lib_name" -o "$lib_path"
+
+  # shellcheck source=/dev/null
+  source "$lib_path"
+}
+
+fetch_and_source_libs() {
+  for lib in "$@"; do
+    fetch_and_source_lib "$lib"
+  done
+}
 
 main() {
+  fetch_and_source_libs {clone,direction,find-repo,print,prompts,sparse-checkout,consts/{colors,remote-url}}.bash
+
   local action
   local repo_dir
   repo_dir=$(find_repo)

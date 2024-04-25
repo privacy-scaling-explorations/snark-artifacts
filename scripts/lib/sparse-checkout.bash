@@ -25,8 +25,8 @@ edit_sparse_checkout() {
 }
 
 add_to_sparse_checkout() {
-  git sparse-checkout add "packages/$1";
-  git checkout HEAD "packages/$1";
+  git sparse-checkout add "packages/$1"
+  git checkout HEAD "packages/$1"
 }
 
 remove_from_sparse_checkout() {
