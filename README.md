@@ -182,5 +182,5 @@ console.log(zkey) // "/tmp/@zk-kit/eddsa-artifacts@latest/eddsa.zkey"
 You can download all artifacts from this repository with:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/dowload-artifacts) -h
+bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts) -h
 ```
