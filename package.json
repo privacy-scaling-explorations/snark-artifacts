@@ -9,5 +9,9 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "sparse-checkout": "./scripts/bin/setup",
+    "gprf": "git pull-rebase-filtered"
+  }
 }

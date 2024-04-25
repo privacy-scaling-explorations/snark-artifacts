@@ -5,7 +5,7 @@ maybe_init_sparse_checkout() {
 
   git config core.sparseCheckout true
   git config core.sparseCheckoutCone true
-  git config alias.prf '!git fetch --filter=blob:none "$@" && git rebase FETCH_HEAD'
+  git config alias.pull-rebase-filtered '!git fetch --filter=blob:none "$@" && git rebase FETCH_HEAD'
   git sparse-checkout add scripts
 }
 
