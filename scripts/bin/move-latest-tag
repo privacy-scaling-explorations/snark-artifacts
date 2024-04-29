@@ -7,9 +7,7 @@ move_tag() {
   local commit_sha="$2"
   local tag="$package@latest"
 
-  git tag -d "$tag"
-  git push origin ":refs/tags/$tag"
-
+  git push -d origin "$tag"
   git tag "$tag" "$commit_sha"
   git push origin "$tag"
 }
