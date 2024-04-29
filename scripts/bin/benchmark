@@ -39,7 +39,7 @@ END {
   print "  jsdelivr", jsdelivr_sum/jsdelivr_count
   print "  github", github_sum/github_count
 }
-'
+' "$log"
 }
 
 main() {
