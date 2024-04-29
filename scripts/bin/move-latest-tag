@@ -3,19 +3,19 @@
 set -euo pipefail
 
 move_tag() {
-    local package="$1"
-    local commit_sha="$2"
-    local tag="$package@latest"
+  local package="$1"
+  local commit_sha="$2"
+  local tag="$package@latest"
 
-    git tag -d "$tag"
-    git push origin ":refs/tags/$tag"
+  git tag -d "$tag"
+  git push origin ":refs/tags/$tag"
 
-    git tag "$tag" "$commit_sha"
-    git push origin "$tag"
+  git tag "$tag" "$commit_sha"
+  git push origin "$tag"
 }
 
 get_package_names() {
-    jq -r '.[].name' "$1"
+  jq -r '.[].name' "$1"
 }
 
 main() {
