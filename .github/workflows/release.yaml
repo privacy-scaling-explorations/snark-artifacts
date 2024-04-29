@@ -40,4 +40,5 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update 'latest' tag for published packages
+        # https://github.com/changesets/action?tab=readme-ov-file#outputs
         run: ./scripts/bin/move-latest-tag ${{ steps.changesets.outputs.publishedPackages }} ${{ github.sha }}
