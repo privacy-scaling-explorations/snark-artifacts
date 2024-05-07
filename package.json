@@ -2,7 +2,7 @@
   "name": "snark-artifacts-root",
   "private": true,
   "scripts": {
-    "changeset": "changeset"
+    "changeset": "changeset && git add .changeset && git commit -m 'changeset'"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1"
