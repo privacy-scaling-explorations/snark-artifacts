@@ -131,6 +131,35 @@ Interested in contributing to this project? See the [board](https://github.com/o
                 </a>
             </td>
         </tr>
+        <tr>
+            <td>
+                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/semaphore-identity">
+                    @zk-kit/semaphore-identity-artifacts
+                </a>
+            </td>
+            <td>
+                <!-- NPM version -->
+                <a href="https://npmjs.org/package/@zk-kit/semaphore-identity-artifacts">
+                    <img src="https://img.shields.io/npm/v/@zk-kit/semaphore-identity-artifacts.svg?style=flat-square" alt="NPM version" />
+                </a>
+            </td>
+            <td>
+                <!-- Downloads -->
+                <a href="https://npmjs.org/package/@zk-kit/semaphore-identity-artifacts">
+                    <img src="https://img.shields.io/npm/dm/@zk-kit/semaphore-identity-artifacts.svg?style=flat-square" alt="Downloads" />
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/semaphore-protocol/extensions/blob/main/packages/identity-proof.circom/src/identity-proof.circom">
+                    identity-proof.circom
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/semaphore-protocol/extensions/tree/main/packages/identity-proof">
+                    @semaphore-extensions/identity-proof
+                </a>
+            </td>
+        </tr>
     <tbody>
 </table>
 
