@@ -1,0 +1,54 @@
+{
+  "name": "@zk-kit/artifacts",
+  "version": "0.0.1",
+  "description": "Utilities for downloading snark artifacts",
+  "scripts": {
+    "build": "npm run clean && rollup -c rollup.config.ts --configPlugin typescript",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privacy-scaling-explorations/snark-artifacts.git"
+  },
+  "keywords": [
+    "snark",
+    "artifacts",
+    "circom",
+    "zk"
+  ],
+  "contributors": [
+    "cedoor <me@cedoor.dev>",
+    "sripwoud <me@sripwoud.xyz"
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
+  },
+  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/artifacts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.esm.js",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.12.10",
+    "rimraf": "^5.0.5",
+    "rollup": "^2.79.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
+  }
+}
