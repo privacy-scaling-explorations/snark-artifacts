@@ -1,8 +1,9 @@
 {
     "name": "@zk-kit/semaphore-identity-artifacts",
-    "description": "semaphore identity artifacts",
-    "license": "MIT",
     "version": "1.0.0-beta",
+    "description": "semaphore identity artifacts",
+    "circuit": "@semaphore-extensions/identity-proof.circom",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
