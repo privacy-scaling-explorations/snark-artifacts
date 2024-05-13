@@ -1,6 +1,6 @@
 export enum Proof {
-  EDDSA = "eddsa",
-  POSEIDON = "poseidon",
-  //RLN = 'rln',
-  SEMAPHORE = "semaphore",
+    SEMAPHORE_IDENTITY = "semaphore-identity",
+    POSEIDON = "poseidon",
+    //RLN = 'rln',
+    SEMAPHORE = "semaphore"
 }
