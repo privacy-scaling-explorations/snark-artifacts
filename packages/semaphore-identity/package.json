@@ -1,7 +1,7 @@
 {
     "name": "@zk-kit/semaphore-identity-artifacts",
     "description": "semaphore identity artifacts",
-    "license": "AGPL-3.0",
+    "license": "MIT",
     "version": "1.0.0-beta",
     "repository": {
         "type": "git",
