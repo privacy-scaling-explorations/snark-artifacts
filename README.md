@@ -46,35 +46,6 @@ Interested in contributing to this project? See the [board](https://github.com/o
     <tbody>
         <tr>
             <td>
-                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/eddsa">
-                    @zk-kit/eddsa-artifacts
-                </a>
-            </td>
-            <td>
-                <!-- NPM version -->
-                <a href="https://npmjs.org/package/@zk-kit/eddsa-artifacts">
-                    <img src="https://img.shields.io/npm/v/@zk-kit/eddsa-artifacts.svg?style=flat-square" alt="NPM version" />
-                </a>
-            </td>
-            <td>
-                <!-- Downloads -->
-                <a href="https://npmjs.org/package/@zk-kit/eddsa-artifacts">
-                    <img src="https://img.shields.io/npm/dm/@zk-kit/eddsa-artifacts.svg?style=flat-square" alt="Downloads" />
-                </a>
-            </td>
-            <td>
-                <a href="https://github.com/privacy-scaling-explorations/zk-kit/blob/main/packages/circuits/circom/eddsa-proof.circom">
-                    eddsa-proof.circom
-                </a>
-            </td>
-            <td>
-                <a href="https://github.com/privacy-scaling-explorations/zk-kit/tree/main/packages/eddsa-proof">
-                    @zk-kit/eddsa-proof
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>
                 <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/poseidon">
                     @zk-kit/poseidon-artifacts
                 </a>
@@ -131,6 +102,35 @@ Interested in contributing to this project? See the [board](https://github.com/o
                 </a>
             </td>
         </tr>
+        <tr>
+            <td>
+                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/semaphore-identity">
+                    @zk-kit/semaphore-identity-artifacts
+                </a>
+            </td>
+            <td>
+                <!-- NPM version -->
+                <a href="https://npmjs.org/package/@zk-kit/semaphore-identity-artifacts">
+                    <img src="https://img.shields.io/npm/v/@zk-kit/semaphore-identity-artifacts.svg?style=flat-square" alt="NPM version" />
+                </a>
+            </td>
+            <td>
+                <!-- Downloads -->
+                <a href="https://npmjs.org/package/@zk-kit/semaphore-identity-artifacts">
+                    <img src="https://img.shields.io/npm/dm/@zk-kit/semaphore-identity-artifacts.svg?style=flat-square" alt="Downloads" />
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/semaphore-protocol/extensions/blob/main/packages/identity-proof.circom/src/identity-proof.circom">
+                    identity-proof.circom
+                </a>
+            </td>
+            <td>
+                <a href="https://github.com/semaphore-protocol/extensions/tree/main/packages/identity-proof">
+                    @semaphore-extensions/identity-proof
+                </a>
+            </td>
+        </tr>
     <tbody>
 </table>
 
@@ -151,6 +151,16 @@ You can also create [issue](https://github.com/privacy-scaling-explorations/snar
 ### Partial clone
 
 For a more manageable clone that includes only the packages relevant to you or none of them, we use git's [`sparse-checkout`](https://git-scm.com/docs/git-sparse-checkout) and [`--filter`](https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt) features. This will reduce clone time and improve git performance.
+
+```bash
+git clone --sparse --filter=blob:none <forkedUrl>
+```
+
+And finally, if you need a specific package:
+
+```bash
+git sparse-checkout add packages/<package>
+```
 
 For convenience we provide an interactive [`setup`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/scripts/bin/setup) script.  
 It will ask you where to clone the repository, and what packages you want to sparse checkout.
