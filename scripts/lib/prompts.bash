@@ -39,7 +39,7 @@ read_package() {
   local action="$1"
   local package=""
 
-  until [[ $package =~ ^[eps]$ ]]; do
+  until [[ $package =~ ^(p|s|si)$ ]]; do
     print_no_newline "Which package would you like to $action $(direction "$action") sparse-checkout? (($(brown p))oseidon/($(brown s))emaphore/semaphore-identity($(brown si))): "
     read -r package
     case $package in
