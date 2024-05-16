@@ -33,7 +33,7 @@ maybe_fetch_then_source_libs() {
   local libs_base_url="$2"
   shift 2
 
-  if [[ $fetch = "fetch" ]];then
+  if [[ $fetch = "fetch" ]]; then
     libs_dir=$(mktemp -d)
     fetch_libs "$libs_base_url" "$libs_dir" "$@"
   fi
