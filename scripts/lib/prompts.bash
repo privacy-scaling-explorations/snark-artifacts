@@ -39,13 +39,13 @@ read_package() {
   local action="$1"
   local package=""
 
-  until [[ $package =~ ^[eps]$ ]]; do
-    print_no_newline "Which package would you like to $action $(direction "$action") sparse-checkout? ($(brown e))ddsa/($(brown p))oseidon/($(brown s))emaphore: "
+  until [[ $package =~ ^(p|s|si)$ ]]; do
+    print_no_newline "Which package would you like to $action $(direction "$action") sparse-checkout? (($(brown p))oseidon/($(brown s))emaphore/semaphore-identity($(brown si))): "
     read -r package
     case $package in
-    "e") echo "eddsa" ;;
     "p") echo "poseidon" ;;
     "s") echo "semaphore" ;;
+    "si") echo "semaphore-identity" ;;
     *)
       print_error "Invalid package."
       print "Please enter $(brown e) (eddsa), $(brown p) (poseidon) or $(brown s) (semaphore)."
