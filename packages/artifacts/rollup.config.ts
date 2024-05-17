@@ -1,7 +1,16 @@
 import fs from 'node:fs'
+import alias from '@rollup/plugin-alias'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
+import type { RollupOptions } from 'rollup'
 
+const input = 'src/index.ts'
+const plugins = [
+  typescript({
+    tsconfig: './tsconfig.build.json',
+  }),
+  terser(),
+]
 const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 const banner = `/**
  * @module ${pkg.name}
@@ -12,11 +21,36 @@ const banner = `/**
  * @see [Github]{@link ${pkg.homepage}}
 */`
 
-export default {
-  input: 'src/index.ts',
-  output: [
-    { file: pkg.main, format: 'cjs', banner, exports: 'auto' },
-    { file: pkg.module, format: 'es', banner },
-  ],
-  plugins: [typescript({ tsconfig: './tsconfig.build.json' }), terser()],
-}
+const config: RollupOptions[] = [
+  {
+    input,
+    output: [
+      {
+        file: pkg.exports['.'].node.require,
+        format: 'cjs',
+        banner,
+        exports: 'auto',
+      },
+      { file: pkg.exports['.'].node.import, format: 'es', banner },
+    ],
+    external: ['node:fs', 'node:fs/promises', 'node:os', 'node:path'],
+    plugins,
+  },
+  {
+    input,
+    output: [{ file: pkg.exports['.'].browser, format: 'es', banner }],
+    plugins: [
+      ...plugins,
+      alias({
+        entries: [
+          {
+            find: './download/download.node',
+            replacement: './download/download.browser',
+          },
+        ],
+      }),
+    ],
+  },
+]
+
+export default config
