@@ -63,7 +63,7 @@ Interested in contributing to this project? See the [board](https://github.com/o
                 </a>
             </td>
             <td>
-                <a href="https://github.com/privacy-scaling-explorations/zk-kit/blob/main/packages/circuits/circom/poseidon-proof.circom">
+                <a href="https://github.com/privacy-scaling-explorations/zk-kit.circom/blob/main/packages/poseidon-proof/src/poseidon-proof.circom">
                     poseidon-proof.circom
                 </a>
             </td>
