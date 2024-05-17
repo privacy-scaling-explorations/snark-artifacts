@@ -2,16 +2,14 @@
   "name": "snark-artifacts-root",
   "private": true,
   "scripts": {
-    "changeset": "changeset && git add .changeset && git commit -m 'changeset'"
+    "changeset": "changeset && git add .changeset && git commit -m 'changeset'",
+    "sparse-checkout": "./scripts/bin/setup",
+    "gprf": "git pull-rebase-filtered"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1"
   },
   "workspaces": [
     "packages/*"
-  ],
-  "scripts": {
-    "sparse-checkout": "./scripts/bin/setup",
-    "gprf": "git pull-rebase-filtered"
-  }
+  ]
 }
