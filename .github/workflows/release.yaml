@@ -28,13 +28,13 @@ jobs:
           node-version: 20
 
       - name: Install
-        run: npm i
+        run: pnpm i
 
       - name: Release
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: npm exec changeset publish
+          publish: pnpm exec changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
