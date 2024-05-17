@@ -1,7 +1,7 @@
 {
   "name": "@zk-kit/semaphore-artifacts",
   "description": "zk-kit semaphore artifacts",
-  "circuit": "@semaphore-protocol/circuits",
+  "circuit": "@zk-kit/poseidon-proof.circom",
   "license": "MIT",
   "version": "4.0.0-beta.10",
   "repository": {
