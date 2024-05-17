@@ -1,8 +1,8 @@
-import terser from "@rollup/plugin-terser";
-import typescript from "@rollup/plugin-typescript";
-import fs from "fs";
+import fs from 'node:fs'
+import terser from '@rollup/plugin-terser'
+import typescript from '@rollup/plugin-typescript'
 
-const pkg = JSON.parse(fs.readFileSync("./package.json", "utf8"));
+const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 const banner = `/**
  * @module ${pkg.name}
  * @version ${pkg.version}
@@ -10,13 +10,13 @@ const banner = `/**
  * @copyright Ethereum Foundation ${new Date().getFullYear()}
  * @license ${pkg.license}
  * @see [Github]{@link ${pkg.homepage}}
-*/`;
+*/`
 
 export default {
-  input: "src/index.ts",
+  input: 'src/index.ts',
   output: [
-    { file: pkg.main, format: "cjs", banner, exports: "auto" },
-    { file: pkg.module, format: "es", banner },
+    { file: pkg.main, format: 'cjs', banner, exports: 'auto' },
+    { file: pkg.module, format: 'es', banner },
   ],
-  plugins: [typescript({ tsconfig: "./tsconfig.build.json" }), terser()],
-};
+  plugins: [typescript({ tsconfig: './tsconfig.build.json' }), terser()],
+}

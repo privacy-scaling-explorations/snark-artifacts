@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "changeset": "changeset && git add .changeset && git commit -m 'changeset'",
-    "sparse-checkout": "./scripts/bin/setup",
-    "gprf": "git pull-rebase-filtered"
+    "check": "biome check .",
+    "fix": "biome check --apply .",
+    "gprf": "git pull-rebase-filtered",
+    "sparse-checkout": "./scripts/bin/setup"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@changesets/cli": "^2.27.1"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "packageManager": "pnpm@9.1.0"
 }
