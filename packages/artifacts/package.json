@@ -39,7 +39,6 @@
   "files": ["dist"],
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
-    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.10",

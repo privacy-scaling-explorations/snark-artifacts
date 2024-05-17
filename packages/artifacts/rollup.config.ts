@@ -1,6 +1,5 @@
 import fs from 'node:fs'
 import alias from '@rollup/plugin-alias'
-import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
 import type { RollupOptions } from 'rollup'
 
@@ -9,7 +8,6 @@ const plugins = [
   typescript({
     tsconfig: './tsconfig.build.json',
   }),
-  terser(),
 ]
 const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 const banner = `/**
