@@ -30,3 +30,6 @@ jobs:
 
       - name: Check formatting, linting and import sorting
         run: pnpm check
+
+      - name: Test
+        run: pnpm --filter @zk-kit/artifacts test
