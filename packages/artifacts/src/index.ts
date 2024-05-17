@@ -1,2 +1,4 @@
+import maybeGetSnarkArtifacts from './download/download.node'
+
 export * from './projects'
-export * from './download/download.node'
+export { maybeGetSnarkArtifacts }

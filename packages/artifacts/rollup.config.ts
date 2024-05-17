@@ -37,9 +37,7 @@ const config: RollupOptions[] = [
   {
     input,
     output: [{ file: pkg.exports['.'].browser, format: 'es', banner }],
-    external: ['node:fs', 'node:fs/promises', 'node:os', 'node:path'],
     plugins: [
-      ...plugins,
       alias({
         entries: [
           {
@@ -48,6 +46,7 @@ const config: RollupOptions[] = [
           },
         ],
       }),
+      ...plugins,
     ],
   },
 ]
