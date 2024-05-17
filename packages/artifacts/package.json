@@ -23,7 +23,7 @@
   },
   "main": "./dist/index.node.js",
   "module": "./dist/index.browser.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "browser": "./dist/index.browser.js",
@@ -33,10 +33,10 @@
         "import": "./dist/index.node.js",
         "require": "./dist/index.node.cjs"
       },
-      "types": "./dist/index.d.ts"
+      "types": "./dist/types/index.d.ts"
     }
   },
-  "files": ["dist"],
+  "files": ["dist", "src"],
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
