@@ -11,7 +11,7 @@ const config: JestConfigWithTsJest = {
     global: { branches: 90, functions: 90, lines: 90, statements: 90 },
   },
   moduleDirectories: ['node_modules'],
-  moduleFileExtensions: ['ts'],
+  moduleFileExtensions: ['js', 'ts'],
 }
 
 export default config
