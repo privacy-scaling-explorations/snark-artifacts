@@ -1,12 +1,13 @@
 {
-  "name": "snark-artifacts-root",
-  "private": true,
-  "scripts": {
-    "changeset": "changeset && git add .changeset && git commit -m 'changeset'",
-    "sparse-checkout": "./scripts/bin/setup",
-    "gprf": "git pull-rebase-filtered"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.27.1"
-  }
+	"name": "snark-artifacts-root",
+	"private": true,
+	"scripts": {
+		"changeset": "changeset && git add .changeset && git commit -m 'changeset'",
+		"sparse-checkout": "./scripts/bin/setup",
+		"gprf": "git pull-rebase-filtered"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.27.1"
+	},
+	"packageManager": "pnpm@9.1.0"
 }
