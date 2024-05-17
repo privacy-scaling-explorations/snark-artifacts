@@ -19,24 +19,23 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            steps:
-                - uses: actions/checkout@v4
-                - uses: actions/setup-node@v4
-                - uses: pnpm/action-setup@v4
-                  with:
-                      run_install: false
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+            - uses: pnpm/action-setup@v4
+              with:
+                  run_install: false
 
-                - run: pnpm i
+            - run: pnpm i
 
-                - name: Release
-                  id: changesets
-                  uses: changesets/action@v1
-                  with:
-                      publish: pnpm exec changeset publish
-                  env:
-                      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            - name: Release
+              id: changesets
+              uses: changesets/action@v1
+              with:
+                  publish: pnpm exec changeset publish
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-                - name: Update 'latest' tag for published packages
-                  # https://github.com/changesets/action?tab=readme-ov-file#outputs
-                  run: ./scripts/bin/move-latest-tag ${{ steps.changesets.outputs.publishedPackages }} ${{ github.sha }}
+            - name: Update 'latest' tag for published packages
+              # https://github.com/changesets/action?tab=readme-ov-file#outputs
+              run: ./scripts/bin/move-latest-tag ${{ steps.changesets.outputs.publishedPackages }} ${{ github.sha }}
