@@ -1,5 +1,5 @@
 {
-  "files": ["src", "test", "rollup.config.ts"],
+  "include": ["src", "test", "rollup.config.ts"],
   "compilerOptions": {
     "target": "es2022",
     "module": "esnext",
