@@ -1,6 +1,4 @@
-export enum Proof {
-  SEMAPHORE_IDENTITY = 'semaphore-identity',
-  POSEIDON = 'poseidon',
-  //RLN = 'rln',
-  SEMAPHORE = 'semaphore',
-}
+import maybeGetSnarkArtifacts from './download/download.node'
+
+export * from './projects'
+export { maybeGetSnarkArtifacts }
