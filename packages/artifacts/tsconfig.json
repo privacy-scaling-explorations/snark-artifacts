@@ -1,8 +1,9 @@
 {
-  "include": ["src"],
+  "include": ["src", "rollup.config.ts", "test"],
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
+    "target": "es2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noEmitOnError": true,
     "alwaysStrict": true,
