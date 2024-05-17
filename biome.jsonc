@@ -1,7 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
   "files": {
-    "ignore": ["dist/**"]
+    "ignore": [
+      "coverage/**",
+      "dist/**",
+      // changeset will mess up with the formatting when editing package.json files to version packages to be released
+      "packages/artifacts/packages.json"
+    ]
   },
   "organizeImports": {
     "enabled": true
