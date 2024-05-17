@@ -2,7 +2,7 @@
   "name": "@zk-kit/semaphore-artifacts",
   "description": "zk-kit semaphore artifacts",
   "circuit": "@semaphore-protocol/circuits",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "version": "4.0.0-beta.10",
   "repository": {
     "type": "git",

@@ -12,7 +12,7 @@
   },
   "keywords": ["snark", "artifacts", "circom", "zk"],
   "contributors": ["cedoor <me@cedoor.dev>", "sripwoud <me@sripwoud.xyz"],
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
   },
