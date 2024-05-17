@@ -4,7 +4,10 @@
     "description": "Utilities for downloading snark artifacts",
     "scripts": {
         "build": "npm run clean && rollup -c rollup.config.ts --configPlugin typescript",
-        "clean": "rimraf dist"
+        "check": "biome check .",
+        "clean": "rimraf dist",
+        "fix": "biome check --apply ."
+
     },
     "repository": {
         "type": "git",
@@ -43,6 +46,7 @@
         "dist"
     ],
     "devDependencies": {
+        "@biomejs/biome": "1.7.3",
         "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-typescript": "^11.1.6",
         "@types/node": "^20.12.10",
