@@ -3,12 +3,7 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      [
-        'packages/artifacts/*.json',
-        'packages/artifacts/*.jsonc',
-        'packages/artifacts/**/*.ts',
-      ]
+    paths: ['**/*.json', '**/*.jsonc', '**/*.ts']
 
 jobs:
   check:
