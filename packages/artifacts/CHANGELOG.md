@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.2.0
+
+### Minor Changes
+
+- 1a75840: Add `maybeGetSnarkArtitacts` functions (formerly in `@zk-kit/utils`)
+
 ## 1.1.0
 
 ### Minor changes
