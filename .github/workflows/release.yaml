@@ -1,42 +1,42 @@
 name: Release
 
 on:
-    push:
-        branches: ["main"]
-        paths:
-            [
-                ".github/workflows/release.yaml",
-                ".changeset/*.md",
-                "packages/**/package.json",
-                "packages/**/*.wasm",
-                "packages/**/*.zkey"
-            ]
-    workflow_dispatch:
+  push:
+    branches: ['main']
+    paths:
+      [
+        '.github/workflows/release.yaml',
+        '.changeset/*.md',
+        'packages/**/package.json',
+        'packages/**/*.wasm',
+        'packages/**/*.zkey',
+      ]
+  workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    release:
-        runs-on: ubuntu-latest
+  release:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
-            - uses: pnpm/action-setup@v4
-              with:
-                  run_install: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-            - run: pnpm i
+      - run: pnpm i
 
-            - name: Release
-              id: changesets
-              uses: changesets/action@v1
-              with:
-                  publish: pnpm exec changeset publish
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Release
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm exec changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-            - if: ${{ steps.changesets.outputs.publishedPackages != '[]' }}
-              name: Update 'latest' tag for published packages
-              # https://github.com/changesets/action?tab=readme-ov-file#outputs
-              run: ./scripts/bin/move-latest-tag '${{ steps.changesets.outputs.publishedPackages }}' ${{ github.sha }}
+      - if: ${{ steps.changesets.outputs.publishedPackages != '[]' }}
+        name: Update 'latest' tag for published packages
+        # https://github.com/changesets/action?tab=readme-ov-file#outputs
+        run: ./scripts/bin/move-latest-tag '${{ steps.changesets.outputs.publishedPackages }}' ${{ github.sha }}
