@@ -13,7 +13,7 @@ move_tag() {
 }
 
 get_package_names() {
-  jq -r '.[].name' "$1"
+  echo "$1" | jq -r '.[].name'
 }
 
 main() {
