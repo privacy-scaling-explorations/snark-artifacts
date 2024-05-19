@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths: ['**/*.json', '**/*.jsonc', '**/*.ts']
+    paths: ['**/*.json', '**/*.jsonc', '**/*.md', '**/*.ts', '**/*.yaml']
 
 jobs:
   check:
