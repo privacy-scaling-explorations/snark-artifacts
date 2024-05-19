@@ -12,10 +12,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
     "@changesets/cli": "^2.27.1",
-    "dprint": "^0.45.1",
-    "prettier": "^3.2.5",
-    "prettier-plugin-sh": "^0.14.0",
-    "yaml-cli": "^1.1.8"
+    "dprint": "^0.45.1"
   },
   "packageManager": "pnpm@9.1.0"
 }

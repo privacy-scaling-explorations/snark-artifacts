@@ -17,15 +17,6 @@ importers:
       dprint:
         specifier: ^0.45.1
         version: 0.45.1
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      prettier-plugin-sh:
-        specifier: ^0.14.0
-        version: 0.14.0(prettier@3.2.5)
-      yaml-cli:
-        specifier: ^1.1.8
-        version: 1.1.8
 
   packages/artifacts:
     devDependencies:
@@ -800,9 +791,6 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  base64-words@0.1.2:
-    resolution: {integrity: sha512-Z7mOSjiZNKMjY4x3ecHf6/S9Bvz+boPpw/9HLHb83EY6niNwDc5jJ4+AYk5BUNm+TEHivx3acYzUg/luvTzREw==}
-
   better-path-resolve@1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
     engines: {node: '>=4'}
@@ -1109,30 +1097,6 @@ packages:
   external-editor@3.1.0:
     resolution: {integrity: sha512-hMQ4CX1p1izmuLYyZqLMO/qGNw10wSv9QDCPfzXfyFrOaCSSoRfqE1Kf1s5an66J5JZC62NewG+mK49jOCtQew==}
     engines: {node: '>=4'}
-
-  fairmont-core@1.0.1:
-    resolution: {integrity: sha512-S+eIyaC/gMCTqsKpa0usAKJ3lUkjUlsWEaWQ6Wg/Em7a5RmMFwuivbbgOCnyFhypjvLAuT/X18f5UARWS0ctpg==}
-
-  fairmont-filesystem@1.1.3:
-    resolution: {integrity: sha512-od9aJXRah3VHDOfm1rkstIXLlbCxrhpgSsd1aas3Uk+M4J/Bwmae4rMa1cL2NDcNtFRa0rhPo2645GseiuQPAw==}
-
-  fairmont-helpers@1.1.2:
-    resolution: {integrity: sha512-r75JstpThHa/8sMMjlZZ39OAxJipIscH6Jol4wN5ACUZXKyh7rBPfRJix0fgKQZzlphE33u6ASZXA049RgxHhw==}
-
-  fairmont-helpers@1.2.2:
-    resolution: {integrity: sha512-JYKoWdpAXbEkpcK+at838WZ2Fb0iDthlI5l0W8fgk89SsyIhUc6nCm8lEVpYuo/sH/Y3l1uU6Pv92QdnGaamdg==}
-
-  fairmont-multimethods@1.0.1:
-    resolution: {integrity: sha512-6xlEszwlVS6it9YoN8jz037igRtkmsllhRBDktwSxBKEm8Hb7ospzhiEMGaSAKwBs+4og+EI9dkTo/di7Oql2A==}
-
-  fairmont-process@1.1.1:
-    resolution: {integrity: sha512-KV5cGC1I5ZiNgjBwxz6snaLelv8CBxwrvTzgZHr3LK1sC8dB3ZPVTaigaLzYMbcl/cRKMbkPIkUb2oVqw69WUg==}
-
-  fairmont-reactive@1.1.2:
-    resolution: {integrity: sha512-57S4fkLBgyZcjOyDgb3/4O+BLUzQkv09EnYUZnWooPIoF7q783mFFGTxl2Dz/lt03iVB04c1gqBhgGqX+4+/5A==}
-
-  fairmont@1.1.6:
-    resolution: {integrity: sha512-rTxd6W5UaDKQpVA2P4sdntbqvojRKoDWLieC3rB5niEvpOzuJ845XYmSEugy3b+SOFJRjxaA8UF5LN/bVE77lw==}
 
   fast-glob@3.3.2:
     resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
@@ -1677,10 +1641,6 @@ packages:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
 
-  markup-js@1.5.21:
-    resolution: {integrity: sha512-qeUHSSwdXkcdGJv/Gd8s5l9jLEWIW5NwXDMkGkW8V1TSckB5IOdpZ/eIVzfiAOnAJU0brrSwVx6K2Ie86KGIXg==}
-    hasBin: true
-
   meow@6.1.1:
     resolution: {integrity: sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==}
     engines: {node: '>=8'}
@@ -1704,10 +1664,6 @@ packages:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
 
-  minimatch@2.0.10:
-    resolution: {integrity: sha512-jQo6o1qSVLEWaw3l+bwYA2X0uLuK2KjNh2wjgO7Q/9UJnXr1Q3yQKR8BI0/Bt/rPg75e6SMW4hW/6cBHVTZUjA==}
-    deprecated: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
-
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
@@ -1729,9 +1685,6 @@ packages:
 
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
-
-  mvdan-sh@0.10.1:
-    resolution: {integrity: sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==}
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
@@ -1860,20 +1813,9 @@ packages:
     resolution: {integrity: sha512-MkXsENfftWSRpzCzImcp4FRsCc3y1opwB73CfCNWyzMqArju2CrlMHlqB7VexKiPEOjGMbttv1r9fSCn5S610w==}
     engines: {node: '>=10'}
 
-  prettier-plugin-sh@0.14.0:
-    resolution: {integrity: sha512-hfXulj5+zEl/ulrO5kMuuTPKmXvOg0bnLHY1hKFNN/N+/903iZbNp8NyZBTsgI8dtkSgFfAEIQq0IQTyP1ZVFQ==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      prettier: ^3.0.3
-
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  prettier@3.2.5:
-    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
-    engines: {node: '>=14'}
     hasBin: true
 
   pretty-format@29.7.0:
@@ -1997,10 +1939,6 @@ packages:
   set-function-name@2.0.2:
     resolution: {integrity: sha512-7PGFlmtwsEADb0WYyvCMa1t+yke6daIG4Wirafur5kcf+MhUnPms1UeR0CKQdTZD81yESwMHbtn+TR+dMviakQ==}
     engines: {node: '>= 0.4'}
-
-  sh-syntax@0.4.2:
-    resolution: {integrity: sha512-/l2UZ5fhGZLVZa16XQM9/Vq/hezGGbdHeVEA01uWjOL1+7Ek/gt6FquW0iKKws4a9AYPYvlz6RyVvjh3JxOteg==}
-    engines: {node: '>=16.0.0'}
 
   shebang-command@1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}
@@ -2341,10 +2279,6 @@ packages:
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
-
-  yaml-cli@1.1.8:
-    resolution: {integrity: sha512-sx14oBak7pnh2glKYwha+Y5io9Eq91BO7xrOgj0EMvdVqr6wu87VlmROT48PQLYRGFxjNw2oPAE59nfKWgpdpw==}
-    hasBin: true
 
   yargs-parser@18.1.3:
     resolution: {integrity: sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==}
@@ -3296,8 +3230,6 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  base64-words@0.1.2: {}
-
   better-path-resolve@1.0.0:
     dependencies:
       is-windows: 1.0.2
@@ -3657,48 +3589,6 @@ snapshots:
       chardet: 0.7.0
       iconv-lite: 0.4.24
       tmp: 0.0.33
-
-  fairmont-core@1.0.1: {}
-
-  fairmont-filesystem@1.1.3:
-    dependencies:
-      fairmont-core: 1.0.1
-      fairmont-helpers: 1.2.2
-      fairmont-multimethods: 1.0.1
-      fairmont-reactive: 1.1.2
-      minimatch: 2.0.10
-
-  fairmont-helpers@1.1.2:
-    dependencies:
-      fairmont-core: 1.0.1
-      fairmont-multimethods: 1.0.1
-
-  fairmont-helpers@1.2.2:
-    dependencies:
-      base64-words: 0.1.2
-      fairmont-core: 1.0.1
-      fairmont-multimethods: 1.0.1
-
-  fairmont-multimethods@1.0.1: {}
-
-  fairmont-process@1.1.1:
-    dependencies:
-      fairmont-helpers: 1.2.2
-
-  fairmont-reactive@1.1.2:
-    dependencies:
-      fairmont-core: 1.0.1
-      fairmont-helpers: 1.1.2
-      fairmont-multimethods: 1.0.1
-
-  fairmont@1.1.6:
-    dependencies:
-      fairmont-core: 1.0.1
-      fairmont-filesystem: 1.1.3
-      fairmont-helpers: 1.2.2
-      fairmont-multimethods: 1.0.1
-      fairmont-process: 1.1.1
-      fairmont-reactive: 1.1.2
 
   fast-glob@3.3.2:
     dependencies:
@@ -4415,8 +4305,6 @@ snapshots:
 
   map-obj@4.3.0: {}
 
-  markup-js@1.5.21: {}
-
   meow@6.1.1:
     dependencies:
       '@types/minimist': 1.2.5
@@ -4444,10 +4332,6 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  minimatch@2.0.10:
-    dependencies:
-      brace-expansion: 1.1.11
-
   minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.11
@@ -4467,8 +4351,6 @@ snapshots:
   mixme@0.5.10: {}
 
   ms@2.1.2: {}
-
-  mvdan-sh@0.10.1: {}
 
   natural-compare@1.4.0: {}
 
@@ -4579,15 +4461,7 @@ snapshots:
       path-exists: 4.0.0
       which-pm: 2.0.0
 
-  prettier-plugin-sh@0.14.0(prettier@3.2.5):
-    dependencies:
-      mvdan-sh: 0.10.1
-      prettier: 3.2.5
-      sh-syntax: 0.4.2
-
   prettier@2.8.8: {}
-
-  prettier@3.2.5: {}
 
   pretty-format@29.7.0:
     dependencies:
@@ -4732,10 +4606,6 @@ snapshots:
       es-errors: 1.3.0
       functions-have-names: 1.2.3
       has-property-descriptors: 1.0.2
-
-  sh-syntax@0.4.2:
-    dependencies:
-      tslib: 2.6.2
 
   shebang-command@1.2.0:
     dependencies:
@@ -5095,12 +4965,6 @@ snapshots:
   yallist@2.1.2: {}
 
   yallist@3.1.1: {}
-
-  yaml-cli@1.1.8:
-    dependencies:
-      fairmont: 1.1.6
-      js-yaml: 3.14.1
-      markup-js: 1.5.21
 
   yargs-parser@18.1.3:
     dependencies:
