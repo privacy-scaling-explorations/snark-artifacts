@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
+import maybeGetSnarkArtifactsBrowser from '../src/download/download.browser'
 import maybeGetSnarkArtifacts from '../src/download/download.node'
 import { Project } from '../src/projects'
 
@@ -24,6 +25,10 @@ describe('MaybeGetSnarkArtifacts', () => {
         parameters: ['2'],
         version: 'latest',
       }),
+    ).rejects.toThrow("Project 'project' is not supported")
+
+    await expect(
+      maybeGetSnarkArtifactsBrowser('project' as Project),
     ).rejects.toThrow("Project 'project' is not supported")
   })
 
@@ -95,7 +100,7 @@ describe('MaybeGetSnarkArtifacts', () => {
     expect(global.fetch).not.toHaveBeenCalled()
   })
 
-  it('Should return artifact file paths', async () => {
+  it('Should return artifact file paths in node environment', async () => {
     mkdirSpy.mockRestore()
     existsSyncSpy.mockReturnValue(false)
 
@@ -111,4 +116,33 @@ describe('MaybeGetSnarkArtifacts', () => {
     )
     expect(fetchSpy).toHaveBeenCalledTimes(2)
   }, 20_000)
+
+  it('Should return artifact file paths with parameters in browser environment', async () => {
+    const { wasm, zkey } = await maybeGetSnarkArtifactsBrowser(
+      Project.POSEIDON,
+      {
+        parameters: ['2'],
+      },
+    )
+
+    expect(wasm).toMatchInlineSnapshot(
+      `"https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm"`,
+    )
+    expect(zkey).toMatchInlineSnapshot(
+      `"https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey"`,
+    )
+  })
+
+  it('Should return artifact files paths without parameters in browser environment', async () => {
+    const { wasm, zkey } = await maybeGetSnarkArtifactsBrowser(
+      Project.SEMAPHORE,
+    )
+
+    expect(wasm).toMatchInlineSnapshot(
+      `"https://unpkg.com/@zk-kit/semaphore-artifacts@latest/semaphore.wasm"`,
+    )
+    expect(zkey).toMatchInlineSnapshot(
+      `"https://unpkg.com/@zk-kit/semaphore-artifacts@latest/semaphore.zkey"`,
+    )
+  })
 })

@@ -12,6 +12,7 @@ const config: JestConfigWithTsJest = {
   },
   moduleDirectories: ['node_modules'],
   moduleFileExtensions: ['js', 'ts'],
+  rootDir: '..',
 }
 
 export default config
