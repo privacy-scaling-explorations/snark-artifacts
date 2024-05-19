@@ -25,16 +25,16 @@ Cryptographic proofs, particularly those involving SNARKs, require specific arti
 
 ## Goals
 
--   Efficiently distribute SNARK artifacts without repository bloat.
--   Ensure artifacts are easily accessible and reusable by the community.
--   Provide version control for artifacts to enable access to different versions as needed.
--   Implement integrity checks to ensure artifact authenticity.
+- Efficiently distribute SNARK artifacts without repository bloat.
+- Ensure artifacts are easily accessible and reusable by the community.
+- Provide version control for artifacts to enable access to different versions as needed.
+- Implement integrity checks to ensure artifact authenticity.
 
 ### Non (immediate) goals
 
--   Automate file distribution.
--   Decentralize version control (e.g. [Radicle](https://radicle.xyz)).
--   Decentralize file distribution (e.g. [IPFS](https://www.ipfs.tech)).
+- Automate file distribution.
+- Decentralize version control (e.g. [Radicle](https://radicle.xyz)).
+- Decentralize file distribution (e.g. [IPFS](https://www.ipfs.tech)).
 
 ## Solution
 

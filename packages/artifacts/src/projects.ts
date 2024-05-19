@@ -1,7 +1,7 @@
 export enum Project {
   SEMAPHORE_IDENTITY = 'semaphore-identity',
   POSEIDON = 'poseidon',
-  //RLN = 'rln',
+  // RLN = 'rln',
   SEMAPHORE = 'semaphore',
 }
 

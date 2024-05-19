@@ -32,7 +32,7 @@ For more info here see: [OVERVIEW.md](https://github.com/privacy-scaling-explora
 
 Interested in contributing to this project? See the [board](https://github.com/orgs/privacy-scaling-explorations/projects/45/views/1) and upcoming issues to work on or [propose other ideas](https://github.com/privacy-scaling-explorations/snark-artifacts/issues).
 
-> [!NOTE]  
+> [!NOTE]\
 > This system is probably best suited to small and medium-sized circuits.
 
 ## Artifacts
@@ -136,11 +136,11 @@ Interested in contributing to this project? See the [board](https://github.com/o
 
 ## 🚀 Features
 
--   ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications across major CDNs.
--   ⏳ **Easy Integration**: Seamless integration with existing cryptographic frameworks and systems through utility functions.
--   ⏳ **Linear versioning mechanism**: A simple and consistent versioning system that reflects changes in relative circuits.
--   ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
--   ❌ **Automated Distribution**: A system that automatically distributes artifacts after the ceremony (possibly through [P0tion](https://github.com/privacy-scaling-explorations/p0tion)).
+- ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications across major CDNs.
+- ⏳ **Easy Integration**: Seamless integration with existing cryptographic frameworks and systems through utility functions.
+- ⏳ **Linear versioning mechanism**: A simple and consistent versioning system that reflects changes in relative circuits.
+- ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
+- ❌ **Automated Distribution**: A system that automatically distributes artifacts after the ceremony (possibly through [P0tion](https://github.com/privacy-scaling-explorations/p0tion)).
 
 ## 📜 Getting Started
 
@@ -162,11 +162,11 @@ And finally, if you need a specific package:
 git sparse-checkout add packages/<package>
 ```
 
-For convenience we provide an interactive [`setup`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/scripts/bin/setup) script.  
+For convenience we provide an interactive [`setup`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/scripts/bin/setup) script.\
 It will ask you where to clone the repository, and what packages you want to sparse checkout.
 
-``` bash
-bash <(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup) fetch
+```bash
+bash <(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup.bash) fetch
 ```
 
 After the first time clone, you can use the following npm scripts:
@@ -179,7 +179,7 @@ After the first time clone, you can use the following npm scripts:
 ZK-Kit provides a set of functions to automatically download your artifacts. For example:
 
 ```ts
-import { maybeGetEdDSASnarkArtifacts } from "@zk-kit/utils"
+import { maybeGetEdDSASnarkArtifacts } from '@zk-kit/utils'
 
 // It will return the artifacts' paths.
 const { wasm, zkey } = await maybeGetEdDSASnarkArtifacts()
@@ -194,5 +194,5 @@ console.log(zkey) // "/tmp/@zk-kit/eddsa-artifacts@latest/eddsa.zkey"
 You can download all artifacts from this repository with:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts) -h
+bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
 ```

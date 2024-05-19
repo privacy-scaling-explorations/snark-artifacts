@@ -1,42 +1,42 @@
 name: New Artifacts
 description: Add your SNARK artifacts.
-title: "<project-name>"
-labels: ["artifacts"]
-projects: ["privacy-scaling-explorations/45"]
+title: '<project-name>'
+labels: ['artifacts']
+projects: ['privacy-scaling-explorations/45']
 body:
-    - type: markdown
-      attributes:
-          value: |
-              A core contributor will ensure that your artifacts are included in the system as soon as possible!
-    - type: input
-      id: files
-      attributes:
-          label: Files
-          description: Provide a working link to download your artifacts.
-          placeholder: ex. https://drive.google.com/drive/folders/1t0gf1dcqZ83YzG0WwPq2xv6ovUe5CCJv
-      validations:
-          required: false
-    - type: input
-      id: circuit
-      attributes:
-          label: Circuit
-          description: Provide a link to your circuit.
-          placeholder: https://github.com/privacy-scaling-explorations/zk-kit/blob/main/packages/circuits/circom/eddsa-proof.circom
-      validations:
-          required: false
-    - type: input
-      id: library
-      attributes:
-          label: Library
-          description: Provide a link to your library that will use your artifacts.
-          placeholder: https://github.com/privacy-scaling-explorations/zk-kit/tree/main/packages/eddsa-proof
-      validations:
-          required: false
-    - type: checkboxes
-      id: terms
-      attributes:
-          label: Code of Conduct
-          description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/CODE_OF_CONDUCT.md).
-          options:
-              - label: I agree to follow this project's Code of Conduct
-                required: true
+  - type: markdown
+    attributes:
+      value: |
+        A core contributor will ensure that your artifacts are included in the system as soon as possible!
+  - type: input
+    id: files
+    attributes:
+      label: Files
+      description: Provide a working link to download your artifacts.
+      placeholder: ex. https://drive.google.com/drive/folders/1t0gf1dcqZ83YzG0WwPq2xv6ovUe5CCJv
+    validations:
+      required: false
+  - type: input
+    id: circuit
+    attributes:
+      label: Circuit
+      description: Provide a link to your circuit.
+      placeholder: https://github.com/privacy-scaling-explorations/zk-kit/blob/main/packages/circuits/circom/eddsa-proof.circom
+    validations:
+      required: false
+  - type: input
+    id: library
+    attributes:
+      label: Library
+      description: Provide a link to your library that will use your artifacts.
+      placeholder: https://github.com/privacy-scaling-explorations/zk-kit/tree/main/packages/eddsa-proof
+    validations:
+      required: false
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
