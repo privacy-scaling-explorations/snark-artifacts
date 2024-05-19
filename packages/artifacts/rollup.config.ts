@@ -1,6 +1,6 @@
-import fs from 'node:fs'
 import alias from '@rollup/plugin-alias'
 import typescript from '@rollup/plugin-typescript'
+import fs from 'node:fs'
 import type { RollupOptions } from 'rollup'
 
 const input = 'src/index.ts'

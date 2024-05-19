@@ -10,4 +10,8 @@
     // use dprint instead
     "enabled": false,
   },
+  "organizeImports": {
+    // use dprint instead
+    "enabled": false,
+  },
 }
