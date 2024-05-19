@@ -39,4 +39,4 @@ jobs:
             - if: ${{ steps.changesets.outputs.publishedPackages != '[]' }}
               name: Update 'latest' tag for published packages
               # https://github.com/changesets/action?tab=readme-ov-file#outputs
-              run: ./scripts/bin/move-latest-tag ${{ steps.changesets.outputs.publishedPackages }} ${{ github.sha }}
+              run: ./scripts/bin/move-latest-tag '${{ steps.changesets.outputs.publishedPackages }}' ${{ github.sha }}
