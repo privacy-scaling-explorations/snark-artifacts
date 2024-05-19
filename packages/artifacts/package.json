@@ -1,6 +1,6 @@
 {
   "name": "@zk-kit/artifacts",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Utilities for downloading snark artifacts",
   "scripts": {
     "build": "npm run clean && rollup -c rollup.config.ts --configPlugin typescript",
@@ -12,8 +12,16 @@
     "type": "git",
     "url": "git+https://github.com/privacy-scaling-explorations/snark-artifacts.git"
   },
-  "keywords": ["snark", "artifacts", "circom", "zk"],
-  "contributors": ["cedoor <me@cedoor.dev>", "sripwoud <me@sripwoud.xyz"],
+  "keywords": [
+    "snark",
+    "artifacts",
+    "circom",
+    "zk"
+  ],
+  "contributors": [
+    "cedoor <me@cedoor.dev>",
+    "sripwoud <me@sripwoud.xyz"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
@@ -37,7 +45,10 @@
       "types": "./dist/types/index.d.ts"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
