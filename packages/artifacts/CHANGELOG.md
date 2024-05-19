@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.3.1
+
+### Patch Changes
+
+- 7ba2dc3: Export `SnarkArtifacts` and `Version` types
+
 ## 1.3.0
 
 ### Minor Changes
