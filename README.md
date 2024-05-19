@@ -166,7 +166,7 @@ For convenience we provide an interactive [`setup`](https://github.com/privacy-s
 It will ask you where to clone the repository, and what packages you want to sparse checkout.
 
 ```bash
-bash <(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup) fetch
+bash <(curl https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/setup.bash) fetch
 ```
 
 After the first time clone, you can use the following npm scripts:
@@ -194,5 +194,5 @@ console.log(zkey) // "/tmp/@zk-kit/eddsa-artifacts@latest/eddsa.zkey"
 You can download all artifacts from this repository with:
 
 ```bash
-bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts) -h
+bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
 ```

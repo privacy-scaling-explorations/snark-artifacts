@@ -47,9 +47,8 @@ main() {
   log=$(mktemp)
 
   for cdn in "https://cdn.jsdelivr.net/npm/@zk-kit/poseidon-artifacts@latest" \
-             "https://unpkg.com/@zk-kit/poseidon-artifacts@latest" \
-             "https://github.com/privacy-scaling-explorations/snark-artifacts/raw/@zk-kit/semaphore-artifacts@1.0.0/packages/poseidon";\
-  do
+    "https://unpkg.com/@zk-kit/poseidon-artifacts@latest" \
+    "https://github.com/privacy-scaling-explorations/snark-artifacts/raw/@zk-kit/semaphore-artifacts@1.0.0/packages/poseidon"; do
     for _ in {1..10}; do
       dl_all "$cdn" | tee -a "$log" &
     done

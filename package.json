@@ -6,12 +6,15 @@
     "check": "dprint check && biome check --config-path .biome.jsonc .",
     "fix": "dprint fmt && biome check --config-path .biome.jsonc --apply .",
     "gprf": "git pull-rebase-filtered",
-    "sparse-checkout": "./scripts/bin/setup"
+    "postinstall": "./scripts/bin/postinstall.bash",
+    "sparse-checkout": "./scripts/bin/setup.bash"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
     "@changesets/cli": "^2.27.1",
     "dprint": "^0.45.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-sh": "^0.14.0",
     "yaml-cli": "^1.1.8"
   },
   "packageManager": "pnpm@9.1.0"
