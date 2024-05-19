@@ -3,6 +3,7 @@
     "quoteProps": "asNeeded",
     "quoteStyle": "preferSingle",
     "semiColons": "asi",
+    "useBraces": "preferNone",
   },
   "prettier": {
     "singleQuote": true,

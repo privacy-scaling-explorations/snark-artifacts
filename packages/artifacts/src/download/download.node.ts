@@ -8,9 +8,8 @@ import type { SnarkArtifacts } from './types'
 async function download(url: string, outputPath: string) {
   const response = await fetch(url)
 
-  if (!response.ok) {
+  if (!response.ok)
     throw new Error(`Failed to fetch ${url}: ${response.statusText}`)
-  }
   if (!response.body) throw new Error('Failed to get response body')
 
   const dir = dirname(outputPath)

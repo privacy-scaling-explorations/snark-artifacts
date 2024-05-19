@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "changeset": "changeset && git add .changeset && git commit -m 'changeset'",
-    "check": "dprint check && biome --config-path .biome.jsonc check .",
+    "check": "dprint check && biome check --config-path .biome.jsonc .",
     "fix": "dprint fmt && biome check --config-path .biome.jsonc --apply .",
     "gprf": "git pull-rebase-filtered",
     "sparse-checkout": "./scripts/bin/setup"

@@ -9,9 +9,8 @@ export default async function maybeGetSnarkArtifacts(
     cdnUrl?: string
   } = {},
 ): Promise<SnarkArtifacts> {
-  if (!projects.includes(project)) {
+  if (!projects.includes(project))
     throw new Error(`Project '${project}' is not supported`)
-  }
 
   options.version ??= 'latest'
   options.cdnUrl ??= 'https://unpkg.com'
