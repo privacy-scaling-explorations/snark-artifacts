@@ -53,7 +53,20 @@ GitHub/Git are used for the detailed management of the artifact repository, offe
 
 npm is central to this solution, serving not only for version control and distribution but also for ensuring the integrity of the artifacts. After artifacts are fetched from a CDN, the integrity of these packages can be verified using NPM's built-in capabilities such as npm audit and signature verifications. This adds an essential layer of security, ensuring that the downloaded artifacts have not been tampered with and are exactly as published. It's a vital step for cryptographic artifacts where integrity is paramount.
 
-The npm packages will be part of the `@zk-kit` npm org and will have the following format: `@zk-kit/{eddsa,poseidon,semaphore}-artifacts`.
+The npm packages will be part of the `@zk-kit` npm org and will have the following format: `@zk-kit/{project}-artifacts`.
+
+#### Versioning
+
+Artifacts packages are released either as major or beta versions.\
+Only major releases contain artifacts generated with genuine trusted setup (see [ceremony.pse.dev](https://ceremony.pse.dev)).\
+Beta releases contain artifacts generated with dummy setups and should therefore **not be trusted to generate proofs in production environments or sensitive applications**.
+
+#### Relationship with source circuits files
+
+| source circuits are packaged |   artifacts package version    |               custom `npm` field in `package.json`                |                                                                                                   ex                                                                                                   |
+| :--------------------------: | :----------------------------: | :---------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             yes              | should match circuits' version |               must be set to circuits package name                | [`@zk-kit/semaphore-identity-artifacts`](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/97381213be0f2cd1747c9d16989938d6731252e0/packages/semaphore-identity/package.json#L3-L5) |
+|              no              |      has its own version       | must be set to the remote commit sha url referring to the circuit |                                                                                                                                                                                                        |
 
 ### CDN
 
