@@ -1,0 +1,15 @@
+name: Add Opened Issue to Project
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.1
+        with:
+          project-url: https://github.com/orgs/anonklub/projects/1 # https://github.com/<orgs|users>/<orgName|userName>/projects/<projectNumber>
+          github-token: ${{ secrets.GHPAT_FOR_PROJECT_ACTION }} # specific access token different from GITHUB_TOKEN required (see https://github.com/marketplace/actions/add-to-github-projects#creating-a-pat-and-adding-it-to-your-repository)
