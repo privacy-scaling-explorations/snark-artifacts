@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.3.2
+
+### Patch Changes
+
+- 6476dc0: New export fields
+
 ## 1.3.1
 
 ### Patch Changes
