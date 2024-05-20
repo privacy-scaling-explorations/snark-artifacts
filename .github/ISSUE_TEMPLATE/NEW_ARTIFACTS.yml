@@ -11,7 +11,7 @@ body:
   - type: input
     id: files
     attributes:
-      label: Files
+      label: Artifacts
       description: Provide a working link to download your artifacts.
       placeholder: ex. https://drive.google.com/drive/folders/1t0gf1dcqZ83YzG0WwPq2xv6ovUe5CCJv
     validations:
@@ -20,10 +20,10 @@ body:
     id: circuit
     attributes:
       label: Circuit
-      description: Provide a link to your circuit.
+      description: Provide a link to your circuit (published package or commit sha url).
       placeholder: https://github.com/privacy-scaling-explorations/zk-kit/blob/main/packages/circuits/circom/eddsa-proof.circom
     validations:
-      required: false
+      required: true
   - type: input
     id: library
     attributes:
