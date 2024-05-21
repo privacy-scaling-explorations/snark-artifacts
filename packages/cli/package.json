@@ -1,0 +1,51 @@
+{
+  "name": "@zk-kit/artifacts-cli",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "snarkli": "./dist/index.js"
+  },
+  "description": "CLI for managing snark artifacts",
+  "scripts": {
+    "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
+    "dev": "NODE_ENV=development tsnd --cls --exit-child --ignore-watch node_modules --quiet --respawn --rs --transpile-only src",
+    "start": "node dist/index.js",
+    "start.prod": "NODE_ENV=production node dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privacy-scaling-explorations/snark-artifacts.git"
+  },
+  "keywords": [
+    "snark",
+    "artifacts",
+    "circom",
+    "cli",
+    "zk"
+  ],
+  "contributors": [
+    "sripwoud <me@sripwoud.xyz"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
+  },
+  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/cli",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/index.js"
+  ],
+  "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
+    "inquirer": "^9.2.22",
+    "remove": "^0.1.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/inquirer": "^9.0.7",
+    "rollup": "^4.17.2"
+  }
+}

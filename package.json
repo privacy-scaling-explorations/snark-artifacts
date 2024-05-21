@@ -12,7 +12,15 @@
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
     "@changesets/cli": "^2.27.1",
-    "dprint": "^0.45.1"
+    "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.12.10",
+    "dprint": "^0.45.1",
+    "rimraf": "^5.0.7",
+    "rollup": "^4.17.2",
+    "ts-node-dev": "^2.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
   },
   "packageManager": "pnpm@9.1.0"
 }
