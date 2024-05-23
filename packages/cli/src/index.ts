@@ -7,5 +7,5 @@ const main = async () => {
 
 main().catch((err) => {
   console.error(err)
- exit(1)
+  exit(1)
 })
