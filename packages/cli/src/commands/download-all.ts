@@ -1,7 +1,7 @@
 import { Argument, Command } from '@commander-js/extra-typings'
 import { projects } from '@zk-kit/artifacts'
 
-export const downloadAll = new Command('download-all').description(
+export const downloadAll = new Command('download-all').alias('da').description(
   'Download all available artifacts for a given project',
 )
   .addArgument(new Argument('<project>', 'Project name').choices(projects))
