@@ -1,8 +1,7 @@
 import inquirer from 'inquirer'
-import { existsSync } from 'node:fs'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateSourceInput } from './validators'
+import { validateFilePath, validateSourceInput } from '../../validators'
 
 const getSourceInput = async (): Promise<string> => {
   const { source } = await inquirer.prompt([
@@ -10,9 +9,10 @@ const getSourceInput = async (): Promise<string> => {
       type: 'input',
       name: 'source',
       message: 'Enter the source circom file path:',
-      validate: input => validateSourceInput(input) || 'Invalid circom file path',
+      validate: validateSourceInput,
     },
   ])
+
   return source
 }
 
@@ -27,7 +27,7 @@ const getDestinationInput = async (source: string): Promise<string> => {
         if (source) filename = `${basename(source, '.circom')}-${filename}`
         return join(cwd(), filename)
       },
-      validate: input => existsSync(input) || 'Invalid destination path',
+      validate: validateFilePath,
     },
   ])
   return destination
