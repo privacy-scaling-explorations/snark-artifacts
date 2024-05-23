@@ -1,5 +1,5 @@
 import { exit } from 'node:process'
-import program from './program'
+import program from 'program'
 
 const main = async () => {
   await program.parseAsync(process.argv)

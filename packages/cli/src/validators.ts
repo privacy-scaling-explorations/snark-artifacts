@@ -1,6 +1,6 @@
+import { CliError } from 'errors'
 import { existsSync } from 'node:fs'
 import { extname } from 'node:path'
-import { CliError } from './errors'
 
 export const validateFilePath = (path: string): boolean | CliError => {
   if (!existsSync(path)) return CliError.FILE_DOES_NOT_EXIST

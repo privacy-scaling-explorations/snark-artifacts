@@ -1,6 +1,6 @@
 import { Command } from '@commander-js/extra-typings'
 import { existsSync } from 'node:fs'
-import { validateOrThrow, validateSourceInput } from '../../validators'
+import { validateOrThrow, validateSourceInput } from 'validators'
 import { getDestinationInput, getSourceInput } from './prompts'
 
 export const generate = new Command('generate').description(

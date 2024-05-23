@@ -1,7 +1,7 @@
 import inquirer from 'inquirer'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateFilePath, validateSourceInput } from '../../validators'
+import { validateFilePath, validateSourceInput } from 'validators'
 
 const getSourceInput = async (): Promise<string> => {
   const { source } = await inquirer.prompt([
