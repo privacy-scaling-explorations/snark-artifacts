@@ -8,7 +8,7 @@ describe('CLI', () => {
 
   beforeAll(() => {
     // avoid polluting stdout/sterr with command results' during tests
-  jest.spyOn(stdout, 'write').mockImplementation(() => true)
+    jest.spyOn(stdout, 'write').mockImplementation(() => true)
   })
   beforeEach(() => {
     cli = new Cli()
