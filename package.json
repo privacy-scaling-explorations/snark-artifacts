@@ -9,7 +9,7 @@
     "postinstall": "./scripts/bin/postinstall.bash",
     "sparse-checkout": "./scripts/bin/setup.bash",
     "test": "jest -c jest.config.ts",
-    "test.ci":"jest -c jest.config.ts --coverage=false"
+    "test.ci": "jest -c jest.config.ts --coverage=false"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
