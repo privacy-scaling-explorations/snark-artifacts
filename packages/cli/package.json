@@ -8,7 +8,8 @@
   "description": "CLI for managing snark artifacts",
   "scripts": {
     "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
-    "start": "node dist/index.js",
+    "dev": "NODE_END=development node --import 'data:text/javascript,import { register } from \"node:module\"; import { pathToFileURL } from \"node:url\"; register(\"ts-node/esm\", pathToFileURL(\"./\"));' --watch src/index.ts",
+    "Start": "node dist/index.js",
     "prepublishOnly": "pnpm run build"
   },
   "repository": {

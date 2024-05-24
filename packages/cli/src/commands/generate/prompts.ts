@@ -1,23 +1,20 @@
-import inquirer from 'inquirer'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateFilePath, validateSourceInput } from 'validators'
+import { prompt } from '../../utils.js'
+import { validateFilePath, validateSourceInput } from '../../validators.js'
 
-const getSourceInput = async (): Promise<string> => {
-  const { source } = await inquirer.prompt([
+export const getSourceInput = async () =>
+  prompt(
     {
       type: 'input',
       name: 'source',
       message: 'Enter the source circom file path:',
       validate: validateSourceInput,
     },
-  ])
+  )
 
-  return source
-}
-
-const getDestinationInput = async (source: string): Promise<string> => {
-  const { destination } = await inquirer.prompt([
+export const getDestinationInput = async (source: string) =>
+  prompt(
     {
       type: 'input',
       name: 'destination',
@@ -29,8 +26,4 @@ const getDestinationInput = async (source: string): Promise<string> => {
       },
       validate: validateFilePath,
     },
-  ])
-  return destination
-}
-
-export { getDestinationInput, getSourceInput }
+  )

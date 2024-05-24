@@ -1,7 +1,7 @@
 import { Command } from '@commander-js/extra-typings'
 import { existsSync } from 'node:fs'
-import { validateOrThrow, validateSourceInput } from 'validators'
-import { getDestinationInput, getSourceInput } from './prompts'
+import { validateOrThrow, validateSourceInput } from '../../validators.js'
+import { getDestinationInput, getSourceInput } from './prompts.js'
 
 export const generate = new Command('generate').alias('g').description(
   'Generate snark artifacts for a given source circom circuit',
