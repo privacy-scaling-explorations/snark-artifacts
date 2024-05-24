@@ -9,7 +9,18 @@
     "alwaysStrict": true,
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
+
+    "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
-    "preserveConstEnums": true
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": false
   }
 }
