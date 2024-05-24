@@ -1,12 +1,12 @@
 {
-  "include": ["src", "rollup.config.ts"],
+  "include": ["src", "rollup.config.ts", "test"],
   "compilerOptions": {
-    "baseUrl": "./src",
     "noEmit": true,
     "target": "es2020",
     "module": "esnext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
 
     "strict": true,
     "exactOptionalPropertyTypes": true,
@@ -19,5 +19,8 @@
     "noUnusedLocals": true,
     "strictNullChecks": true,
     "useUnknownInCatchVariables": false
+  },
+  "ts-node": {
+    "esm": true
   }
 }

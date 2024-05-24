@@ -1,6 +1,6 @@
-import { downloadAll } from './download-all.js'
-import { download } from './download/index.js'
-import { generate } from './generate/index.js'
-import { listPackages } from './list-packages.js'
+import { downloadAll } from './download-all.ts'
+import { download } from './download/index.ts'
+import { generate } from './generate/index.ts'
+import { listPackages } from './list-packages.ts'
 
 export default [download, downloadAll, generate, listPackages]
