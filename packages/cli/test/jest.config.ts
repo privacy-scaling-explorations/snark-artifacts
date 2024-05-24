@@ -5,7 +5,8 @@ const { collectCoverage, projects, ...sharedJestConf } = _sharedJestConf
 
 const config: JestConfigWithTsJest = {
   ...sharedJestConf,
-  displayName: 'artifacts',
+  displayName: 'cli',
+  rootDir: '..',
 }
 
 export default config

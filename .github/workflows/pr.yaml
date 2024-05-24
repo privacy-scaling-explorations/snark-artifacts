@@ -31,8 +31,8 @@ jobs:
       - name: Check formatting, linting and import sorting
         run: pnpm check
 
-      - name: Check TS build
-        run: pnpm --filter @zk-kit/artifacts build
+      - name: Check build
+        run: pnpm -r build
 
       - name: Test
-        run: pnpm --filter @zk-kit/artifacts test
+        run: pnpm test.ci
