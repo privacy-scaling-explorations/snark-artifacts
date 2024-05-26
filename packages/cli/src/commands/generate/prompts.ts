@@ -1,13 +1,13 @@
 import input from '@inquirer/input'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateFilePath, validateSourceInput } from '../../validators.ts'
+import { validateCircomFileInput, validateFilePath } from '../../validators.ts'
 
 export const getSourceInput = async () =>
   input(
     {
       message: 'Enter the source circom file path:',
-      validate: validateSourceInput,
+      validate: validateCircomFileInput,
     },
   )
 
