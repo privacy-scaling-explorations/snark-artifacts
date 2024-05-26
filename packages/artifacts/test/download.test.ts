@@ -16,7 +16,7 @@ describe('getSnarkArtifactUrls', () => {
       await expect(fetch(url)).resolves.toHaveProperty('ok', true)
     for (const url of zkeys)
       await expect(fetch(url)).resolves.toHaveProperty('ok', true)
-  }, 10_000)
+  }, 20_000)
 })
 
 describe('MaybeGetSnarkArtifacts', () => {
