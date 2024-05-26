@@ -7,10 +7,9 @@ export function validateFilePath(path: string) {
   return true
 }
 
-export function validateSourceInput(source: string) {
-  validateFilePath(source)
+export function validateCircomFileInput(source: string) {
   if (!(extname(source) === '.circom')) return CliError.INVALID_CIRCOM_FILE
-  return true
+  return validateFilePath(source)
 }
 
 export function validateOrThrow<T>(parameter: T | undefined, validate: (param: T) => boolean | CliError) {
