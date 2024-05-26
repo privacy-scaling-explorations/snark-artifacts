@@ -5,6 +5,8 @@
  */
 export type SnarkArtifacts = Record<'wasm' | 'zkey', string>
 
+export type Strings<T extends readonly string[]> = { [K in keyof T]: string }
+
 type Digit = `${number}`
 type PreRelease = 'alpha' | 'beta'
 

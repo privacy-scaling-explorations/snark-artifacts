@@ -37,6 +37,7 @@ describe('MaybeGetSnarkArtifacts', () => {
     fetchSpy.mockResolvedValueOnce({
       ok: false,
       statusText: 'TEST',
+      url: 'https://test.com',
     })
 
     await expect(
@@ -45,7 +46,7 @@ describe('MaybeGetSnarkArtifacts', () => {
         version: 'latest',
       }),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"Failed to fetch https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm: TEST"`,
+      `"Failed to fetch https://test.com: TEST"`,
     )
   })
 

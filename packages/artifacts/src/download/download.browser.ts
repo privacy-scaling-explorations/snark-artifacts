@@ -1,27 +1,38 @@
 import { type Project, projects } from '../projects'
+import { getCdnUrls, type Urls } from './cdns'
 import type { SnarkArtifacts, Version } from './types'
 
-export default async function maybeGetSnarkArtifacts(
+export function getSnarkArtifactUrls(
   project: Project,
   options: {
     parameters?: (bigint | number | string)[]
     version?: Version
     cdnUrl?: string
   } = {},
-): Promise<SnarkArtifacts> {
+) {
   if (!projects.includes(project))
     throw new Error(`Project '${project}' is not supported`)
 
   options.version ??= 'latest'
-  options.cdnUrl ??= 'https://unpkg.com'
+  const urls = getCdnUrls(project, options.version)
 
-  const BASE_URL = `${options.cdnUrl}/@zk-kit/${project}-artifacts@${options.version}`
   const parameters = options.parameters
     ? `-${options.parameters.join('-')}`
     : ''
 
   return {
-    wasm: `${BASE_URL}/${project}${parameters}.wasm`,
-    zkey: `${BASE_URL}/${project}${parameters}.zkey`,
+    wasms: urls.map((url) => `${url}${parameters}.wasm`) as unknown as Urls,
+    zkeys: urls.map(url => `${url}${parameters}.zkey`) as unknown as Urls,
+  }
+}
+
+export default async function maybeGetSnarkArtifacts(
+  ...pars: Parameters<typeof getSnarkArtifactUrls>
+): Promise<SnarkArtifacts> {
+  const { wasms, zkeys } = getSnarkArtifactUrls(...pars)
+
+  return {
+    wasm: wasms[0],
+    zkey: zkeys[0],
   }
 }
