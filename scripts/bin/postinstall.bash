@@ -15,7 +15,7 @@ download() {
   chmod +x "$script_dest"
 }
 
-is_already_installed() {
+exit_if_shfmt_installed() {
   command -v shfmt >/dev/null 2>&1 && exit 0
 }
 
@@ -31,7 +31,7 @@ check_install() {
 }
 
 main() {
-  is_already_installed
+  exit_if_shfmt_installed
 
   printf "%s %s\n" "Installing" "${BROWN}shfmt$RESET"
 
