@@ -11,7 +11,6 @@ export const generate = new Command('generate').alias('g').description(
 )
   .option('-d, --destination <path>', 'Destination directory for the generated artifacts').action(
     async ({ destination, source }) => {
-      console.log({ destination, source })
       validateOrThrow(source, validateCircomFileInput)
       validateOrThrow(destination, existsSync)
 
