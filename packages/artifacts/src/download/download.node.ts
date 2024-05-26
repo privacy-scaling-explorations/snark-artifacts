@@ -2,9 +2,8 @@ import { createWriteStream, existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import os from 'node:os'
 import { dirname } from 'node:path'
-import type { Urls } from './cdns'
-import { getSnarkArtifactUrls } from './download.browser'
 import type { SnarkArtifacts } from './types'
+import { getSnarkArtifactUrls, type Urls } from './urls'
 
 async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
   const [url] = urls

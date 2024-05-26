@@ -2,7 +2,22 @@ import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import maybeGetSnarkArtifactsBrowser from '../src/download/download.browser'
 import maybeGetSnarkArtifacts from '../src/download/download.node'
+import { getSnarkArtifactUrls } from '../src/download/urls'
 import { Project } from '../src/projects'
+
+describe('getSnarkArtifactUrls', () => {
+  it('Should return valid urls', async () => {
+    const { wasms, zkeys } = getSnarkArtifactUrls(Project.POSEIDON, {
+      parameters: ['2'],
+      version: '1.0.0',
+    })
+
+    for (const url of wasms)
+      await expect(fetch(url)).resolves.toHaveProperty('ok', true)
+    for (const url of zkeys)
+      await expect(fetch(url)).resolves.toHaveProperty('ok', true)
+  }, 10_000)
+})
 
 describe('MaybeGetSnarkArtifacts', () => {
   let fetchSpy: jest.SpyInstance

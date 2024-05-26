@@ -5,7 +5,9 @@
  */
 export type SnarkArtifacts = Record<'wasm' | 'zkey', string>
 
-export type Strings<T extends readonly string[]> = { [K in keyof T]: string }
+// Recursively build an array type of length L with elements of type T.
+export type ArrayOf<T, L extends number, A extends unknown[] = []> = A['length'] extends L ? A
+  : ArrayOf<T, L, [T, ...A]>
 
 type Digit = `${number}`
 type PreRelease = 'alpha' | 'beta'

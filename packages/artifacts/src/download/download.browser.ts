@@ -1,31 +1,8 @@
-import { type Project, projects } from '../projects'
-import { getCdnUrls, type Urls } from './cdns'
-import type { SnarkArtifacts, Version } from './types'
+import type { SnarkArtifacts } from './types'
+import { getSnarkArtifactUrls } from './urls'
 
-export function getSnarkArtifactUrls(
-  project: Project,
-  options: {
-    parameters?: (bigint | number | string)[]
-    version?: Version
-    cdnUrl?: string
-  } = {},
-) {
-  if (!projects.includes(project))
-    throw new Error(`Project '${project}' is not supported`)
-
-  options.version ??= 'latest'
-  const urls = getCdnUrls(project, options.version)
-
-  const parameters = options.parameters
-    ? `-${options.parameters.join('-')}`
-    : ''
-
-  return {
-    wasms: urls.map((url) => `${url}${parameters}.wasm`) as unknown as Urls,
-    zkeys: urls.map(url => `${url}${parameters}.zkey`) as unknown as Urls,
-  }
-}
-
+// TODO: retry for browser?
+// beisdes, is caching already handled by circom/snarkjs?
 export default async function maybeGetSnarkArtifacts(
   ...pars: Parameters<typeof getSnarkArtifactUrls>
 ): Promise<SnarkArtifacts> {
