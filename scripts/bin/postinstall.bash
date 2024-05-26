@@ -16,10 +16,7 @@ download() {
 }
 
 is_already_installed() {
-  if command -v shfmt >/dev/null 2>&1; then
-    printf "%s %s %s\n" "Skipped" "${BROWN}shfmt$RESET" "download (already installed on system)"
-    exit
-  fi
+  command -v shfmt >/dev/null 2>&1 && exit 0
 }
 
 check_install() {
@@ -29,6 +26,7 @@ check_install() {
     printf "%s\n" "${RED}Installation of shfmt failed$RESET"
     printf "%s %s\n" "Check" "${BROWN}https://github.com/patrickvane/shfmt?tab=readme-ov-file#usage$RESET"
     printf "%s\n" "and install it yourself if you want to be able to format shell scripts."
+    exit 1
   fi
 }
 
