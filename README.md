@@ -174,6 +174,8 @@ After the first time clone, you can use the following npm scripts:
 - `npm run sparse-checkout`: to add/remove packages from sparse checkout.
 - `npm run gprf`: pull rebase your active branch with `--filter=blob:none` to avoid downloading what you may not want (unfortunately sparse checkout alone won't prevent syncing what you haven't sparsed checkout).
 
+### [Contribute](./CONTRIBUTING.md)
+
 ### Downloading artifacts
 
 ZK-Kit provides a set of functions to automatically download your artifacts. For example:
