@@ -14,7 +14,10 @@ describe('CLI', () => {
   })
   beforeEach(() => {
     cli = new Cli()
+  })
+  afterEach(() => {
     consoleSpy.mockClear()
+    // consoleSpy.mockRestore()
   })
 
   it('should display the help message', async () => {
@@ -27,13 +30,10 @@ Options:
   -h, --help                      display help for command
 
 Commands:
-  download|d [options] <project>  Download all available artifacts for a given
-                                  project
-  download-all|da <project>       Download all available artifacts for a given
-                                  project
-  generate|g [options]            Generate snark artifacts for a given source
-                                  circom circuit
-  list-packages|lp                List all available packages
+  download|d [options] <project>  Download all available artifacts for a given project
+  download-all|da <project>       Download all available artifacts for a given project
+  generate|g [options]            Generate snark artifacts for a given source circom circuit
+  list|l                          List all projects and their available packages versions
   help [command]                  display help for command
 "
 `)
@@ -83,6 +83,25 @@ Commands:
             "destination": ".",
             "source": "circuit.circom",
           },
+        ]
+      `)
+    })
+  })
+
+  describe('list', () => {
+    it('should list all projects and the available versions', async () => {
+      await run(['list'])
+      expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
+        [
+          "semaphore-identity
+          1.0.0-beta
+        poseidon
+          1.0.0
+        semaphore
+          1.0.0
+          4.0.0-beta.9
+          4.0.0-beta.10
+        ",
         ]
       `)
     })
