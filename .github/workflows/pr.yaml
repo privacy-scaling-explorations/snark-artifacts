@@ -32,6 +32,9 @@ jobs:
       - name: Check formatting, linting and import sorting
         run: pnpm check
 
+      - name: Typecheck
+        run: pnpm -r typecheck
+
       - name: Check build
         run: pnpm -r build
 

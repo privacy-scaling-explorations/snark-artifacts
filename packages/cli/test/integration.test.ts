@@ -30,7 +30,7 @@ Options:
   -h, --help                      display help for command
 
 Commands:
-  download|d [options] <project>  Download all available artifacts for a given
+  download|d [options] [project]  Download all available artifacts for a given
                                   project
   download-all|da <project>       Download all available artifacts for a given
                                   project
@@ -51,16 +51,13 @@ Commands:
 
   describe('download', () => {
     it('should download artifacts for the specified project', async () => {
-      await run(['download', 'poseidon', '-a', '2'])
+      await run(['download', 'poseidon', '-p', '2'])
       expect(consoleSpy).toHaveBeenCalledTimes(1)
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
-          "Download artifacts for project:",
-          "poseidon",
-          "with args:",
-          [
-            "2",
-          ],
+          "Artifacts downloaded at:
+          /tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm
+          /tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey",
         ]
       `)
     })
