@@ -181,16 +181,19 @@ After the first time clone, you can use the following npm scripts:
 ZK-Kit provides a set of functions to automatically download your artifacts. For example:
 
 ```ts
-import { maybeGetEdDSASnarkArtifacts } from '@zk-kit/utils'
+import { maybeGetSnarkArtifacts, Project } from '@zk-kit/artifacts'
 
 // It will return the artifacts' paths.
-const { wasm, zkey } = await maybeGetEdDSASnarkArtifacts()
+const { wasm, zkey } = await maybeGetSnarkArtifacts(Project.POSEIDON, {
+  parameters: [2],
+  version: '1.0.0',
+})
 
-console.log(wasm) // "/tmp/@zk-kit/eddsa-artifacts@latest/eddsa.wasm"
-console.log(zkey) // "/tmp/@zk-kit/eddsa-artifacts@latest/eddsa.zkey"
+console.log(wasm) // "/tmp/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.wasm"
+console.log(zkey) // "/tmp/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.zkey"
 
 // Paths on browsers will be the `unpkg` URLs directly.
-// e.g. https://unpkg.com/@zk-kit/eddsa-artifacts@latest/eddsa.zkey
+// e.g. https://unpkg.com/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.zkey
 ```
 
 You can download all artifacts from this repository with:
