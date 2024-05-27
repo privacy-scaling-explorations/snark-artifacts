@@ -1,10 +1,11 @@
 import ora from 'ora'
 
-const spinner = ora()
-export const withSpinner = (fn: () => Promise<string>) => async () => {
+export const spinner = ora()
+
+export const withSpinner = (fn: (...args: any[]) => Promise<string>) => async (...args: any[]) => {
   spinner.start()
   try {
-    const output = await fn()
+    const output = await fn(...args)
     spinner.succeed()
     console.log(output)
   } catch (error) {

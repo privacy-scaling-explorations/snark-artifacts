@@ -14,4 +14,22 @@
     // use dprint instead
     "enabled": false,
   },
+  "overrides": [
+    {
+      "include": ["packages/cli/src/spinner.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noExplicitAny": "off" },
+        },
+      },
+    },
+    {
+      "include": ["packages/cli/src/commands/download/index.ts"],
+      "linter": {
+        "rules": {
+          "style": { "noParameterAssign": "off" },
+        },
+      },
+    },
+  ],
 }
