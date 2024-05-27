@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.4.1
+
+### Patch Changes
+
+- [`171714d`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/171714d3ca0a2c40cef09e2c6555f0e025263d6f) Thanks [@sripwoud](https://github.com/sripwoud)! - fix: (re)include types definition in package
+
 ## 1.4.0
 
 ### Minor Changes
