@@ -41,6 +41,7 @@
     "@commander-js/extra-typings": "^12.1.0",
     "@inquirer/input": "^2.1.8",
     "@zk-kit/artifacts": "^1.4.1",
+    "ora": "^5.4.1",
     "remove": "^0.1.5"
   },
   "devDependencies": {

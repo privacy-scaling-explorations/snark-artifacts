@@ -1,26 +1,27 @@
-import { writeFileSync } from 'node:fs'
-import { rm } from 'node:fs/promises'
-import { stdout } from 'node:process'
-import { Cli } from '../src/cli'
+import { writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
+import { stdout } from "node:process";
+import { Cli } from "../src/cli";
 
-describe('CLI', () => {
-  let cli: Cli
-  const consoleSpy = jest.spyOn(console, 'log')
-  const run = async (args: string[]) => cli.run(['node', 'snarkli.js', ...args])
+describe("CLI", () => {
+  let cli: Cli;
+  const consoleSpy = jest.spyOn(console, "log");
+  const run = async (args: string[]) =>
+    cli.run(["node", "snarkli.js", ...args]);
 
   beforeAll(() => {
     // avoid polluting stdout/sterr with command results' during tests
-    jest.spyOn(stdout, 'write').mockImplementation(() => true)
-  })
+    jest.spyOn(stdout, "write").mockImplementation(() => true);
+  });
   beforeEach(() => {
-    cli = new Cli()
-  })
+    cli = new Cli();
+  });
   afterEach(() => {
-    consoleSpy.mockClear()
+    consoleSpy.mockClear();
     // consoleSpy.mockRestore()
-  })
+  });
 
-  it('should display the help message', async () => {
+  it("should display the help message", async () => {
     cli.cli.exitOverride().configureOutput({
       writeOut(str) {
         expect(str).toMatchInlineSnapshot(`
@@ -30,29 +31,25 @@ Options:
   -h, --help                      display help for command
 
 Commands:
-  download|d [options] <project>  Download all available artifacts for a given
-                                  project
-  download-all|da <project>       Download all available artifacts for a given
-                                  project
-  generate|g [options]            Generate snark artifacts for a given source
-                                  circom circuit
-  list|l                          List all projects and their available
-                                  packages versions
+  download|d [options] <project>  Download all available artifacts for a given project
+  download-all|da <project>       Download all available artifacts for a given project
+  generate|g [options]            Generate snark artifacts for a given source circom circuit
+  list|l                          List all projects and their available packages versions
   help [command]                  display help for command
 "
-`)
+`);
       },
-    })
+    });
 
-    await expect(run(['--help'])).rejects.toMatchInlineSnapshot(
-      '[CommanderError: (outputHelp)]',
-    )
-  })
+    await expect(run(["--help"])).rejects.toMatchInlineSnapshot(
+      "[CommanderError: (outputHelp)]"
+    );
+  });
 
-  describe('download', () => {
-    it('should download artifacts for the specified project', async () => {
-      await run(['download', 'poseidon', '-a', '2'])
-      expect(consoleSpy).toHaveBeenCalledTimes(1)
+  describe("download", () => {
+    it("should download artifacts for the specified project", async () => {
+      await run(["download", "poseidon", "-a", "2"]);
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
           "Download artifacts for project:",
@@ -62,24 +59,24 @@ Commands:
             "2",
           ],
         ]
-      `)
-    })
-  })
+      `);
+    });
+  });
 
-  describe('generate', () => {
-    const circomFile = 'circuit.circom'
+  describe("generate", () => {
+    const circomFile = "circuit.circom";
 
     afterAll(async () => {
       await rm(circomFile).catch(() => {
         /* swallow */
-      })
-    })
+      });
+    });
 
-    it('should generate artifacts for the specified source circom file and destination', async () => {
-      writeFileSync(circomFile, '')
-      await run(['generate', '-s', circomFile, '-d', '.'])
+    it("should generate artifacts for the specified source circom file and destination", async () => {
+      writeFileSync(circomFile, "");
+      await run(["generate", "-s", circomFile, "-d", "."]);
 
-      expect(consoleSpy).toHaveBeenCalledTimes(1)
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
           "Generate project snark artifacts",
@@ -88,13 +85,13 @@ Commands:
             "source": "circuit.circom",
           },
         ]
-      `)
-    })
-  })
+      `);
+    });
+  });
 
-  describe('list', () => {
-    it('should list all projects and the available versions', async () => {
-      await run(['list'])
+  describe("list", () => {
+    it("should list all projects and the available versions", async () => {
+      await run(["list"]);
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
           "semaphore-identity
@@ -107,7 +104,7 @@ Commands:
           4.0.0-beta.10
         ",
         ]
-      `)
-    })
-  })
-})
+      `);
+    });
+  });
+});

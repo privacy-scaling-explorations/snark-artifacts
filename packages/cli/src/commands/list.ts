@@ -1,9 +1,10 @@
 import { Command } from '@commander-js/extra-typings'
 import { getAvailableVersions, projects } from '@zk-kit/artifacts'
+import { withSpinner } from '../spinner'
 
 export const list = new Command('list').alias('l').description(
   'List all projects and their available packages versions',
-).action(
+).action(withSpinner(
   async () => {
     let output = ''
     for (const project of projects) {
@@ -12,7 +13,6 @@ export const list = new Command('list').alias('l').description(
       for (const version of versions)
         output += `  ${version}\n`
     }
-
-    console.log(output)
+    return output
   },
-)
+))
