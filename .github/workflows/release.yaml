@@ -25,7 +25,7 @@ jobs:
         with:
           run_install: false
 
-      - run: pnpm i
+      - run: pnpm i --ignore-scripts
 
       - name: Release
         id: changesets
