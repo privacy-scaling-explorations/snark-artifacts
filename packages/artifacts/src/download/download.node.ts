@@ -2,21 +2,26 @@ import { createWriteStream, existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import os from 'node:os'
 import { dirname } from 'node:path'
-import _maybeGetSnarkArtifacts from './download.browser'
 import type { SnarkArtifacts } from './types'
+import { getSnarkArtifactUrls, type Urls } from './urls'
 
-async function download(url: string, outputPath: string) {
-  const response = await fetch(url)
+async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
+  const [url] = urls
+  if (!url) throw new Error('No urls to try')
+  return fetch(url).catch(() => fetchRetry(urls.slice(1)))
+}
 
-  if (!response.ok)
-    throw new Error(`Failed to fetch ${url}: ${response.statusText}`)
-  if (!response.body) throw new Error('Failed to get response body')
+async function download(urls: Urls, outputPath: string) {
+  const { body, ok, statusText, url } = await fetchRetry(urls as unknown as string[])
+  if (!ok)
+    throw new Error(`Failed to fetch ${url}: ${statusText}`)
+  if (!body) throw new Error('Failed to get response body')
 
   const dir = dirname(outputPath)
   await mkdir(dir, { recursive: true })
 
   const fileStream = createWriteStream(outputPath)
-  const reader = response.body.getReader()
+  const reader = body.getReader()
 
   try {
     const pump = async () => {
@@ -40,10 +45,10 @@ async function download(url: string, outputPath: string) {
 // https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon.wasm -> @zk/poseidon-artifacts@latest/poseidon.wasm
 const extractEndPath = (url: string) => url.substring(url.indexOf('@zk'))
 
-async function maybeDownload(url: string) {
-  const outputPath = `${os.tmpdir()}/${extractEndPath(url)}`
+async function maybeDownload(urls: Urls) {
+  const outputPath = `${os.tmpdir()}/${extractEndPath(urls[0])}`
 
-  if (!existsSync(outputPath)) await download(url, outputPath)
+  if (!existsSync(outputPath)) await download(urls, outputPath)
 
   return outputPath
 }
@@ -54,20 +59,20 @@ async function maybeDownload(url: string) {
  * ```ts
  * {
  *   wasm: "/tmp/@zk-kit/semaphore-artifacts@latest/semaphore-3.wasm",
- *   zkey: "/tmp/@zk-kit/semaphore-artifacts@latest/semaphore-3.zkey"
+ *   zkey: "/tmp/@zk-kit/semaphore-artifacts@latest/semaphore-3.zkey" .
  * }
  * ```
  * @returns {@link SnarkArtifacts}
  */
 export default async function maybeGetSnarkArtifacts(
-  ...pars: Parameters<typeof _maybeGetSnarkArtifacts>
+  ...pars: Parameters<typeof getSnarkArtifactUrls>
 ): Promise<SnarkArtifacts> {
-  const { wasm: wasmUrl, zkey: zkeyUrl } = await _maybeGetSnarkArtifacts(
+  const { wasms, zkeys } = getSnarkArtifactUrls(
     ...pars,
   )
   const [wasm, zkey] = await Promise.all([
-    maybeDownload(wasmUrl),
-    maybeDownload(zkeyUrl),
+    maybeDownload(wasms),
+    maybeDownload(zkeys),
   ])
 
   return {
