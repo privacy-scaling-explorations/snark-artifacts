@@ -6,7 +6,7 @@ import { getSnarkArtifactUrls } from './urls'
 export default async function maybeGetSnarkArtifacts(
   ...pars: Parameters<typeof getSnarkArtifactUrls>
 ): Promise<SnarkArtifacts> {
-  const { wasms, zkeys } = getSnarkArtifactUrls(...pars)
+  const { wasms, zkeys } = await getSnarkArtifactUrls(...pars)
 
   return {
     wasm: wasms[0],

@@ -2,14 +2,24 @@ import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import maybeGetSnarkArtifactsBrowser from '../src/download/download.browser'
 import maybeGetSnarkArtifacts from '../src/download/download.node'
-import { getSnarkArtifactUrls } from '../src/download/urls'
+import { getAvailableVersions, getSnarkArtifactUrls } from '../src/download/urls'
 import { Project } from '../src/projects'
+
+const version = '1.0.0'
+
+describe('getAvailableVersions', () => {
+  it('Should return available versions', async () => {
+    const versions = await getAvailableVersions(Project.POSEIDON)
+
+    expect(versions).toContain(version)
+  }, 20_000)
+})
 
 describe('getSnarkArtifactUrls', () => {
   it('Should return valid urls', async () => {
-    const { wasms, zkeys } = getSnarkArtifactUrls(Project.POSEIDON, {
+    const { wasms, zkeys } = await getSnarkArtifactUrls(Project.POSEIDON, {
       parameters: ['2'],
-      version: '1.0.0',
+      version,
     })
 
     for (const url of wasms)
@@ -17,6 +27,26 @@ describe('getSnarkArtifactUrls', () => {
     for (const url of zkeys)
       await expect(fetch(url)).resolves.toHaveProperty('ok', true)
   }, 20_000)
+
+  it('should throw if the project is not supported', async () => {
+    await expect(
+      getSnarkArtifactUrls('project' as Project, {
+        parameters: ['2'],
+        version: 'latest',
+      }),
+    ).rejects.toThrow("Project 'project' is not supported")
+  })
+
+  it('should throw if the version is not available', async () => {
+    await expect(
+      getSnarkArtifactUrls(Project.POSEIDON, {
+        parameters: ['2'],
+        version: '0.1.0-beta',
+      }),
+    ).rejects.toThrowErrorMatchingInlineSnapshot(
+      `"Version '0.1.0-beta' is not available for project 'poseidon'"`,
+    )
+  })
 })
 
 describe('MaybeGetSnarkArtifacts', () => {
@@ -26,12 +56,18 @@ describe('MaybeGetSnarkArtifacts', () => {
   let existsSyncSpy: jest.SpyInstance
 
   beforeEach(() => {
-    jest.restoreAllMocks()
-    fetchSpy = jest.spyOn(global, 'fetch')
+    // @ts-expect-error non exhaustive mock of fetch
+    fetchSpy = jest.spyOn(global, 'fetch').mockResolvedValueOnce({
+      json: async () => ({ versions: { [version]: {} } }),
+    })
     createWriteStreamSpy = jest.spyOn(fs, 'createWriteStream')
     existsSyncSpy = jest.spyOn(fs, 'existsSync')
     mkdirSpy = jest.spyOn(fsPromises, 'mkdir')
     mkdirSpy.mockResolvedValue(undefined)
+  })
+
+  afterEach(() => {
+    jest.restoreAllMocks()
   })
 
   it('Should throw an error if the project is not supported', async () => {
@@ -75,7 +111,6 @@ describe('MaybeGetSnarkArtifacts', () => {
     await expect(
       maybeGetSnarkArtifacts(Project.POSEIDON, {
         parameters: ['2'],
-        version: '0.1.0-beta',
       }),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
       `"Failed to get response body"`,
@@ -103,7 +138,6 @@ describe('MaybeGetSnarkArtifacts', () => {
     await expect(
       maybeGetSnarkArtifacts(Project.POSEIDON, {
         parameters: ['2'],
-        version: '0.1.0-beta.1',
       }),
     ).rejects.toThrowErrorMatchingInlineSnapshot(`"TEST STREAM ERROR"`)
   })
@@ -113,7 +147,8 @@ describe('MaybeGetSnarkArtifacts', () => {
 
     await maybeGetSnarkArtifacts(Project.POSEIDON, { parameters: ['2'] })
 
-    expect(global.fetch).not.toHaveBeenCalled()
+    expect(global.fetch).toHaveBeenCalledTimes(1)
+    expect(global.fetch).toHaveBeenLastCalledWith('https://registry.npmjs.org/@zk-kit/poseidon-artifacts')
   })
 
   it('Should return artifact file paths in node environment', async () => {
@@ -130,7 +165,11 @@ describe('MaybeGetSnarkArtifacts', () => {
     expect(zkey).toMatchInlineSnapshot(
       `"/tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey"`,
     )
-    expect(fetchSpy).toHaveBeenCalledTimes(2)
+
+    expect(fetchSpy).toHaveBeenCalledTimes(3)
+    expect(fetchSpy).toHaveBeenNthCalledWith(1, 'https://registry.npmjs.org/@zk-kit/poseidon-artifacts')
+    expect(fetchSpy).toHaveBeenNthCalledWith(2, 'https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm')
+    expect(fetchSpy).toHaveBeenNthCalledWith(3, 'https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey')
   }, 20_000)
 
   it('Should return artifact file paths with parameters in browser environment', async () => {
