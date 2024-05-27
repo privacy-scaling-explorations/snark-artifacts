@@ -30,10 +30,14 @@ Options:
   -h, --help                      display help for command
 
 Commands:
-  download|d [options] <project>  Download all available artifacts for a given project
-  download-all|da <project>       Download all available artifacts for a given project
-  generate|g [options]            Generate snark artifacts for a given source circom circuit
-  list|l                          List all projects and their available packages versions
+  download|d [options] <project>  Download all available artifacts for a given
+                                  project
+  download-all|da <project>       Download all available artifacts for a given
+                                  project
+  generate|g [options]            Generate snark artifacts for a given source
+                                  circom circuit
+  list|l                          List all projects and their available
+                                  packages versions
   help [command]                  display help for command
 "
 `)
