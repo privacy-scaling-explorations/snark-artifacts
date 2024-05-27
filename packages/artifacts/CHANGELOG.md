@@ -1,5 +1,13 @@
 # @zk-kit/artifacts
 
+## 1.4.0
+
+### Minor Changes
+
+- [#69](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/69) [`572c342`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/572c34206bbe23cf3c5a7277e156fb8dcb5734e2) Thanks [@sripwoud](https://github.com/sripwoud)! - feat: get available package versions
+
+- [#66](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/66) [`49ca18c`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/49ca18c07b970bcc0ccb108c80a855065ef72a8c) Thanks [@sripwoud](https://github.com/sripwoud)! - (re)Try fetching different artifacts cdns
+
 ## 1.3.2
 
 ### Patch Changes
