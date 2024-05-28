@@ -1,9 +1,7 @@
-import alias from '@rollup/plugin-alias'
 import typescript from '@rollup/plugin-typescript'
 import fs from 'node:fs'
 import type { RollupOptions } from 'rollup'
 
-const input = 'src/index.ts'
 const plugins = [
   typescript({
     tsconfig: './tsconfig.build.json',
@@ -21,7 +19,7 @@ const banner = `/**
 
 const config: RollupOptions[] = [
   {
-    input,
+    input: 'src/index.node.ts',
     output: [
       {
         file: pkg.exports['.'].node.require,
@@ -35,19 +33,9 @@ const config: RollupOptions[] = [
     plugins,
   },
   {
-    input,
+    input: 'src/index.browser.ts',
     output: [{ file: pkg.exports['.'].browser, format: 'es', banner }],
-    plugins: [
-      alias({
-        entries: [
-          {
-            find: './download/download.node',
-            replacement: './download/download.browser',
-          },
-        ],
-      }),
-      ...plugins,
-    ],
+    plugins,
   },
 ]
 
