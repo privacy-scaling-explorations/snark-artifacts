@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
-import maybeGetSnarkArtifactsBrowser from '../src/download/download.browser'
-import maybeGetSnarkArtifacts from '../src/download/download.node'
+import maybeGetSnarkArtifactsBrowser from '../src/download/index.browser'
+import maybeGetSnarkArtifacts from '../src/download/index.node'
 import { getAvailableVersions, getSnarkArtifactUrls } from '../src/download/urls'
 import { Project } from '../src/projects'
 

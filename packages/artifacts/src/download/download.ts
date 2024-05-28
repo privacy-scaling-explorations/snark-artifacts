@@ -1,9 +1,8 @@
 import { createWriteStream, existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
-import os from 'node:os'
+import { tmpdir } from 'node:os'
 import { dirname } from 'node:path'
-import type { SnarkArtifacts } from './types'
-import { getSnarkArtifactUrls, type Urls } from './urls'
+import type { Urls } from './urls.ts'
 
 async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
   const [url] = urls
@@ -11,7 +10,7 @@ async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
   return fetch(url).catch(() => fetchRetry(urls.slice(1)))
 }
 
-async function download(urls: Urls, outputPath: string) {
+export async function download(urls: Urls, outputPath: string) {
   const { body, ok, statusText, url } = await fetchRetry(urls as unknown as string[])
   if (!ok)
     throw new Error(`Failed to fetch ${url}: ${statusText}`)
@@ -45,38 +44,8 @@ async function download(urls: Urls, outputPath: string) {
 // https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon.wasm -> @zk/poseidon-artifacts@latest/poseidon.wasm
 const extractEndPath = (url: string) => url.substring(url.indexOf('@zk'))
 
-async function maybeDownload(urls: Urls) {
-  const outputPath = `${os.tmpdir()}/${extractEndPath(urls[0])}`
-
+export async function maybeDownload(urls: Urls) {
+  const outputPath = `${tmpdir()}/${extractEndPath(urls[0])}`
   if (!existsSync(outputPath)) await download(urls, outputPath)
-
   return outputPath
-}
-
-/**
- * Downloads SNARK artifacts (`wasm` and `zkey`) files if not already present in OS tmp folder.
- * @example
- * ```ts
- * {
- *   wasm: "/tmp/@zk-kit/semaphore-artifacts@latest/semaphore-3.wasm",
- *   zkey: "/tmp/@zk-kit/semaphore-artifacts@latest/semaphore-3.zkey" .
- * }
- * ```
- * @returns {@link SnarkArtifacts}
- */
-export default async function maybeGetSnarkArtifacts(
-  ...pars: Parameters<typeof getSnarkArtifactUrls>
-): Promise<SnarkArtifacts> {
-  const { wasms, zkeys } = await getSnarkArtifactUrls(
-    ...pars,
-  )
-  const [wasm, zkey] = await Promise.all([
-    maybeDownload(wasms),
-    maybeDownload(zkeys),
-  ])
-
-  return {
-    wasm,
-    zkey,
-  }
 }

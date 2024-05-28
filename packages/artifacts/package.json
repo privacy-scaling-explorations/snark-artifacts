@@ -50,7 +50,6 @@
         "src"
     ],
     "devDependencies": {
-        "@rollup/plugin-alias": "^5.1.0",
         "@rollup/plugin-typescript": "^11.1.6",
         "@types/node": "^20.12.10",
         "rimraf": "^5.0.5",
