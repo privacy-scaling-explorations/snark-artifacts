@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.5.0
+
+### Minor Changes
+
+- [#77](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/77) [`f8630b3`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/f8630b3c26a1ed356dda8407f728135396907d49) Thanks [@sripwoud](https://github.com/sripwoud)! - refactor: export `download` from artifacts pkg for node envs
+
 ## 1.4.1
 
 ### Patch Changes
