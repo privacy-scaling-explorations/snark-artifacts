@@ -170,7 +170,7 @@ describe('MaybeGetSnarkArtifacts', () => {
     expect(fetchSpy).toHaveBeenNthCalledWith(1, 'https://registry.npmjs.org/@zk-kit/poseidon-artifacts')
     expect(fetchSpy).toHaveBeenNthCalledWith(2, 'https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm')
     expect(fetchSpy).toHaveBeenNthCalledWith(3, 'https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey')
-  }, 20_000)
+  }, 25_000)
 
   it('Should return artifact file paths with parameters in browser environment', async () => {
     const { wasm, zkey } = await maybeGetSnarkArtifactsBrowser(
