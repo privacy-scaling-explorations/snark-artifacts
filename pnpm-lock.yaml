@@ -81,8 +81,8 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4
       '@zk-kit/artifacts':
-        specifier: ^1.4.1
-        version: 1.5.0
+        specifier: 1.4.1
+        version: 1.4.1
       ora:
         specifier: ^5.4.1
         version: 5.4.1
@@ -771,8 +771,8 @@ packages:
   '@types/yargs@17.0.32':
     resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
 
-  '@zk-kit/artifacts@1.5.0':
-    resolution: {integrity: sha512-UpyICGanvYI1hJEOeP6T+LHlJn3EQ0lKQEIoHGmLdpVFyJ3+gS+O7xsJeoqJMmBE2wq/XEsMIhT39RrOpz7dlg==}
+  '@zk-kit/artifacts@1.4.1':
+    resolution: {integrity: sha512-OR1mrDBWJNT2NYdQpRmVL5pWxeNmQTzLy9Q5vDMtDISkoYW7l2cs2aLsNREBzy4wcxdR/52lE45AtShMmKQVIg==}
 
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
@@ -3376,7 +3376,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@zk-kit/artifacts@1.5.0': {}
+  '@zk-kit/artifacts@1.4.1': {}
 
   acorn-walk@8.3.2: {}
 
