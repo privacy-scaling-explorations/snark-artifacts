@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.5.1
+
+### Patch Changes
+
+- [#82](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/82) [`4bfd1d4`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/4bfd1d449db61390c2dd8a5ff6d36b311dc83889) Thanks [@sripwoud](https://github.com/sripwoud)! - fix types export in package.json
+
 ## 1.5.0
 
 ### Minor Changes
