@@ -27,7 +27,7 @@ const config: RollupOptions[] = [
         banner,
         exports: 'auto',
       },
-      { file: pkg.exports['.'].node.default, format: 'es', banner },
+      { file: pkg.exports['.'].node.import, format: 'es', banner },
     ],
     external: ['node:fs', 'node:fs/promises', 'node:os', 'node:path'],
     plugins,
