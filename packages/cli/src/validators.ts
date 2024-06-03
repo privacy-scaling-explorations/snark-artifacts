@@ -18,6 +18,11 @@ export function validateNonEmptyInput(input: string | string[]) {
   return true
 }
 
+export function validateIntegerInput(input: string) {
+  if (!Number.isInteger(Number(input))) return CliError.NOT_AN_INTEGER
+  return true
+}
+
 export const validateProject = (project: Project) => {
   if (!projects.includes(project)) return CliError.INVALID_PROJECT
   return true
