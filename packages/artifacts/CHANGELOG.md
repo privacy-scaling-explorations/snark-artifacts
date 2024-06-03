@@ -1,5 +1,13 @@
 # @zk-kit/artifacts
 
+## 1.6.0
+
+### Minor Changes
+
+- [#84](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/84) [`745cb46`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/745cb464ef74780a2af56366b8dc75c971a776ed) Thanks [@sripwoud](https://github.com/sripwoud)! - refactor: allow `string` as download arg instead of only `string[]`
+  feat: export `maybeDownload`
+  fix: update `package.json` entry points
+
 ## 1.5.1
 
 ### Patch Changes
