@@ -8,12 +8,12 @@ export function validateFilePath(input: string) {
   return true
 }
 
-export function validateCircomFileInput(input: string) {
-  if (!(extname(input) === '.circom')) return CliError.INVALID_CIRCOM_FILE
+export function validateJsonFileInput(input: string) {
+  if (!(extname(input) === '.json')) return CliError.INVALID_JSON_FILE
   return validateFilePath(input)
 }
 
-export const validateNonEmptyInput = (input: string | string[]) => {
+export function validateNonEmptyInput(input: string | string[]) {
   if (input.length === 0) return CliError.EMPTY
   return true
 }

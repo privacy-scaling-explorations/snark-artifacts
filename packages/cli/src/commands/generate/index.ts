@@ -1,24 +1,11 @@
 import { Command } from '@commander-js/extra-typings'
-import { existsSync } from 'node:fs'
-import { validateCircomFileInput, validateOrThrow } from '../../validators.ts'
-import { getDestinationInput, getSourceInput } from './prompts.ts'
+import generateAction from './action.ts'
 
 export const generate = new Command('generate').alias('g').description(
   'Generate snark artifacts for a given source circom circuit',
 ).option(
-  '-s, --source <path>',
-  'Source circom file path',
+  '-c, --config <path>',
+  'Path to circomkit configuration file',
 )
-  .option('-d, --destination <path>', 'Destination directory for the generated artifacts').action(
-    async ({ destination, source }) => {
-      validateOrThrow(source, validateCircomFileInput)
-      validateOrThrow(destination, existsSync)
-
-      source ??= await getSourceInput()
-      destination ??= await getDestinationInput(source)
-
-      // TODO: ask for confirmation if destination already exists
-
-      console.log('Generate project snark artifacts', { source, destination })
-    },
-  )
+  .option('-d, --destination <path>', 'Destination directory for the generated artifacts')
+  .action(generateAction)

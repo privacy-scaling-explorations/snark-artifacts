@@ -42,9 +42,10 @@
     "@commander-js/extra-typings": "^12.1.0",
     "@inquirer/input": "^2.1.8",
     "@inquirer/select": "^2.3.4",
-    "@zk-kit/artifacts": "1.4.1",
+    "@zk-kit/artifacts": "1.6.0",
+    "circomkit": "^0.2.1",
     "ora": "^5.4.1",
-    "remove": "^0.1.5"
+    "snarkjs": "^0.7.4"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
