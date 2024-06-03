@@ -1,5 +1,11 @@
 # @zk-kit/artifacts-cli
 
+## 1.0.0
+
+### Major Changes
+
+- [#86](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/86) [`c026a15`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/c026a159d9376736c0f85e7db7107afba93483c3) Thanks [@sripwoud](https://github.com/sripwoud)! - feat: generate artifacts
+
 ## 0.1.0
 
 ### Minor Changes
