@@ -1,5 +1,5 @@
+import { error } from 'node:console'
 import ora from 'ora'
-import { error } from './errors.ts'
 
 export const spinner = ora()
 
