@@ -1,7 +1,7 @@
 import input from '@inquirer/input'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateCircomFileInput, validateFilePath } from '../../validators.ts'
+import { validateCircomFileInput, validateFilePath, validateIntegerInput } from '../../validators.ts'
 
 export const getSourceInput = async () =>
   input(
@@ -20,7 +20,17 @@ export const getDestinationInput = async (source: string) => {
     {
       message: 'Enter the destination path for the generated artifacts:',
       default: defaultPath,
-      validate: validateFilePath,
     },
   )
+}
+
+export const getPtauPowerInput = async () => {
+  const ptauPower = await input(
+    {
+      message: 'Enter the power of two of the maximum number of constraints that the ceremony can accept:',
+      default: '13',
+      validate: validateIntegerInput,
+    },
+  )
+  return Number.parseInt(ptauPower)
 }
