@@ -1,7 +1,5 @@
 import input from '@inquirer/input'
 import select from '@inquirer/select'
-import { basename, join } from 'node:path'
-import { cwd } from 'node:process'
 import { validateJsonFileInput } from '../../validators.ts'
 
 export const getCircomkitConfigInput = async () =>
