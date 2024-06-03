@@ -2,5 +2,6 @@
 "@zk-kit/artifacts": minor
 ---
 
-feat: allow string as download arg instead of only string array
-fix: update package entry points
+refactor: allow `string` as download arg instead of only `string[]`
+feat: export `maybeDownload`
+fix: update `package.json` entry points
