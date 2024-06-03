@@ -13,7 +13,7 @@ export function validateCircomFileInput(input: string) {
   return validateFilePath(input)
 }
 
-export const validateNonEmptyInput = (input: string | string[]) => {
+export function validateNonEmptyInput(input: string | string[]) {
   if (input.length === 0) return CliError.EMPTY
   return true
 }
