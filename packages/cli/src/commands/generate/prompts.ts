@@ -24,13 +24,11 @@ export const getDestinationInput = async (source: string) => {
   )
 }
 
-export const getPtauPowerInput = async () => {
-  const ptauPower = await input(
+export const getPtauPowerInput = async () =>
+  input(
     {
       message: 'Enter the power of two of the maximum number of constraints that the ceremony can accept:',
       default: '13',
       validate: validateIntegerInput,
     },
   )
-  return Number.parseInt(ptauPower)
-}

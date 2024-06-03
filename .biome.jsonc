@@ -24,7 +24,7 @@
       },
     },
     {
-      "include": ["packages/cli/src/commands/download/index.ts"],
+      "include": ["packages/cli/src/commands/download/index.ts", "packages/cli/src/commands/generate/action.ts"],
       "linter": {
         "rules": {
           "style": { "noParameterAssign": "off" },

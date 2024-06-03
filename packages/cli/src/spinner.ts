@@ -1,14 +1,16 @@
 import ora from 'ora'
+import { error } from './errors.ts'
 
 export const spinner = ora()
 
-export const withSpinner = (fn: (...args: any[]) => Promise<string>) => async (...args: any[]) => {
-  spinner.start()
+export async function withSpinner(fn: () => void | Promise<void>, message: string) {
+  spinner.start(`Starting ${message}`)
   try {
-    const output = await fn(...args)
-    spinner.succeed()
-    console.log(output)
-  } catch (error) {
-    spinner.fail(error.message)
+    const res = fn()
+    if (res instanceof Promise) await res
+    spinner.succeed(`Done ${message}`)
+  } catch (err) {
+    spinner.fail(`Failed ${message}`)
+    error(err.message)
   }
 }

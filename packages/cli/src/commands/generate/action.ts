@@ -1,28 +1,40 @@
+import { Circomkit } from 'circomkit'
 import { maybeDownload } from '@zk-kit/artifacts'
 import { existsSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { spinner } from '../../spinner.ts'
-import { validateCircomFileInput, validateOrThrow } from '../../validators.ts'
-import { getDestinationInput, getPtauPowerInput, getSourceInput } from './prompts.ts'
+import { withSpinner } from '../../spinner.ts'
+import { validateCircomFileInput, validateIntegerInput, validateOrThrow } from '../../validators.ts'
+import { getDestinationInput, getSourceInput } from './prompts.ts'
 
-const ptau_url = (ptauPower: number) =>
+const circomkit = new Circomkit()
+
+const ptau_url = (ptauPower: string) =>
   `https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_${ptauPower}.ptau`
+
+const maybeDownloadPtau = async (ptauPower: string) =>
+  withSpinner(async () => {
+    await maybeDownload(ptau_url(ptauPower), `${tmpdir()}/powersOfTau28_hez_final_${ptauPower}.ptau`)
+  }, 'downloading ptau file')
+
+const compileCircuit = async (source: string, destination: string) =>
+  withSpinner(async () => {
+    // TODO handle cases where there is no circuits.json (src project does not use circomkit)
+    await circomkit.compile(destination, {file:source})
+  } , 'compiling circuit')
 
 async function generateAction(
   { destination, ptauPower, source }: { destination?: string; ptauPower?: string; source?: string },
 ) {
   validateOrThrow(source, validateCircomFileInput)
   validateOrThrow(destination, existsSync)
+  validateOrThrow(ptauPower, validateIntegerInput)
 
   source ??= await getSourceInput()
-  console.log({ source })
   destination ??= await getDestinationInput(source)
-  mkdirSync(destination, { recursive: true })
-  const ptauPowerNumber = ptauPower ? Number.parseInt(ptauPower) : await getPtauPowerInput()
 
-  spinner.start('Downloading ptau file')
-  await maybeDownload(ptau_url(ptauPowerNumber), `${tmpdir()}/powersOfTau28_hez_final_${ptauPowerNumber}.ptau`)
-  spinner.succeed('Downloaded ptau file')
+  mkdirSync(destination, { recursive: true })
+
+  await compileCircuit(source, destination)
 
   // TODO: ask for confirmation if destination already exists
 
