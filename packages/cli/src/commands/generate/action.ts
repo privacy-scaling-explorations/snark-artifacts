@@ -1,44 +1,33 @@
-import { Circomkit } from 'circomkit'
-import { maybeDownload } from '@zk-kit/artifacts'
-import { existsSync, mkdirSync } from 'node:fs'
-import { tmpdir } from 'node:os'
-import { withSpinner } from '../../spinner.ts'
-import { validateCircomFileInput, validateIntegerInput, validateOrThrow } from '../../validators.ts'
-import { getDestinationInput, getSourceInput } from './prompts.ts'
+import { Circomkit, type CircomkitConfig } from 'circomkit'
+import { existsSync, readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { chdir, cwd } from 'node:process'
+import { validateJsonFileInput, validateOrThrow } from '../../validators.ts'
+import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts.ts'
 
-const circomkit = new Circomkit()
+export async function setupCircomkit(config: string, destination?: string) {
+  const circomkitConfig = JSON.parse(readFileSync(config, 'utf8')) as CircomkitConfig
+  const localDir = cwd()
+  chdir(dirname(config))
+  const circuits = Object.keys(JSON.parse(readFileSync(circomkitConfig.circuits, 'utf8')))
+  const circuit = await selectCircuit(circuits)
+  const dirBuild = destination ?? await getDestinationInput(`${localDir}/${circuit}-snark-artifacts`)
+  const circomkit = new Circomkit({ ...JSON.parse(readFileSync(config, 'utf8')), dirBuild })
 
-const ptau_url = (ptauPower: string) =>
-  `https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_${ptauPower}.ptau`
-
-const maybeDownloadPtau = async (ptauPower: string) =>
-  withSpinner(async () => {
-    await maybeDownload(ptau_url(ptauPower), `${tmpdir()}/powersOfTau28_hez_final_${ptauPower}.ptau`)
-  }, 'downloading ptau file')
-
-const compileCircuit = async (source: string, destination: string) =>
-  withSpinner(async () => {
-    // TODO handle cases where there is no circuits.json (src project does not use circomkit)
-    await circomkit.compile(destination, {file:source})
-  } , 'compiling circuit')
+  return { circomkit, circuit }
+}
 
 async function generateAction(
-  { destination, ptauPower, source }: { destination?: string; ptauPower?: string; source?: string },
+  { config, destination }: { config?: string; destination?: string },
 ) {
-  validateOrThrow(source, validateCircomFileInput)
+  validateOrThrow(config, validateJsonFileInput)
   validateOrThrow(destination, existsSync)
-  validateOrThrow(ptauPower, validateIntegerInput)
 
-  source ??= await getSourceInput()
-  destination ??= await getDestinationInput(source)
-
-  mkdirSync(destination, { recursive: true })
-
-  await compileCircuit(source, destination)
-
-  // TODO: ask for confirmation if destination already exists
-
-  console.log('Generate project snark artifacts', { source, destination })
+  config ??= await getCircomkitConfigInput()
+  const { circomkit, circuit } = await setupCircomkit(config, destination)
+  await circomkit.compile(circuit)
+  const pkeyPath = await circomkit.ptau(circuit)
+  await circomkit.vkey(circuit, join(dirname(config), pkeyPath))
 }
 
 export default generateAction

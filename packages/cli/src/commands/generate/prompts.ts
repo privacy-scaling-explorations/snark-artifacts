@@ -1,34 +1,30 @@
 import input from '@inquirer/input'
+import select from '@inquirer/select'
 import { basename, join } from 'node:path'
 import { cwd } from 'node:process'
-import { validateCircomFileInput, validateFilePath, validateIntegerInput } from '../../validators.ts'
+import { validateJsonFileInput } from '../../validators.ts'
 
-export const getSourceInput = async () =>
+export const getCircomkitConfigInput = async () =>
   input(
     {
-      message: 'Enter the source circom file path:',
-      validate: validateCircomFileInput,
+      message: 'Enter the source circomkit file path:',
+      default: 'circomkit.json',
+      validate: validateJsonFileInput,
     },
   )
 
-export const getDestinationInput = async (source: string) => {
-  let filename = 'snark-artifacts'
-  if (source) filename = `${basename(source, '.circom')}-${filename}`
-  const defaultPath = join(cwd(), filename)
-
-  return input(
+export const getDestinationInput = async (defaultDestination: string) =>
+  input(
     {
       message: 'Enter the destination path for the generated artifacts:',
-      default: defaultPath,
+      default: defaultDestination,
     },
   )
-}
 
-export const getPtauPowerInput = async () =>
-  input(
+export const selectCircuit = async (circuits: string[]) =>
+  select(
     {
-      message: 'Enter the power of two of the maximum number of constraints that the ceremony can accept:',
-      default: '13',
-      validate: validateIntegerInput,
+      message: 'Select the circuit to generate snark artifacts for:',
+      choices: circuits.map((circuit) => ({ name: circuit, value: circuit })),
     },
   )
