@@ -1,6 +1,5 @@
 import { Command } from '@commander-js/extra-typings'
 import { getAvailableVersions, projects } from '@zk-kit/artifacts'
-import { log } from 'node:console'
 import { exit } from 'node:process'
 import { spinner } from '../spinner.ts'
 
@@ -21,5 +20,5 @@ export const list = new Command('list').alias('l').description(
     }
   }
   spinner.succeed()
-  log(output)
+  console.log(output)
 })

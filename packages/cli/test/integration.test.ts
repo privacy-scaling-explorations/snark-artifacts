@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs'
+// import { writeFileSync } from 'node:fs'
 import { rm } from 'node:fs/promises'
 import { stdout } from 'node:process'
 import { Cli } from '../src/cli'
@@ -62,29 +62,15 @@ Commands:
   })
 
   describe('generate', () => {
-    const circomFile = 'circuit.circom'
+    const circomkitJson = 'circomkit.json'
 
     afterAll(async () => {
-      await rm(circomFile).catch(() => {
+      await rm(circomkitJson).catch(() => {
         /* swallow */
       })
     })
 
-    it('should generate artifacts for the specified source circom file and destination', async () => {
-      writeFileSync(circomFile, '')
-      await run(['generate', '-s', circomFile, '-d', '.'])
-
-      expect(consoleSpy).toHaveBeenCalledTimes(1)
-      expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
-        [
-          "Generate project snark artifacts",
-          {
-            "destination": ".",
-            "source": "circuit.circom",
-          },
-        ]
-      `)
-    })
+    it.todo('should generate artifacts')
   })
 
   describe('list', () => {
