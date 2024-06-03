@@ -1,6 +1,5 @@
 import { createWriteStream, existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
-import { tmpdir } from 'node:os'
 import { dirname } from 'node:path'
 import type { Urls } from './urls.ts'
 
@@ -10,8 +9,10 @@ async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
   return fetch(url).catch(() => fetchRetry(urls.slice(1)))
 }
 
-export async function download(urls: Urls, outputPath: string) {
-  const { body, ok, statusText, url } = await fetchRetry(urls as unknown as string[])
+export async function download(urls: Urls | string[] | string, outputPath: string) {
+  const { body, ok, statusText, url } = Array.isArray(urls)
+    ? await fetchRetry(urls as string[])
+    : await fetch(urls as string)
   if (!ok)
     throw new Error(`Failed to fetch ${url}: ${statusText}`)
   if (!body) throw new Error('Failed to get response body')
@@ -41,11 +42,7 @@ export async function download(urls: Urls, outputPath: string) {
   }
 }
 
-// https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon.wasm -> @zk/poseidon-artifacts@latest/poseidon.wasm
-const extractEndPath = (url: string) => url.substring(url.indexOf('@zk'))
-
-export async function maybeDownload(urls: Urls) {
-  const outputPath = `${tmpdir()}/${extractEndPath(urls[0])}`
+export async function maybeDownload(urls: Urls | string[] | string, outputPath: string) {
   if (!existsSync(outputPath)) await download(urls, outputPath)
   return outputPath
 }
