@@ -1,0 +1,40 @@
+name: Upload Artifacts
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::490752553772:role/snark-artifacts-assume_role-slc
+          role-duration-seconds: 900
+          aws-region: us-west-2
+
+      - name: Install package
+        run: |
+          sudo apt install git-restore-mtime
+
+      - name: Upload artifacts to S3 bucket
+        run: |
+          .github/scripts/upload-artifacts.sh
