@@ -1,7 +1,8 @@
 #!/bin/bash
 set -ex
 
-if [ ! -z "$1" ]; then
+#if [ ! -z "$1" ]; then
+if [ -z "$1" ]; then
   echo "Manually triggered"
 else
   echo "Auto"
