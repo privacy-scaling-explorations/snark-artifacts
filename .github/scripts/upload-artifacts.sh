@@ -7,8 +7,6 @@ else
   echo "Auto"
 fi
 
-exit 0
-
 s3_bucket="snark-artifacts"
 artifacts=$(ls packages/ | grep -v 'artifacts\|cli')
 
