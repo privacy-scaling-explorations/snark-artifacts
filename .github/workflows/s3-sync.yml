@@ -1,0 +1,38 @@
+name: Deploy Packages to S3
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Sync to S3
+      uses: jakejarvis/s3-sync-action@master # any better/simpler alternative?
+      with:
+        args: --acl public-read --follow-symlinks --delete
+        bucket: ${{ secrets.AWS_S3_BUCKET }} # TODO: set secret in repo
+        key_prefix: ${{ github.ref_name }}/
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }} # TODO: set secret in repo
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # TODO: set secret in repo
+        aws_region: 'us-east-1' # TODO: Update to S3 bucket's region
+
+    - name: Update and Manage Versions
+      # NOT TESTED
+      run: |
+        for d in packages/*; do
+          if [ -d "$d" ]; then
+            package_version=$(cat "$d/package.json" | jq -r '.version')
+            aws s3 cp "$d" "s3://${{ secrets.AWS_S3_BUCKET }}/${d#packages/}/$package_version/" --recursive
+          fi
+        done
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
