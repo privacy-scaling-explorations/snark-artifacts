@@ -1,6 +1,14 @@
 #!/bin/bash
 set -ex
 
+if [ ! -z "$1" ]; then
+  echo "Manually triggered"
+else
+  echo "Auto"
+fi
+
+exit 0
+
 s3_bucket="snark-artifacts"
 artifacts=$(ls packages/ | grep -v 'artifacts\|cli')
 

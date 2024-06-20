@@ -5,6 +5,15 @@ on:
       - main
     paths:
       - 'packages/**'
+  workflow_dispatch:
+    inputs:
+      upload:
+        description: "Upload all"
+        required: true
+        default: "upload_all"
+        type: choice
+        options:
+          - upload_all
 
 concurrency:
   group: ${{ github.workflow }}
@@ -13,6 +22,8 @@ concurrency:
 jobs:
   upload-artifacts:
     runs-on: ubuntu-latest
+    env:
+      DATA: ${{ github.event.inputs.action || 'null' }}
     permissions:
       id-token: write
       contents: read
@@ -37,4 +48,4 @@ jobs:
 
       - name: Upload artifacts to S3 bucket
         run: |
-          .github/scripts/upload-artifacts.sh
+          .github/scripts/upload-artifacts.sh ${{ env.DATA }}
