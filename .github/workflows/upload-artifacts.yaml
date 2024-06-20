@@ -5,6 +5,8 @@ on:
       - main
     paths:
       - 'packages/**'
+      - '!packages/artifacts/**'
+      - '!packages/cli/**'
 
 concurrency:
   group: ${{ github.workflow }}
