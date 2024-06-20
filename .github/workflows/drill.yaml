@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  upload-artifacts:
+  sleep:
     runs-on: ubuntu-latest
     env:
       DATA: ${{ github.event.inputs.action || 'null' }}
