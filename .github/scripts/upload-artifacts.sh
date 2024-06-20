@@ -8,7 +8,8 @@ cd packages
 git restore-mtime
 
 for artifact in $artifacts; do
-  aws s3 sync $artifact s3://$s3_bucket/$artifact --delete
+  package_version=$(jq -r '.version' "$artifact/package.json")
+  aws s3 sync $artifact s3://$s3_bucket/$artifact/$package_version --delete
 done
 
 exit 0
