@@ -3,17 +3,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'packages/**'
-  workflow_dispatch:
-    inputs:
-      upload:
-        description: "Upload manually"
-        required: true
-        default: "upload"
-        type: choice
-        options:
-          - upload
+      - upload_artifacts_s3_b
 
 concurrency:
   group: ${{ github.workflow }}
@@ -29,6 +19,14 @@ jobs:
       contents: read
 
     steps:
+      - name: Wait for Release to succeed
+        uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          check-name: 'Sleep'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
       - name: Checkout
         uses: actions/checkout@v4
         with:

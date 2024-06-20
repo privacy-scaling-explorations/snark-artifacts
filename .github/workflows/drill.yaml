@@ -1,0 +1,30 @@
+name: Drill
+on:
+  push:
+    branches:
+      - main
+      - upload_artifacts_s3_b
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  upload-artifacts:
+    runs-on: ubuntu-latest
+    env:
+      DATA: ${{ github.event.inputs.action || 'null' }}
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Sleep
+        run: |
+          sleep 60
