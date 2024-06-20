@@ -8,12 +8,12 @@ on:
   workflow_dispatch:
     inputs:
       upload:
-        description: "Upload all"
+        description: "Upload manually"
         required: true
-        default: "upload_all"
+        default: "upload"
         type: choice
         options:
-          - upload_all
+          - upload
 
 concurrency:
   group: ${{ github.workflow }}
