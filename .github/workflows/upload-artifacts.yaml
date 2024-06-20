@@ -20,6 +20,7 @@ jobs:
 
     steps:
       - name: Wait for Release to succeed
+        if: github.event_name == 'push'
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
