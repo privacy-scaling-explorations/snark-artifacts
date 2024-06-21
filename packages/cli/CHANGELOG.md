@@ -1,12 +1,5 @@
 # @zk-kit/artifacts-cli
 
-## 1.0.1
-
-### Patch Changes
-
-- Updated dependencies [[`3f2bd6d`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/3f2bd6d2681c48e8b47ede788ca868a989890067)]:
-  - @zk-kit/artifacts@1.7.0
-
 ## 1.0.0
 
 ### Major Changes
