@@ -1,7 +1,7 @@
 import { tmpdir } from 'node:os'
 import { maybeDownload } from './download.ts'
-import type { SnarkArtifacts } from './types'
 import _maybeGetSnarkArtifacts from './index.browser.ts'
+import type { SnarkArtifacts } from './types'
 
 const extractEndPath = (url: string) => url.split('pse.dev/')[1]
 
@@ -19,7 +19,7 @@ const extractEndPath = (url: string) => url.split('pse.dev/')[1]
 export default async function maybeGetSnarkArtifacts(
   ...pars: Parameters<typeof _maybeGetSnarkArtifacts>
 ): Promise<SnarkArtifacts> {
-  const urls = await maybeGetSnarkArtifacts(
+  const urls = await _maybeGetSnarkArtifacts(
     ...pars,
   )
 
