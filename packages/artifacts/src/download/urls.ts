@@ -17,5 +17,5 @@ async function isVersionAvailableOrThrow(project: Project, version: Version) {
 
 export async function getBaseUrl(project: Project, version: Version): Promise<string> {
   await isVersionAvailableOrThrow(project, version)
-  return `${BASE_URL}/${project}/${version}`
+  return `${BASE_URL}/${project}/${version}/${project}`
 }
