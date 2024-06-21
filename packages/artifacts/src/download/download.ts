@@ -1,7 +1,6 @@
 import { createWriteStream, existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { dirname } from 'node:path'
-import type { Urls } from './urls.ts'
 
 export async function download(url: string, outputPath: string) {
   const { body, ok, statusText } = await fetch(url)
