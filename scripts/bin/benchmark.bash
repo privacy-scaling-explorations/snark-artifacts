@@ -31,10 +31,10 @@ average() {
 /pse/ { pse_sum += $2; pse_count += 1 }
 END {
   print "download time average (s)"
-  print "  unpkg", unpkg_sum/unpkg_count
+  print "  unpkg   ", unpkg_sum/unpkg_count
   print "  jsdelivr", jsdelivr_sum/jsdelivr_count
-  print "  github", github_sum/github_count
-  print "  pse", pse_sum/pse_count
+  print "  github  ", github_sum/github_count
+  print "  pse     ", pse_sum/pse_count
 }
 ' "$log"
 }
