@@ -26,7 +26,6 @@ describe('maybeGetSnarkArtifacts', () => {
         },
       )
 
-      console.log({ wasm, zkey })
       await expect(fetch(wasm)).resolves.toHaveProperty('ok', true)
       await expect(fetch(zkey)).resolves.toHaveProperty('ok', true)
     }, 20_000)
