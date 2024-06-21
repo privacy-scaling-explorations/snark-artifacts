@@ -7,14 +7,13 @@ export default async function maybeGetSnarkArtifacts(
   options: {
     parameters?: (bigint | number | string)[]
     version?: Version
-    cdnUrl?: string
   } = {},
 ): Promise<SnarkArtifacts> {
   if (!projects.includes(project))
     throw new Error(`Project '${project}' is not supported`)
 
   options.version ??= 'latest'
-  const url = await getBaseUrl(project, options.version)
+  const url = getBaseUrl(project, options.version)
   const parameters = options.parameters
     ? `-${options.parameters.join('-')}`
     : ''
