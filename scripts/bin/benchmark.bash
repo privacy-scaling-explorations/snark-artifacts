@@ -48,9 +48,9 @@ main() {
     "https://snark-artifacts.pse.dev/poseidon/latest" \
     "https://cdn.jsdelivr.net/npm/@zk-kit/poseidon-artifacts@latest" \
     "https://unpkg.com/@zk-kit/poseidon-artifacts@latest" \
-    "https://github.com/privacy-scaling-explorations/snark-artifacts/raw/@zk-kit/poseidon-artifacts@1.0.0-beta.1/packages/poseidon"; do
+    "https://github.com/privacy-scaling-explorations/snark-artifacts/raw/@zk-kit/poseidon-artifacts@latest/packages/poseidon"; do
     for _ in {1..10}; do # compute average over 10 runs
-      dl_all "$cdn" | tee -a "$log" & # download from all CDNs in parallel
+      dl_all "$cdn" | tee -a "$log" & # execute all runs in parallel
     done
   done
 
