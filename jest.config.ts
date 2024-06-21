@@ -6,7 +6,7 @@ const projects = ['artifacts', 'cli'].map((name) => `packages/${name}/test`)
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts', '!src/index.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/index*.ts'],
   coverageDirectory: join(__dirname, '..', 'coverage'),
   coverageThreshold: {
     global: { branches: 40, functions: 60, lines: 80, statements: 80 },
