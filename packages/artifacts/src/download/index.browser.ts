@@ -2,8 +2,6 @@ import { type Project, projects } from '../projects'
 import type { SnarkArtifacts, Version } from './types'
 import { getBaseUrl } from './urls'
 
-// TODO: retry for browser?
-// besides, is caching already handled by circom/snarkjs?
 export default async function maybeGetSnarkArtifacts(
   project: Project,
   options: {
