@@ -3,16 +3,8 @@ import { mkdir } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import type { Urls } from './urls.ts'
 
-async function fetchRetry(urls: string[]): Promise<ReturnType<typeof fetch>> {
-  const [url] = urls
-  if (!url) throw new Error('No urls to try')
-  return fetch(url).catch(() => fetchRetry(urls.slice(1)))
-}
-
-export async function download(urls: Urls | string[] | string, outputPath: string) {
-  const { body, ok, statusText, url } = Array.isArray(urls)
-    ? await fetchRetry(urls as string[])
-    : await fetch(urls as string)
+export async function download(url: string, outputPath: string) {
+  const { body, ok, statusText } = await fetch(url)
   if (!ok)
     throw new Error(`Failed to fetch ${url}: ${statusText}`)
   if (!body) throw new Error('Failed to get response body')
@@ -42,7 +34,7 @@ export async function download(urls: Urls | string[] | string, outputPath: strin
   }
 }
 
-export async function maybeDownload(urls: Urls | string[] | string, outputPath: string) {
-  if (!existsSync(outputPath)) await download(urls, outputPath)
+export async function maybeDownload(url: string, outputPath: string) {
+  if (!existsSync(outputPath)) await download(url, outputPath)
   return outputPath
 }

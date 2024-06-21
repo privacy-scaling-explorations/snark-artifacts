@@ -1,10 +1,9 @@
 import { tmpdir } from 'node:os'
 import { maybeDownload } from './download.ts'
 import type { SnarkArtifacts } from './types'
-import { getSnarkArtifactUrls } from './urls'
+import _maybeGetSnarkArtifacts from './index.browser.ts'
 
-// https://unpkg.com/@zk-kit/poseidon-artifacts@latest/poseidon.wasm -> @zk/poseidon-artifacts@latest/poseidon.wasm
-const extractEndPath = (url: string) => url.substring(url.indexOf('@zk'))
+const extractEndPath = (url: string) => url.split('pse.dev/')[1]
 
 /**
  * Downloads SNARK artifacts (`wasm` and `zkey`) files if not already present in OS tmp folder.
@@ -18,17 +17,17 @@ const extractEndPath = (url: string) => url.substring(url.indexOf('@zk'))
  * @returns {@link SnarkArtifacts}
  */
 export default async function maybeGetSnarkArtifacts(
-  ...pars: Parameters<typeof getSnarkArtifactUrls>
+  ...pars: Parameters<typeof _maybeGetSnarkArtifacts>
 ): Promise<SnarkArtifacts> {
-  const { wasms, zkeys } = await getSnarkArtifactUrls(
+  const urls = await maybeGetSnarkArtifacts(
     ...pars,
   )
 
-  const outputPath = `${tmpdir()}/${extractEndPath(wasms[0])}`
+  const outputPath = `${tmpdir()}/snark-artifacts/${extractEndPath(urls.wasm)}`
 
   const [wasm, zkey] = await Promise.all([
-    maybeDownload(wasms, outputPath),
-    maybeDownload(zkeys, outputPath.replace(/.wasm$/, '.zkey')),
+    maybeDownload(urls.wasm, outputPath),
+    maybeDownload(urls.zkey, outputPath.replace(/.wasm$/, '.zkey')),
   ])
 
   return {
