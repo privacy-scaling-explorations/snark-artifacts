@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNARK Artifacts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group select, .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the SNARK Artifacts Registry</h1>
+    <p>Select a project, version, and file from the dropdown menus below:</p>
+    <form id="registryForm">
+        <div class="form-group">
+            <label for="projectSelect">Project</label>
+            <select id="projectSelect" onchange="updateVersions()">
+                <option value="">Select a project</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="versionSelect">Version</label>
+            <select id="versionSelect" disabled onchange="updateFiles()">
+                <option value="">Select a version</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fileSelect">File</label>
+            <select id="fileSelect" disabled>
+                <option value="">Select a file</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="navigate()">Go to File</button>
+        </div>
+    </form>
+
+    <script>
+        const repo = 'privacy-scaling-explorations/snark-artifacts';
+        const s3BucketUrl = 'https://your-bucket.s3.amazonaws.com';
+
+        const projectSelect = document.getElementById('projectSelect');
+        const versionSelect = document.getElementById('versionSelect');
+        const fileSelect = document.getElementById('fileSelect');
+
+        async function fetchTags() {
+            const response = await fetch(`https://api.github.com/repos/${repo}/tags`);
+            const tags = await response.json();
+            return tags.map(tag => tag.name);
+        }
+
+        async function fetchFiles(version) {
+            const response = await fetch(`https://api.github.com/repos/${repo}/git/trees/${version}?recursive=1`);
+            const tree = await response.json();
+            return tree.tree.filter(item => item.type === 'blob').map(file => file.path);
+        }
+
+        async function populateProjects() {
+            const tags = await fetchTags();
+            const projects = new Set();
+
+            tags.forEach(tag => {
+                const projectMatch = tag.match(/@zk-kit\/(?!eddsa-)(.*?)-artifacts@/);
+                if (projectMatch) {
+                    projects.add(projectMatch[1]);
+                }
+            });
+
+            projectSelect.innerHTML = '<option value="">Select a project</option>';
+            projects.forEach(project => {
+                const option = document.createElement('option');
+                option.value = project;
+                option.textContent = project;
+                projectSelect.appendChild(option);
+            });
+        }
+
+        async function updateVersions() {
+            versionSelect.innerHTML = '<option value="">Select a version</option>';
+            fileSelect.innerHTML = '<option value="">Select a file</option>';
+            fileSelect.disabled = true;
+
+            const selectedProject = projectSelect.value;
+
+            if (selectedProject) {
+                const tags = await fetchTags();
+                const versions = new Set();
+
+                tags.forEach(tag => {
+                    const regex = new RegExp(`@zk-kit/${selectedProject}-artifacts@(.*?)$`);
+                    const versionMatch = tag.match(regex);
+                    if (versionMatch) {
+                        versions.add(versionMatch[1]);
+                    }
+                });
+
+                versions.forEach(version => {
+                    const option = document.createElement('option');
+                    option.value = version;
+                    option.textContent = version;
+                    versionSelect.appendChild(option);
+                });
+                versionSelect.disabled = false;
+            } else {
+                versionSelect.disabled = true;
+            }
+        }
+
+        async function updateFiles() {
+            fileSelect.innerHTML = '<option value="">Select a file</option>';
+
+            const selectedProject = projectSelect.value;
+            const selectedVersion = versionSelect.value;
+
+            if (selectedProject && selectedVersion) {
+                const files = await fetchFiles(`%40zk-kit%2F${selectedProject}-artifacts%40${selectedVersion}`);
+                const filteredFiles = files.filter(file => file.startsWith(`packages/${selectedProject}`));
+                filteredFiles.forEach(file => {
+                    const option = document.createElement('option');
+                    option.value = file;
+                    option.textContent = file.replace(`packages/${selectedProject}/src/`, '');
+                    fileSelect.appendChild(option);
+                });
+                fileSelect.disabled = false;
+            } else {
+                fileSelect.disabled = true;
+            }
+        }
+
+        function navigate() {
+            const project = projectSelect.value;
+            const version = versionSelect.value;
+            const file = fileSelect.value;
+
+            if (project && version && file) {
+                const filepath = `${s3BucketUrl}/${project}/${version}/packages/${project}/src/${file}`;
+                window.location.href = filepath;
+            } else {
+                alert('Please select a project, version, and file.');
+            }
+        }
+
+        // Populate projects on page load
+        populateProjects();
+    </script>
+</body>
+</html>
