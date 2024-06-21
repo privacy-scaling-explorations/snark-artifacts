@@ -1,6 +1,6 @@
 {
   "name": "@zk-kit/artifacts-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": {
     "snarkli": "./dist/index.js"
@@ -42,7 +42,7 @@
     "@commander-js/extra-typings": "^12.1.0",
     "@inquirer/input": "^2.1.8",
     "@inquirer/select": "^2.3.4",
-    "@zk-kit/artifacts": "1.6.0",
+    "@zk-kit/artifacts": "1.7.0",
     "circomkit": "^0.2.1",
     "ora": "^5.4.1",
     "snarkjs": "^0.7.4"
