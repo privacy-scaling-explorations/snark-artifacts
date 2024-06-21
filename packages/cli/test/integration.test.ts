@@ -82,6 +82,7 @@ Commands:
           1.0.0-beta
         poseidon
           1.0.0
+          1.0.0-beta.1
         semaphore
           1.0.0
           4.0.0-beta.9
