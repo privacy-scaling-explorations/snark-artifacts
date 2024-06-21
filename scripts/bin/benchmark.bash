@@ -4,7 +4,7 @@ dl() {
   local cdn="$1"
   local artifact="$2"
   local url="$cdn/$artifact"
-  curl -s -o /dev/null "$url"
+  curl -s -L -o /dev/null "$url"
 }
 
 dl_all() {
