@@ -45,43 +45,39 @@
             </select>
         </div>
         <div class="form-group">
-            <button type="button" onclick="navigate()">Go to File</button>
+            <button type="button" onclick="navigate()">Download Artifact</button>
         </div>
     </form>
 
     <script>
-        const repo = 'privacy-scaling-explorations/snark-artifacts';
-        const s3BucketUrl = 'https://your-bucket.s3.amazonaws.com';
+        const REPO = 'privacy-scaling-explorations/snark-artifacts';
+        const CDN_URL = 'https://snark-artifacts.pse.dev';
+
+        const PROJECTS = ['poseidon', 'semaphore', 'semaphore-identity']
+        const ARTTIFACTS = ['wasm', 'zkey']
+        const tags = [];
 
         const projectSelect = document.getElementById('projectSelect');
         const versionSelect = document.getElementById('versionSelect');
         const fileSelect = document.getElementById('fileSelect');
 
-        async function fetchTags() {
-            const response = await fetch(`https://api.github.com/repos/${repo}/tags`);
-            const tags = await response.json();
-            return tags.map(tag => tag.name);
+        async function fetchVersions() {
+            const response = await fetch(`https://api.github.com/repos/${REPO}/tags`);
+            const _tags = await response.json();
+             _tags.map(tag => tag.name).filter(tag => PROJECTS.some(project => tag.includes(`@zk-kit/${project}-artifacts@`))).forEach(tag => {
+                 tags.push(tag);
+             })
         }
 
         async function fetchFiles(version) {
-            const response = await fetch(`https://api.github.com/repos/${repo}/git/trees/${version}?recursive=1`);
+            const response = await fetch(`https://api.github.com/repos/${REPO}/git/trees/${version}?recursive=1`);
             const tree = await response.json();
             return tree.tree.filter(item => item.type === 'blob').map(file => file.path);
         }
 
-        async function populateProjects() {
-            const tags = await fetchTags();
-            const projects = new Set();
-
-            tags.forEach(tag => {
-                const projectMatch = tag.match(/@zk-kit\/(?!eddsa-)(.*?)-artifacts@/);
-                if (projectMatch) {
-                    projects.add(projectMatch[1]);
-                }
-            });
-
+        function populateProjects() {
             projectSelect.innerHTML = '<option value="">Select a project</option>';
-            projects.forEach(project => {
+            PROJECTS.forEach(project => {
                 const option = document.createElement('option');
                 option.value = project;
                 option.textContent = project;
@@ -97,18 +93,8 @@
             const selectedProject = projectSelect.value;
 
             if (selectedProject) {
-                const tags = await fetchTags();
-                const versions = new Set();
-
-                tags.forEach(tag => {
-                    const regex = new RegExp(`@zk-kit/${selectedProject}-artifacts@(.*?)$`);
-                    const versionMatch = tag.match(regex);
-                    if (versionMatch) {
-                        versions.add(versionMatch[1]);
-                    }
-                });
-
-                versions.forEach(version => {
+                tags.filter(tag => tag.includes(`${selectedProject}-artifacts`)).forEach(tag => {
+                    const version = tag.split('@')[2];
                     const option = document.createElement('option');
                     option.value = version;
                     option.textContent = version;
@@ -127,12 +113,14 @@
             const selectedVersion = versionSelect.value;
 
             if (selectedProject && selectedVersion) {
-                const files = await fetchFiles(`%40zk-kit%2F${selectedProject}-artifacts%40${selectedVersion}`);
-                const filteredFiles = files.filter(file => file.startsWith(`packages/${selectedProject}`));
-                filteredFiles.forEach(file => {
+                const files = await fetchFiles(`@zk-kit/${selectedProject}-artifacts@${selectedVersion}`);
+                const regex = new RegExp(`^packages/${selectedProject}/.*\\.(${ARTTIFACTS.join('|')})$`);
+                const filteredFiles = files.filter(file => regex.test(file));
+                filteredFiles.forEach(_file => {
+                    const file = _file.replace(`packages/${selectedProject}/`, '');
                     const option = document.createElement('option');
                     option.value = file;
-                    option.textContent = file.replace(`packages/${selectedProject}/src/`, '');
+                    option.textContent = file;
                     fileSelect.appendChild(option);
                 });
                 fileSelect.disabled = false;
@@ -147,15 +135,17 @@
             const file = fileSelect.value;
 
             if (project && version && file) {
-                const filepath = `${s3BucketUrl}/${project}/${version}/packages/${project}/src/${file}`;
+                const filepath = `${CDN_URL}/${project}/${version}/${file}`;
                 window.location.href = filepath;
             } else {
                 alert('Please select a project, version, and file.');
             }
         }
 
-        // Populate projects on page load
-        populateProjects();
+        window.onload = async () => {
+            populateProjects();
+            await fetchVersions();
+        };
     </script>
 </body>
 </html>
