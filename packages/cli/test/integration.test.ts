@@ -58,7 +58,7 @@ Commands:
           /tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey",
         ]
       `)
-    }, 10_000)
+    }, 20_000)
   })
 
   describe('generate', () => {

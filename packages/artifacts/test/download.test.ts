@@ -2,18 +2,9 @@ import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import maybeGetSnarkArtifactsBrowser from '../src/download/index.browser'
 import maybeGetSnarkArtifacts from '../src/download/index.node'
-import { getAvailableVersions } from '../src/download/urls'
 import { Project } from '../src/projects'
 
 const version = '1.0.0-beta.1'
-
-describe('getAvailableVersions', () => {
-  it('Should return available versions', async () => {
-    const versions = await getAvailableVersions(Project.POSEIDON)
-
-    expect(versions).toContain(version)
-  }, 20_000)
-})
 
 describe('maybeGetSnarkArtifacts', () => {
   describe('browser', () => {
@@ -37,17 +28,6 @@ describe('maybeGetSnarkArtifacts', () => {
           version: 'latest',
         }),
       ).rejects.toThrow("Project 'project' is not supported")
-    })
-
-    it('should throw if the version is not available', async () => {
-      await expect(
-        maybeGetSnarkArtifactsBrowser(Project.POSEIDON, {
-          parameters: ['2'],
-          version: '0.1.0-beta',
-        }),
-      ).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"Version '0.1.0-beta' is not available for project 'poseidon'"`,
-      )
     })
 
     it('Should return artifact file paths with parameters', async () => {
@@ -87,12 +67,9 @@ describe('maybeGetSnarkArtifacts', () => {
     let existsSyncSpy: jest.SpyInstance
 
     beforeEach(() => {
-      // @ts-expect-error non exhaustive mock of fetch
-      fetchSpy = jest.spyOn(global, 'fetch').mockResolvedValueOnce({
-        json: async () => ({ versions: { [version]: {} } }),
-      })
       createWriteStreamSpy = jest.spyOn(fs, 'createWriteStream')
       existsSyncSpy = jest.spyOn(fs, 'existsSync')
+      fetchSpy = jest.spyOn(global, 'fetch')
       mkdirSpy = jest.spyOn(fsPromises, 'mkdir')
       mkdirSpy.mockResolvedValue(undefined)
     })
@@ -180,10 +157,7 @@ describe('maybeGetSnarkArtifacts', () => {
 
       await maybeGetSnarkArtifacts(Project.POSEIDON, { parameters: ['2'] })
 
-      expect(global.fetch).toHaveBeenCalledTimes(1)
-      expect(global.fetch).toHaveBeenLastCalledWith(
-        'https://registry.npmjs.org/@zk-kit/poseidon-artifacts',
-      )
+      expect(global.fetch).toHaveBeenCalledTimes(0)
     })
 
     it('Should return artifact file paths in node environment', async () => {
@@ -201,17 +175,13 @@ describe('maybeGetSnarkArtifacts', () => {
         `"/tmp/snark-artifacts/poseidon/latest/poseidon-2.zkey"`,
       )
 
-      expect(fetchSpy).toHaveBeenCalledTimes(3)
+      expect(fetchSpy).toHaveBeenCalledTimes(2)
       expect(fetchSpy).toHaveBeenNthCalledWith(
         1,
-        'https://registry.npmjs.org/@zk-kit/poseidon-artifacts',
-      )
-      expect(fetchSpy).toHaveBeenNthCalledWith(
-        2,
         'https://snark-artifacts.pse.dev/poseidon/latest/poseidon-2.wasm',
       )
       expect(fetchSpy).toHaveBeenNthCalledWith(
-        3,
+        2,
         'https://snark-artifacts.pse.dev/poseidon/latest/poseidon-2.zkey',
       )
     }, 25_000)
