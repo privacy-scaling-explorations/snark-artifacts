@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.8.0
+
+### Minor Changes
+
+- [#103](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/103) [`a0c2607`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/a0c260768370b2bd2d3cd922b7315c5ea57d8a9c) Thanks [@sripwoud](https://github.com/sripwoud)! - Do not check available versions prior to downloading artifacts
+
 ## 1.7.0
 
 ### Minor Changes
