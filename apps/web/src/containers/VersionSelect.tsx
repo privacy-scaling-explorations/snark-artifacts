@@ -2,10 +2,11 @@ import type { ChangeEvent } from 'react'
 import { useStore, useVersions } from '../hooks'
 
 export function VersionSelect() {
-  const { selectedVersion, setSelectedVersion } = useStore()
+  const { selectedVersion, setSelectedVersion, resetSelectedFile } = useStore()
   const { data: versions, isSuccess, isFetched, isLoading, isError, error } = useVersions()
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    resetSelectedFile()
     const target = e.target as HTMLSelectElement
     setSelectedVersion(target.value)
   }
