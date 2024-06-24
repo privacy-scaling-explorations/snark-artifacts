@@ -19,13 +19,7 @@ export function VersionSelect() {
     return (
       <div className='form-group'>
         <label htmlFor='version'>Version</label>
-        <select
-          id='version'
-          className='form-control'
-          value={selectedVersion}
-          onChange={onChange}
-          disabled={!isSuccess}
-        >
+        <select id='version' value={selectedVersion} onChange={onChange}>
           <Options items={versions} />
         </select>
       </div>
