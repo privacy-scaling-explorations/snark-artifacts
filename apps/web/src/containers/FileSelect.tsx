@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react'
+import { Options } from '../components'
 import { useFiles, useStore } from '../hooks'
 
 export function FileSelect() {
@@ -23,7 +24,7 @@ export function FileSelect() {
           disabled={!isSuccess}
           onChange={onChange}
         >
-          {files.map(file => <option key={file} value={file}>{file}</option>)}
+          <Options items={files} />
         </select>
       </div>
     )

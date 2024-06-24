@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react'
+import { Options } from '../components'
 import { projects } from '../constants'
 import { useStore } from '../hooks'
 
@@ -16,7 +17,7 @@ export function ProjectSelect() {
     <div>
       <label htmlFor='project'>Project</label>
       <select value={selectedProject} onChange={onChange} id='project'>
-        {projects.map((project) => <option key={project} value={project}>{project}</option>)}
+        <Options items={projects} />
       </select>
     </div>
   )

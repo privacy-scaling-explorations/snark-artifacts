@@ -1,4 +1,5 @@
 import type { ChangeEvent } from 'react'
+import { Options } from '../components'
 import { useStore, useVersions } from '../hooks'
 
 export function VersionSelect() {
@@ -25,11 +26,7 @@ export function VersionSelect() {
           onChange={onChange}
           disabled={!isSuccess}
         >
-          {versions.map((version) => (
-            <option key={version} value={version}>
-              {version}
-            </option>
-          ))}
+          <Options items={versions} />
         </select>
       </div>
     )
