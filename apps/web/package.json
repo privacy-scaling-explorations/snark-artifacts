@@ -1,0 +1,22 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@octokit/rest": "^21.0.0",
+    "jotai": "^2.8.3",
+    "preact": "^10.22.0",
+    "react-query": "^3.39.3"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.8.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1"
+  }
+}
