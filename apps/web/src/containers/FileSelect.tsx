@@ -15,11 +15,15 @@ export function FileSelect() {
   if (isError) return <div>{(error as Error).message}</div>
   if (isSuccess) {
     return (
-      <div className='form-group'>
+      <div>
         <label htmlFor='file'>File</label>
         <select id='file' onChange={onChange} value={selectedFile}>
           <Options items={files} />
         </select>
+        {
+          /* <label htmlFor='all-files' style={{ marginLeft: '1rem'}}>Download all</label>
+            <input id='all-files' type='checkbox' /> */
+        }
       </div>
     )
   }

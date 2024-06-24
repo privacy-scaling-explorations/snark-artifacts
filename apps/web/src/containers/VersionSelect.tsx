@@ -17,7 +17,7 @@ export function VersionSelect() {
   if (isError) return <div>Error: {(error as Error).message}</div>
   if (isSuccess) {
     return (
-      <div className='form-group'>
+      <div>
         <label htmlFor='version'>Version</label>
         <select id='version' value={selectedVersion} onChange={onChange}>
           <Options items={versions} />
