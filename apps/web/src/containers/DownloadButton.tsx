@@ -3,7 +3,7 @@ import { useStore } from '../hooks'
 
 export function DownloadButton() {
   const { selectedFile, selectedProject, selectedVersion } = useStore()
-  console.log({ selectedFile })
+
   const onClick = () => {
     const url = `${cdnUrl}/${selectedProject}/${selectedVersion}/${selectedFile}`
     window.location.href = url
