@@ -1,10 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
   "files": {
-    "ignore": [
-      "coverage/**",
-      "dist/**",
-    ],
+    "ignore": ["coverage/**", "dist/**"],
   },
   "formatter": {
     // use dprint instead
@@ -17,19 +14,15 @@
   "overrides": [
     {
       "include": ["packages/cli/src/spinner.ts"],
-      "linter": {
-        "rules": {
-          "suspicious": { "noExplicitAny": "off" },
-        },
-      },
+      "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } },
     },
     {
       "include": ["packages/cli/src/commands/download/index.ts", "packages/cli/src/commands/generate/action.ts"],
-      "linter": {
-        "rules": {
-          "style": { "noParameterAssign": "off" },
-        },
-      },
+      "linter": { "rules": { "style": { "noParameterAssign": "off" } } },
+    },
+    {
+      "include": ["apps/web/src/main.tsx"],
+      "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } },
     },
   ],
 }
