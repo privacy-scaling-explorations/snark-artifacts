@@ -1,14 +1,15 @@
-import React from 'react'
+import type { ChangeEvent } from 'react'
 import { projects } from '../constants'
 import { useStore } from '../hooks'
 
 export function ProjectSelect() {
   const { selectedProject, setSelectedProject, resetSelectedFile, resetSelectedVersion } = useStore()
 
-  const onChange = (e) => {
+  const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     resetSelectedFile()
     resetSelectedVersion()
-    setSelectedProject(e.target.value)
+    const target = e.target as HTMLSelectElement
+    setSelectedProject(target.value)
   }
 
   return (
