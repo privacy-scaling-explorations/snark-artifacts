@@ -42,7 +42,7 @@ jobs:
           restore-keys: ${{ runner.os }}-pnpm-store
 
       - name: Build
-        run: pnpm --filter build
+        run: pnpm --filter web build
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
