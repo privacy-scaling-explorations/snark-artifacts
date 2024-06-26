@@ -1,13 +1,17 @@
-import { cdnUrl } from '../constants'
-import { useStore } from '../hooks'
+import { useDownloadUrl, useStore } from '../hooks'
 
 export function DownloadButton() {
-  const { selectedFile, selectedProject, selectedVersion } = useStore()
+  const { selectedFile, tickedDownloadAll } = useStore()
+  const disabled = !(selectedFile || tickedDownloadAll)
+  const downloadUrl = useDownloadUrl()
 
   const onClick = () => {
-    const url = `${cdnUrl}/${selectedProject}/${selectedVersion}/${selectedFile}`
-    window.location.href = url
+    window.location.href = downloadUrl
   }
 
-  return <button type='button' onClick={onClick} className='btn btn-primary' disabled={!selectedFile}>Download</button>
+  return (
+    <button type='button' onClick={onClick} className='btn btn-primary' disabled={disabled}>
+      Download
+    </button>
+  )
 }
