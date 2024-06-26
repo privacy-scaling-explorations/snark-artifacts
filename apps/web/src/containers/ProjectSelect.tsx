@@ -1,6 +1,6 @@
 import type { ChangeEvent } from 'react'
+import { projects } from '@zk-kit/artifacts'
 import { Options } from '../components'
-import { projects } from '../constants'
 import { useStore } from '../hooks'
 
 export function ProjectSelect() {
