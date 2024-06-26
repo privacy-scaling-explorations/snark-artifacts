@@ -53,4 +53,4 @@ jobs:
 
       - name: Upload index.html and assets to s3 bucket
         run: |
-          aws s3 sync apps/web/dist s3://snark-artifacts/ --delete
+          aws s3 sync apps/web/dist s3://snark-artifacts/ --exclude "*" --include "index.html" --include "assets/*" --delete
