@@ -1,0 +1,56 @@
+name: Upload Artifacts
+on:
+  push:
+    branches:
+      - main
+    paths: ['apps/web/**', '.github/workflows/deploy-web-app.yaml']
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - run: pnpm i --ignore-scripts
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{env.STORE_PATH}}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store
+
+      - name: Build
+        run: pnpm --filter web build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::490752553772:role/snark-artifacts-assume_role-slc
+          role-duration-seconds: 900
+          aws-region: us-west-2
+
+      - name: Upload index.html and assets to s3 bucket
+        run: |
+          aws s3 sync apps/web/dist s3://snark-artifacts/ --exclude "*" --include "index.html" --include "assets/*" --delete
