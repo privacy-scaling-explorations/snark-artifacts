@@ -3,13 +3,12 @@ import { Options } from '../components'
 import { useStore, useVersions } from '../hooks'
 
 export function VersionSelect() {
-  const { selectedVersion, setSelectedVersion, resetSelectedFile } = useStore()
+  const { selectedVersion, setSelectedVersion } = useStore()
   const { data: versions, isSuccess, isFetched, isLoading, isError, error } = useVersions()
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    resetSelectedFile()
-    const target = e.target as HTMLSelectElement
-    setSelectedVersion(target.value)
+    const { value } = e.target as HTMLSelectElement
+    setSelectedVersion(value)
   }
 
   if (isLoading) return <div>Loading...</div>
