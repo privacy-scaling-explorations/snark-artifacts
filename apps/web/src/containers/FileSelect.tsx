@@ -6,8 +6,8 @@ export function FileSelect() {
   const { selectedFile, setSelectedFile, tickedDownloadAll, toggleTickedDownloadAll } = useStore()
   const { data: files, isLoading, isFetched, isSuccess, isError, error } = useFiles()
   const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const file = e.target as HTMLSelectElement
-    setSelectedFile(file.value)
+    const { value } = e.target as HTMLSelectElement
+    setSelectedFile(value)
   }
 
   if (isLoading) return <div>Loading...</div>
