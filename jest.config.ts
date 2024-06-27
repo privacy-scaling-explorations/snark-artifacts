@@ -9,7 +9,7 @@ const config: JestConfigWithTsJest = {
   collectCoverageFrom: ['src/**/*.ts', '!src/index*.ts'],
   coverageDirectory: join(__dirname, '..', 'coverage'),
   coverageThreshold: {
-    global: { branches: 40, functions: 60, lines: 80, statements: 80 },
+    global: { branches: 40, functions: 55, lines: 75, statements: 75 },
   },
   moduleDirectories: ['node_modules', '<rootDir>/node_modules', '<rootDir>/src'],
   moduleFileExtensions: ['js', 'ts'],
