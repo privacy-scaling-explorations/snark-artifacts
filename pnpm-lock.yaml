@@ -60,8 +60,8 @@ importers:
         specifier: ^21.0.0
         version: 21.0.0
       '@zk-kit/artifacts':
-        specifier: 1.6.0
-        version: 1.6.0
+        specifier: 1.9.0
+        version: 1.9.0
       jotai:
         specifier: ^2.8.3
         version: 2.8.3(react@18.3.1)
@@ -1128,6 +1128,9 @@ packages:
 
   '@zk-kit/artifacts@1.6.0':
     resolution: {integrity: sha512-vNhVvKy5EjLAZcfm0cHkbputecXgtoW9hpPGRc5aNmv94zGk9owNA+EuG7YghP88D/iNlvA+80rwlw5qMdSYlA==}
+
+  '@zk-kit/artifacts@1.9.0':
+    resolution: {integrity: sha512-Dl8bJLWnSw0NGT1/p5UKmp4Zgr+evyyvgyi2pwDzdPuT0RKMRkgNIC4ai1j58utwWR9tczGNQlDPdpdZNqFfmA==}
 
   acorn-walk@8.3.2:
     resolution: {integrity: sha512-cjkyv4OtNCIeqhHrfS81QWXoCBPExR/J62oyEqepVw8WaQeSqpW2uhuLPh1m9eWhDuOo/jUXVTlifvesOWp/4A==}
@@ -4443,6 +4446,8 @@ snapshots:
       '@types/yargs-parser': 21.0.3
 
   '@zk-kit/artifacts@1.6.0': {}
+
+  '@zk-kit/artifacts@1.9.0': {}
 
   acorn-walk@8.3.2: {}
 
