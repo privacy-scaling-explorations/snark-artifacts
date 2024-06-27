@@ -8,5 +8,6 @@ export const generate = new Command('generate').alias('g').description(
   'Path to circomkit configuration file',
 )
   .option('-d, --destination <path>', 'Destination directory for the generated artifacts')
+  .argument('[circuit]', 'Circuit to generate snark artifacts for')
   .argument('[params...]', 'Circuit parameters override')
   .action(generateAction)

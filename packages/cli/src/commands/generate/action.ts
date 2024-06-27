@@ -3,18 +3,26 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname } from 'node:path'
 import { chdir, cwd, exit } from 'node:process'
+import { Writable } from 'node:stream'
 import { spinner } from '../../spinner.ts'
 import { validateJsonFileInput, validateOrThrow } from '../../validators.ts'
 import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts.ts'
 
-async function setup(params: string[] | undefined, config: string, dirBuild: string) {
+// class SilentStream extends Writable {
+//   _write(_chunk: any, _encoding: string, callback: () => void) {
+//     // Discard chunk
+//     callback()
+//   }
+// }
+
+async function setup(circuit: string | undefined, params: string[] | undefined, config: string, dirBuild: string) {
   // parse circomkit.json
   let circomkitConfig = JSON.parse(readFileSync(config, 'utf8')) as CircomkitConfig
   chdir(dirname(config))
 
   // parse circuits.json
   const circuitsConfig = JSON.parse(readFileSync(circomkitConfig.circuits, 'utf8')) as Record<string, CircuitConfig>
-  const circuit = await selectCircuit(Object.keys(circuitsConfig))
+  circuit ??= await selectCircuit(Object.keys(circuitsConfig))
   let { circuits } = circomkitConfig
 
   if (params !== undefined && params.length > 0) {
@@ -30,10 +38,17 @@ async function setup(params: string[] | undefined, config: string, dirBuild: str
   // override circomkit config options
   circomkitConfig = { ...circomkitConfig, circuits, dirBuild }
   const circomkit = new Circomkit(circomkitConfig)
-  return circomkit.setup(circuit)
+
+  // temporarily redirect stdout to make all circomkit logs silent
+  //const originalStdout = process.stdout
+  // @ts-ignore
+  //process.stdout = new SilentStream()
+
+  await circomkit.setup(circuit)
 }
 
-async function generateAction(
+export async function generateActionNoExit(
+  circuit: string | undefined,
   params: string[] | undefined,
   { config, destination }: { config?: string; destination?: string },
 ) {
@@ -42,8 +57,14 @@ async function generateAction(
 
   config ??= await getCircomkitConfigInput()
   const dirBuild = destination ?? await getDestinationInput(`${cwd()}/snark-artifacts`)
-  await setup(params, config, dirBuild)
+  await setup(circuit, params, config, dirBuild)
   spinner.succeed(`Snark artifacts generated successfully in ${dirBuild}`)
+}
+
+async function generateAction(
+  ...params: Parameters<typeof generateActionNoExit>
+) {
+  await generateActionNoExit(...params)
   exit(0)
 }
 

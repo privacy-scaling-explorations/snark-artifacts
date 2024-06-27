@@ -13,7 +13,7 @@
   },
   "overrides": [
     {
-      "include": ["packages/cli/src/spinner.ts"],
+      "include": ["packages/cli/src/spinner.ts", "packages/cli/src/commands/generate/action.ts"],
       "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } },
     },
     {
