@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 1.9.0
+
+### Minor Changes
+
+- [#109](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/109) [`921d35a`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/921d35a341771069548afef6aa4d5fd3fdf19823) Thanks [@sripwoud](https://github.com/sripwoud)! - Sort values of `projects`
+
 ## 1.8.0
 
 ### Minor Changes
