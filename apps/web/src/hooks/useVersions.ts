@@ -16,6 +16,9 @@ export function useVersions() {
     queryKey: ['versions', selectedProject],
     queryFn,
     select: (data) =>
-      data.filter(tag => tag.includes(`@zk-kit/${selectedProject}-artifacts@`)).map(tag => tag.split('@')[2]),
+      data
+        .filter(tag => tag.includes(`@zk-kit/${selectedProject}-artifacts@`))
+        .map(tag => tag.split('@')[2])
+        .filter(version => version !== 'latest'),
   })
 }
