@@ -8,12 +8,12 @@ import { spinner } from '../../spinner.ts'
 import { validateJsonFileInput, validateOrThrow } from '../../validators.ts'
 import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts.ts'
 
-// class SilentStream extends Writable {
-//   _write(_chunk: any, _encoding: string, callback: () => void) {
-//     // Discard chunk
-//     callback()
-//   }
-// }
+class SilentStream extends Writable {
+  _write(_chunk: any, _encoding: string, callback: () => void) {
+    // Discard chunk
+    callback()
+  }
+}
 
 async function setup(circuit: string | undefined, params: string[] | undefined, config: string, dirBuild: string) {
   // parse circomkit.json
@@ -23,6 +23,7 @@ async function setup(circuit: string | undefined, params: string[] | undefined, 
   // parse circuits.json
   const circuitsConfig = JSON.parse(readFileSync(circomkitConfig.circuits, 'utf8')) as Record<string, CircuitConfig>
   circuit ??= await selectCircuit(Object.keys(circuitsConfig))
+  const { params: defaultParams } = circuitsConfig[circuit]!
   let { circuits } = circomkitConfig
 
   if (params !== undefined && params.length > 0) {
@@ -40,11 +41,16 @@ async function setup(circuit: string | undefined, params: string[] | undefined, 
   const circomkit = new Circomkit(circomkitConfig)
 
   // temporarily redirect stdout to make all circomkit logs silent
-  //const originalStdout = process.stdout
+  const write = process.stdout.write
+  const silentStream = new SilentStream()
   // @ts-ignore
-  //process.stdout = new SilentStream()
+  process.stdout.write = silentStream.write.bind(silentStream)
 
-  await circomkit.setup(circuit)
+  await circomkit.setup(circuit).finally(() => {
+    process.stdout.write = write
+  })
+
+  return { circuit, params: params ?? defaultParams }
 }
 
 export async function generateActionNoExit(
@@ -57,8 +63,13 @@ export async function generateActionNoExit(
 
   config ??= await getCircomkitConfigInput()
   const dirBuild = destination ?? await getDestinationInput(`${cwd()}/snark-artifacts`)
-  await setup(circuit, params, config, dirBuild)
-  spinner.succeed(`Snark artifacts generated successfully in ${dirBuild}`)
+  const result = await setup(circuit, params, config, dirBuild)
+
+  spinner.succeed(
+    `Snark artifacts for ${circuit ?? result.circuit} with parameters ${
+      params ?? result.params
+    } generated successfully in ${dirBuild}`,
+  )
 }
 
 async function generateAction(
