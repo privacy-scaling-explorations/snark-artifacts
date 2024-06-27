@@ -1,8 +1,8 @@
 export enum Project {
-  SEMAPHORE_IDENTITY = 'semaphore-identity',
   POSEIDON = 'poseidon',
   // RLN = 'rln',
   SEMAPHORE = 'semaphore',
+  SEMAPHORE_IDENTITY = 'semaphore-identity',
 }
 
-export const projects = Object.values(Project)
+export const projects = Object.values(Project).sort()
