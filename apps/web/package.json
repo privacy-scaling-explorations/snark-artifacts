@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@octokit/rest": "^21.0.0",
-    "@zk-kit/artifacts": "1.6.0",
+    "@zk-kit/artifacts": "1.9.0",
     "jotai": "^2.8.3",
     "preact": "^10.22.0",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "semver": "^7.6.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.8.2",
+    "@types/semver": "^7.5.8",
     "typescript": "^5.2.2",
     "vite": "^5.3.1"
   }

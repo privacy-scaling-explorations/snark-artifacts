@@ -4,11 +4,9 @@ import { Options } from '../components'
 import { useStore } from '../hooks'
 
 export function ProjectSelect() {
-  const { selectedProject, setSelectedProject, resetSelectedFile, resetSelectedVersion } = useStore()
+  const { selectedProject, setSelectedProject } = useStore()
 
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    resetSelectedFile()
-    resetSelectedVersion()
     const target = e.target as HTMLSelectElement
     setSelectedProject(target.value)
   }

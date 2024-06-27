@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query'
+import rcompare from 'semver/functions/rcompare'
 import { owner, repo } from '../constants'
 import { gh } from '../gh'
 import { useStore } from './useStore'
@@ -16,6 +17,10 @@ export function useVersions() {
     queryKey: ['versions', selectedProject],
     queryFn,
     select: (data) =>
-      data.filter(tag => tag.includes(`@zk-kit/${selectedProject}-artifacts@`)).map(tag => tag.split('@')[2]),
+      data
+        .filter(tag => tag.includes(`@zk-kit/${selectedProject}-artifacts@`))
+        .map(tag => tag.split('@')[2])
+        .filter(version => version !== 'latest')
+        .sort(rcompare),
   })
 }
