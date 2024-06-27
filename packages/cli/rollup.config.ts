@@ -24,7 +24,15 @@ const config: RollupOptions = {
   plugins: [
     typescript({ tsconfig: './tsconfig.build.json' }),
   ],
-  external: [...Object.keys(pkg.dependencies), 'node:console', 'node:fs', 'node:os', 'node:path', 'node:process'],
+  external: [
+    ...Object.keys(pkg.dependencies),
+    'node:console',
+    'node:fs',
+    'node:os',
+    'node:path',
+    'node:process',
+    'node:stream',
+  ],
 }
 
 export default config
