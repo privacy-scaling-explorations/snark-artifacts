@@ -7,7 +7,7 @@ import { spinner } from '../../spinner.ts'
 import { validateJsonFileInput, validateOrThrow } from '../../validators.ts'
 import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts.ts'
 
-export async function setup(params: string[] | undefined, config: string, dirBuild: string) {
+async function setup(params: string[] | undefined, config: string, dirBuild: string) {
   // parse circomkit.json
   let circomkitConfig = JSON.parse(readFileSync(config, 'utf8')) as CircomkitConfig
   chdir(dirname(config))
