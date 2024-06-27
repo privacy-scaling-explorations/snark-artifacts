@@ -8,4 +8,5 @@ export const generate = new Command('generate').alias('g').description(
   'Path to circomkit configuration file',
 )
   .option('-d, --destination <path>', 'Destination directory for the generated artifacts')
+  .argument('[params...]', 'Circuit parameters override')
   .action(generateAction)
