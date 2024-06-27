@@ -7,7 +7,7 @@ const tickedDownloadAllAtom = atom(false)
 
 export const useStore = () => {
   const [selectedFile, setSelectedFile] = useAtom(selectedFileAtom)
-  const resetSelectedFile = () => setSelectedFile('')
+  const _resetSelectedFile = () => setSelectedFile('')
 
   const [tickedDownloadAll, _setTickedDownloadAll] = useAtom(tickedDownloadAllAtom)
   const _resetTickedDownloadAll = () => _setTickedDownloadAll(false)
@@ -15,26 +15,24 @@ export const useStore = () => {
 
   const [selectedVersion, _setSelectedVersion] = useAtom(selectedVersionAtom)
   const setSelectedVersion = (...args: Parameters<typeof _setSelectedVersion>) => {
-    resetSelectedFile()
+    _resetSelectedFile()
     _resetTickedDownloadAll()
     _setSelectedVersion(...args)
   }
-  const resetSelectedVersion = () => setSelectedVersion('')
+  const _resetSelectedVersion = () => setSelectedVersion('')
 
   const [selectedProject, _setSelectedProject] = useAtom(selectedProjectAtom)
   const setSelectedProject = (...args: Parameters<typeof _setSelectedProject>) => {
-    resetSelectedVersion()
+    _resetSelectedVersion()
     _setSelectedProject(...args)
   }
 
   return {
     selectedFile,
-    resetSelectedFile,
     setSelectedFile,
     selectedProject,
     setSelectedProject,
     selectedVersion,
-    resetSelectedVersion,
     setSelectedVersion,
     tickedDownloadAll,
     toggleTickedDownloadAll,
