@@ -38,11 +38,13 @@ Interested in contributing to this project? See the [board](https://github.com/o
 ## Artifacts
 
 <table>
-    <th>Package</th>
-    <th>Version</th>
-    <th>Downloads</th>
-    <th>Circuits</th>
-    <th>JS library</th>
+    <thead>
+      <th>Package</th>
+      <th>Version</th>
+      <th>Downloads</th>
+      <th>Circuits</th>
+      <th>JS library</th>
+    <thead>
     <tbody>
         <tr>
             <td>
@@ -129,6 +131,29 @@ Interested in contributing to this project? See the [board](https://github.com/o
                 <a href="https://github.com/semaphore-protocol/extensions/tree/main/packages/identity-proof">
                     @semaphore-extensions/identity-proof
                 </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/cli">
+                    @zk-kit/artifacts-cli
+                </a>
+            </td>
+            <td>
+                <!-- NPM version -->
+                <a href="https://npmjs.org/package/@zk-kit/artifacts-cli">
+                    <img src="https://img.shields.io/npm/v/@zk-kit/artifacts-cli.svg?style=flat-square" alt="NPM version" />
+                </a>
+            </td>
+            <td>
+                <!-- Downloads -->
+                <a href="https://npmjs.org/package/@zk-kit/artifacts-cli">
+                    <img src="https://img.shields.io/npm/dm/@zk-kit/artifacts-cli.svg?style=flat-square" alt="Downloads" />
+                </a>
+            </td>
+            <td>
+            </td>
+            <td>
             </td>
         </tr>
     <tbody>
