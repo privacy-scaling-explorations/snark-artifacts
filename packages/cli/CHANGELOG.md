@@ -1,5 +1,13 @@
 # @zk-kit/artifacts-cli
 
+## 1.1.0
+
+### Minor Changes
+
+- [#113](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/113) [`0be85ca`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/0be85ca88424aab4fc2ab09a778043fd0be0d34e) Thanks [@sripwoud](https://github.com/sripwoud)! - Generate batch of artifacts
+
+- [#113](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/113) [`0be85ca`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/0be85ca88424aab4fc2ab09a778043fd0be0d34e) Thanks [@sripwoud](https://github.com/sripwoud)! - Can override circuits parameters in generate command
+
 ## 1.0.0
 
 ### Major Changes
