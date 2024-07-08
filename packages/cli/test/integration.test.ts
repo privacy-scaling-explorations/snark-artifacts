@@ -27,16 +27,14 @@ describe('CLI', () => {
 "Usage: snarkli [options] [command]
 
 Options:
-  -h, --help                      display help for command
+  -h, --help                                     display help for command
 
 Commands:
-  download|d [options] [project]  Download all available artifacts for a given
-                                  project
-  generate|g [options]            Generate snark artifacts for a given source
-                                  circom circuit
-  list|l                          List all projects and their available
-                                  packages versions
-  help [command]                  display help for command
+  download|d [options] [project]                 Download all available artifacts for a given project
+  generate|g [options] [circuit] [params...]     Generate snark artifacts for a given source circom circuit
+  generate-batch|gb <optionsPath> <destination>  Generate snark artifacts for a list of circom circuits
+  list|l                                         List all projects and their available packages versions
+  help [command]                                 display help for command
 "
 `)
       },

@@ -13,7 +13,7 @@
   },
   "overrides": [
     {
-      "include": ["packages/cli/src/spinner.ts"],
+      "include": ["packages/cli/src/spinner.ts", "packages/cli/src/commands/generate/action.ts"],
       "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } },
     },
     {
@@ -21,7 +21,7 @@
       "linter": { "rules": { "style": { "noParameterAssign": "off" } } },
     },
     {
-      "include": ["apps/web/src/main.tsx"],
+      "include": ["apps/web/src/main.tsx", "packages/cli/src/commands/generate/action.ts"],
       "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } },
     },
   ],
