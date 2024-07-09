@@ -49,3 +49,7 @@ jobs:
       - name: Upload artifacts to S3 bucket
         run: |
           .github/scripts/upload-artifacts.sh
+
+      - name: Update CloudFront
+        run: |
+          .github/scripts/update-cloudfront.sh
