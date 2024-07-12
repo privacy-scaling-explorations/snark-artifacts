@@ -1,4 +1,4 @@
-import { type Project, projects } from '../projects'
+import { type Project, projects } from 'projects'
 import type { SnarkArtifacts, Version } from './types'
 import { getBaseUrl } from './urls'
 

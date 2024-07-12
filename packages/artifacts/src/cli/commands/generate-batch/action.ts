@@ -1,7 +1,7 @@
+import { spinner } from 'cli/spinner'
 import { readFileSync } from 'node:fs'
 import { exit } from 'node:process'
-import { spinner } from '../../spinner.ts'
-import { generateActionNoExit } from '../generate/action.ts'
+import { generateActionNoExit } from '../generate/action'
 
 export default async function generateBatch(optionsPath: string, destination: string) {
   const options = JSON.parse(readFileSync(optionsPath, 'utf8')) as Record<

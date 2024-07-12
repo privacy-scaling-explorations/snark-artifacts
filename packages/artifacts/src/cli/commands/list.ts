@@ -1,8 +1,7 @@
 import { Command } from '@commander-js/extra-typings'
 import { exit } from 'node:process'
-import { projects } from '../../projects.ts'
-import { getAvailableVersions } from '../../projects.ts'
-import { spinner } from '../spinner.ts'
+import { getAvailableVersions, projects } from 'projects'
+import { spinner } from '../spinner'
 
 export const list = new Command('list').alias('l').description(
   'List all projects and their available packages versions',

@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import { extname } from 'node:path'
-import { type Project, projects } from '../projects.ts'
-import { CliError } from './errors.ts'
+import { type Project, projects } from 'projects'
+import { CliError } from './errors'
 
 export function validateFilePath(input: string) {
   if (!existsSync(input)) return CliError.FILE_DOES_NOT_EXIST

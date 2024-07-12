@@ -1,12 +1,12 @@
 import { Circomkit, type CircomkitConfig, type CircuitConfig } from 'circomkit'
+import { spinner } from 'cli/spinner'
+import { validateJsonFileInput, validateOrThrow } from 'cli/validators'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname } from 'node:path'
 import { chdir, cwd, exit } from 'node:process'
 import { Writable } from 'node:stream'
-import { spinner } from '../../spinner.ts'
-import { validateJsonFileInput, validateOrThrow } from '../../validators.ts'
-import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts.ts'
+import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts'
 
 class SilentStream extends Writable {
   _write(_chunk: any, _encoding: string, callback: () => void) {
