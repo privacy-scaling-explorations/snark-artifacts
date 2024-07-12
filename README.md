@@ -3,6 +3,9 @@
         🗄️ SNARK Artifacts
     </h1>
     <p align="center">A streamlined mechanism for distributing SNARK artifacts.</p>
+    <p align="center">
+        <a href="https://snark-artifacts.pse.dev"><b>snark-artifacts.pse.dev</b></p></a>
+    </p>
 </p>
 
 | [P0tion](https://github.com/privacy-scaling-explorations/p0tion) has made conducting SNARK phase 2 trusted setup ceremonies easier for many zero-knowledge projects. However, there still seems to be no simple mechanism for distributing the artifacts generated in ceremonies. This project aims to build step-by-step a simple and easily accessible mechanism for distributing zero-knowledge artifacts (`wasm`/`zkey` files). |
@@ -167,10 +170,9 @@ Interested in contributing to this project? See the [board](https://github.com/o
 - ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
 - ❌ **Automated Distribution**: A system that automatically distributes artifacts after the ceremony (possibly through [P0tion](https://github.com/privacy-scaling-explorations/p0tion)).
 
-## 📜 Getting Started
+## 📜 Develop
 
-To add a new set of artifacts for your project, simply add your NPM package to the [`packages`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages) folder. The packages are published on NPM and made available on your preferred CDN (e.g. https://unpkg.com).
-
+To add a new set of artifacts for your project, simply add your NPM package to the [`packages`](https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages) folder.\
 You can also create [issue](https://github.com/privacy-scaling-explorations/snark-artifacts/issues/new/choose) and let the core contributors add your files.
 
 ### Partial clone
@@ -201,28 +203,13 @@ After the first time clone, you can use the following npm scripts:
 
 ### [Contribute](./CONTRIBUTING.md)
 
-### Downloading artifacts
+## Downloading artifacts
 
-ZK-Kit provides a set of functions to automatically download your artifacts. For example:
+You can download all artifacts either:
 
-```ts
-import { maybeGetSnarkArtifacts, Project } from '@zk-kit/artifacts'
-
-// It will return the artifacts' paths.
-const { wasm, zkey } = await maybeGetSnarkArtifacts(Project.POSEIDON, {
-  parameters: [2],
-  version: '1.0.0',
-})
-
-console.log(wasm) // "/tmp/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.wasm"
-console.log(zkey) // "/tmp/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.zkey"
-
-// Paths on browsers will be the `unpkg` URLs directly.
-// e.g. https://unpkg.com/@zk-kit/poseidon-artifacts@1.0.0/poseidon-2.zkey
-```
-
-You can download all artifacts from this repository with:
-
-```bash
-bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
-```
+- directly from this repository with:
+  ```bash
+  bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
+  ```
+- with functions exported in [`@zk-kit/artifacts`](./packages/artifacts/README.md#downloading-artifacts)
+- with the [`snarkli` CLI](./packages/artifacts/README.md#cli)
