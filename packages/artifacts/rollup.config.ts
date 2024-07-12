@@ -56,6 +56,7 @@ const config: RollupOptions[] = [
       ...Object.keys(pkg.dependencies),
       'node:console',
       'node:fs',
+      'node:fs/promises',
       'node:os',
       'node:path',
       'node:process',
