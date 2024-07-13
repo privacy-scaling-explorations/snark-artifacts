@@ -9,7 +9,7 @@
   }
 
   h1 {
-    @apply text-xl font-bold text-teal mb-4;
+    @apply text-xl font-bold text-aquamarine mb-4;
   }
 
   form {
@@ -17,40 +17,40 @@
   }
 
   button {
-    @apply bg-teal text-white rounded-md px-4 py-2 hover:bg-raspberry
-    focus:outline-none focus:ring-2 focus:ring-teal;
+    @apply bg-aquamarine text-night rounded-md px-4 py-2 hover:bg-raspberry
+    focus:outline-none focus:ring-2 focus:ring-aquamarine;
   }
 
   label {
-    @apply text-teal font-medium mb-1;
+    @apply text-aquamarine font-medium mb-1;
   }
 
   input {
     @apply bg-melon text-night rounded-md px-4 py-2 focus:outline-none
-    focus:ring-2 focus:ring-teal;
+    focus:ring-2 focus:ring-aquamarine;
   }
 
   select {
     @apply bg-melon text-night rounded-md px-4 py-2 focus:outline-none
-    focus:ring-2 focus:ring-teal;
+    focus:ring-2 focus:ring-aquamarine;
   }
 
   checkbox {
-    @apply bg-melon text-teal rounded focus:outline-none focus:ring-2
-    focus:ring-teal mr-2;
+    @apply bg-melon text-aquamarine rounded focus:outline-none focus:ring-2
+    focus:ring-aquamarine mr-2;
   }
 
   footer {
-    @apply text-aquamarine text-center text-xs;
+    @apply text-teal text-center text-xs;
   }
 
   a {
-    @apply text-teal hover:text-raspberry;
+    @apply text-aquamarine hover:text-raspberry;
   }
 }
 
 @layer components {
   .is-disabled {
-    @apply opacity-50 cursor-not-allowed hover:bg-teal;
+    @apply opacity-50 cursor-not-allowed hover:bg-aquamarine;
   }
 }
