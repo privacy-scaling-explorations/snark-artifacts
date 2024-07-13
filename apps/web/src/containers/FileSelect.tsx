@@ -15,21 +15,23 @@ export function FileSelect() {
   if (isError) return <div>{(error as Error).message}</div>
   if (isSuccess) {
     return (
-      <div class='flex flex-row'>
+      <div class='flex items-center space-x-4'>
         <div class='flex flex-col'>
           <label htmlFor='file'>File</label>
           <select id='file' onChange={onSelectChange} value={selectedFile} disabled={tickedDownloadAll}>
             <Options items={files} />
           </select>
         </div>
-        <label htmlFor='all-files' style={{ marginLeft: '1rem' }}>All</label>
-        <input
-          id='all-files'
-          type='checkbox'
-          onChange={toggleTickedDownloadAll}
-          checked={tickedDownloadAll}
-          title='Download all artifacts as .tgz tarball'
-        />
+        <div class='flex items-center space-x-2 pt-8'>
+          <label htmlFor='all-files'>All</label>
+          <input
+            id='all-files'
+            type='checkbox'
+            onChange={toggleTickedDownloadAll}
+            checked={tickedDownloadAll}
+            title='Download all artifacts as .tgz tarball'
+          />
+        </div>
       </div>
     )
   }

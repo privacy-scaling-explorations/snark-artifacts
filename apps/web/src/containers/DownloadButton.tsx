@@ -10,7 +10,7 @@ export function DownloadButton() {
   }
 
   return (
-    <button type='button' onClick={onClick} className='btn btn-primary mt-5' disabled={disabled}>
+    <button type='button' onClick={onClick} disabled={disabled} className={`${disabled ? 'is-disabled' : ''}`}>
       Download
     </button>
   )
