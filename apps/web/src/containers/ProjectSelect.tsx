@@ -12,7 +12,7 @@ export function ProjectSelect() {
   }
 
   return (
-    <div>
+    <div class='flex flex-col'>
       <label htmlFor='project'>Project</label>
       <select value={selectedProject} onChange={onChange} id='project'>
         <Options items={projects} />

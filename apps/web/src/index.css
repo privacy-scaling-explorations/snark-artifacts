@@ -1,78 +1,49 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5em;
-  margin: 0 auto;
-  padding: 2em;
-  border-radius: 8px;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  body {
+    @apply bg-night h-screen flex items-center justify-between text-white flex-col;
   }
-  a:hover {
-    color: #747bff;
+
+  h1 {
+    @apply text-xl font-bold text-teal mb-4;
   }
+
+  form {
+    @apply flex-1 flex flex-col justify-center space-y-4;
+  }
+
   button {
-    background-color: #f9f9f9;
+    @apply bg-teal text-white rounded-md px-4 py-2 hover:bg-raspberry
+    focus:outline-none focus:ring-2 focus:ring-teal;
+  }
+
+  label {
+    @apply text-teal font-medium mb-1;
+  }
+
+  input {
+    @apply bg-melon text-night rounded-md px-4 py-2 focus:outline-none
+    focus:ring-2 focus:ring-teal;
+  }
+
+  select {
+    @apply bg-melon text-night rounded-md px-4 py-2 focus:outline-none
+    focus:ring-2 focus:ring-teal;
+  }
+
+  checkbox {
+    @apply bg-melon text-teal rounded focus:outline-none focus:ring-2
+    focus:ring-teal mr-2;
+  }
+
+  footer {
+    @apply text-aquamarine text-center text-xs;
+  }
+
+  a {
+    @apply text-teal hover:text-raspberry;
   }
 }
