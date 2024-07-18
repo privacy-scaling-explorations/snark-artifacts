@@ -7,9 +7,9 @@ on:
       [
         '.github/workflows/release.yaml',
         '.changeset/*.md',
-        'packages/**/package.json',
         'packages/**/*.wasm',
         'packages/**/*.zkey',
+        'packages/**/*.json',
       ]
   workflow_dispatch:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
