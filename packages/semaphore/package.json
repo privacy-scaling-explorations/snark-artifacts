@@ -3,7 +3,7 @@
   "description": "zk-kit semaphore artifacts",
   "circuit": "@zk-kit/poseidon-proof.circom",
   "license": "MIT",
-  "version": "4.0.0-beta.17",
+  "version": "4.0.0-beta.18",
   "repository": {
     "type": "git",
     "url": "https://github.com/privacy-scaling-explorations/snark-artifacts.git"
