@@ -36,7 +36,7 @@ jobs:
         run: pnpm -r typecheck
 
       - name: Check build
-        run: pnpm -r build
+        run: pnpm -r --link-workspace-packages build
 
       - name: Test
         run: pnpm test.ci
