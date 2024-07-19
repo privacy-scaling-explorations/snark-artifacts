@@ -20,7 +20,9 @@ export function useFiles() {
     queryFn: async () => fetchFiles(`@zk-kit/${selectedProject}-artifacts@${selectedVersion}`),
     select: data => {
       const regex = new RegExp(`^packages/${selectedProject}/.*\\.(${artifacts.join('|')})$`)
-      return data.filter(file => regex.test(file)).map(file => file.replace(`packages/${selectedProject}/`, ''))
+      return data.filter(file => regex.test(file)).filter(file => !file.endsWith('package.json')).map(file =>
+        file.replace(`packages/${selectedProject}/`, '')
+      )
     },
   })
 }
