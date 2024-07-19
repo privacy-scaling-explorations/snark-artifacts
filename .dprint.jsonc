@@ -16,7 +16,7 @@
   },
   "excludes": [
     "coverage",
-    "packages/artifacts/dist",
+    "**/dist",
     "**/node_modules",
     "**/*-lock.json",
     // changeset cli (ci) will edit it and mess with the default formatting
