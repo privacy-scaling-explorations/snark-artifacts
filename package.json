@@ -4,7 +4,7 @@
   "scripts": {
     "changeset": "changeset && git add .changeset && git commit -m 'changeset'",
     "check": "dprint check && biome check --config-path .biome.jsonc .",
-    "fix": "dprint fmt && biome check --config-path .biome.jsonc --apply .",
+    "fix": "dprint fmt && biome check --config-path .biome.jsonc --write .",
     "gprf": "git pull-rebase-filtered",
     "postinstall": "./scripts/bin/postinstall.bash",
     "sparse-checkout": "./scripts/bin/setup.bash",
