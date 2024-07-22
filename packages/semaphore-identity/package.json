@@ -1,6 +1,6 @@
 {
   "name": "@zk-kit/semaphore-identity-artifacts",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta.2",
   "description": "semaphore identity artifacts",
   "circuit": "@semaphore-extensions/identity-proof.circom",
   "license": "MIT",
