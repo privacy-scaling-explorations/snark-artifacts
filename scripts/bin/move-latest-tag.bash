@@ -7,7 +7,7 @@ move_tag() {
   local commit_sha="$2"
   local tag="$package@latest"
 
-  git push -d origin "$tag"
+  git push -d origin "$tag" || true # ignore error if "latest" tag does not exist yet
   git tag "$tag" "$commit_sha"
   git push origin "$tag"
 }
