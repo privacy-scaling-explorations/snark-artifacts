@@ -78,6 +78,7 @@ Commands:
         [
           "semaphore-identity
           1.0.0-beta
+          1.0.0-beta.2
         poseidon
           1.0.0
           1.0.0-beta.1
@@ -88,6 +89,7 @@ Commands:
           4.0.0-beta.11
           4.0.0-beta.17
           4.0.0-beta.18
+          4.0.0
         ",
         ]
       `)
