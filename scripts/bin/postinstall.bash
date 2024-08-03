@@ -16,7 +16,9 @@ download() {
 }
 
 exit_if_shfmt_installed() {
-  command -v shfmt >/dev/null 2>&1 && exit 0
+  if command -v shfmt >/dev/null 2>&1; then
+    exit 0
+  fi
 }
 
 check_install() {
