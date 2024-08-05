@@ -1,0 +1,13 @@
+assert_lefthook_installed: true
+output: [execution, failure, summary]
+pre-commit:
+  parallel: true
+  commands:
+    fmt:
+      run: pnpm dprint fmt
+      stage_fixed: true
+    lint:
+      run: pnpm biome lint --config-path=.biome.jsonc --no-errors-on-unmatched
+    typecheck:
+      glob: '*.{ts,tsx}'
+      run: pnpm typecheck
