@@ -2,12 +2,15 @@
     "name": "@zk-kit/artifacts",
     "version": "1.9.0",
     "type": "module",
+    "bin": {
+        "snarkli": "./dist/cli/index.js"
+    },
     "description": "Utilities for downloading snark artifacts",
     "scripts": {
-        "build": "pnpm run clean && rollup -c rollup.config.ts --configPlugin typescript",
-        "clean": "rimraf dist",
+        "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
         "test": "jest -c test/jest.config.ts",
         "prepublishOnly": "pnpm run build",
+        "start.cli": "[ ! -f dist/cli/index.js ] && pnpm run build; node dist/cli",
         "typecheck": "tsc"
     },
     "repository": {
@@ -55,6 +58,14 @@
         "@rollup/plugin-typescript": "^11.1.6",
         "@types/node": "^20.12.10",
         "rimraf": "^5.0.5",
-        "rollup": "^4.12.0"
+        "rollup": "^4.18.1"
+    },
+    "dependencies": {
+        "@commander-js/extra-typings": "^12.1.0",
+        "@inquirer/input": "^2.1.8",
+        "@inquirer/select": "^2.3.4",
+        "circomkit": "^0.2.1",
+        "ora": "^5.4.1",
+        "snarkjs": "^0.7.4"
     }
 }

@@ -135,20 +135,20 @@ Interested in contributing to this project? See the [board](https://github.com/o
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/cli">
-                    @zk-kit/artifacts-cli
+                <a href="https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/artifacts">
+                    @zk-kit/artifacts
                 </a>
             </td>
             <td>
                 <!-- NPM version -->
-                <a href="https://npmjs.org/package/@zk-kit/artifacts-cli">
-                    <img src="https://img.shields.io/npm/v/@zk-kit/artifacts-cli.svg?style=flat-square" alt="NPM version" />
+                <a href="https://npmjs.org/package/@zk-kit/artifacts">
+                    <img src="https://img.shields.io/npm/v/@zk-kit/artifacts.svg?style=flat-square" alt="NPM version" />
                 </a>
             </td>
             <td>
                 <!-- Downloads -->
-                <a href="https://npmjs.org/package/@zk-kit/artifacts-cli">
-                    <img src="https://img.shields.io/npm/dm/@zk-kit/artifacts-cli.svg?style=flat-square" alt="Downloads" />
+                <a href="https://npmjs.org/package/@zk-kit/artifacts">
+                    <img src="https://img.shields.io/npm/dm/@zk-kit/artifacts.svg?style=flat-square" alt="Downloads" />
                 </a>
             </td>
             <td>

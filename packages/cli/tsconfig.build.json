@@ -1,4 +1,0 @@
-{
-  "exclude": ["rollup.config.ts"],
-  "extends": "./tsconfig.json"
-}

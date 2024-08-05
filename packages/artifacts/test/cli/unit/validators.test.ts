@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs'
 import { rm } from 'node:fs/promises'
-import { CliError } from '../../src/errors.ts'
-import { validateFilePath, validateJsonFileInput, validateOrThrow } from '../../src/validators.ts'
+import { CliError } from '../../../src/cli/errors.ts'
+import { validateFilePath, validateJsonFileInput, validateOrThrow } from '../../../src/cli/validators.ts'
 
 describe('validateFilePath', () => {
   it('should return true if the file exists', () => {

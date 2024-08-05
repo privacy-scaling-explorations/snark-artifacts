@@ -1,7 +1,7 @@
 // import { writeFileSync } from 'node:fs'
 import { rm } from 'node:fs/promises'
 import { stdout } from 'node:process'
-import { Cli } from '../src/cli'
+import { Cli } from '../../src/cli/cli'
 
 describe('CLI', () => {
   let cli: Cli
@@ -52,8 +52,8 @@ Commands:
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
           "Artifacts downloaded at:
-          /tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.wasm
-          /tmp/@zk-kit/poseidon-artifacts@latest/poseidon-2.zkey",
+          /tmp/snark-artifacts/poseidon/latest/poseidon-2.wasm
+          /tmp/snark-artifacts/poseidon/latest/poseidon-2.zkey",
         ]
       `)
     }, 30_000)
@@ -76,10 +76,7 @@ Commands:
       await run(['list'])
       expect(consoleSpy.mock.calls[0]).toMatchInlineSnapshot(`
         [
-          "semaphore-identity
-          1.0.0-beta
-          1.0.0-beta.2
-        poseidon
+          "poseidon
           1.0.0
           1.0.0-beta.1
         semaphore
@@ -90,6 +87,9 @@ Commands:
           4.0.0-beta.17
           4.0.0-beta.18
           4.0.0
+        semaphore-identity
+          1.0.0-beta
+          1.0.0-beta.2
         ",
         ]
       `)

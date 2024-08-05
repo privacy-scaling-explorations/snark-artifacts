@@ -16,6 +16,17 @@ const banner = `/**
  * @license ${pkg.license}
  * @see [Github]{@link ${pkg.homepage}}
 */`
+const bannerCli = `#!/usr/bin/env node
+
+/**
+ * @module ${pkg.name}
+ * @version ${pkg.version}
+ * @file ${pkg.description}
+ * @copyright Ethereum Foundation ${new Date().getFullYear()}
+ * @license ${pkg.license}
+ * @see [Github]{@link ${pkg.homepage}}
+*/
+`
 
 const config: RollupOptions[] = [
   {
@@ -36,6 +47,20 @@ const config: RollupOptions[] = [
     input: 'src/index.browser.ts',
     output: [{ file: pkg.exports['.'].browser, format: 'es', banner }],
     plugins,
+  },
+  {
+    input: 'src/cli/index.ts',
+    output: { file: pkg.bin.snarkli, format: 'es', banner: bannerCli },
+    plugins,
+    external: [
+      ...Object.keys(pkg.dependencies),
+      'node:console',
+      'node:fs',
+      'node:os',
+      'node:path',
+      'node:process',
+      'node:stream',
+    ],
   },
 ]
 

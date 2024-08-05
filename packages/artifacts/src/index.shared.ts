@@ -1,2 +1,2 @@
 export * from './download/types'
-export * from './projects'
+export { Project, projects } from './projects'

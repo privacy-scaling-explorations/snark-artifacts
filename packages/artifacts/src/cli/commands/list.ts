@@ -1,6 +1,7 @@
 import { Command } from '@commander-js/extra-typings'
-import { getAvailableVersions, projects } from '@zk-kit/artifacts'
 import { exit } from 'node:process'
+import { projects } from '../../projects.ts'
+import { getAvailableVersions } from '../../projects.ts'
 import { spinner } from '../spinner.ts'
 
 export const list = new Command('list').alias('l').description(

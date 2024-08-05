@@ -13,15 +13,18 @@
   },
   "overrides": [
     {
-      "include": ["packages/cli/src/spinner.ts", "packages/cli/src/commands/generate/action.ts"],
+      "include": ["packages/artifacts/src/cli/spinner.ts", "packages/artifacts/src/cli/commands/generate/action.ts"],
       "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } },
     },
     {
-      "include": ["packages/cli/src/commands/download/index.ts", "packages/cli/src/commands/generate/action.ts"],
+      "include": [
+        "packages/artifacts/src/cli/commands/download/index.ts",
+        "packages/artifacts/src/cli/commands/generate/action.ts",
+      ],
       "linter": { "rules": { "style": { "noParameterAssign": "off" } } },
     },
     {
-      "include": ["apps/web/src/main.tsx", "packages/cli/src/commands/generate/action.ts"],
+      "include": ["apps/web/src/main.tsx", "packages/artifacts/src/cli/commands/generate/action.ts"],
       "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } },
     },
   ],

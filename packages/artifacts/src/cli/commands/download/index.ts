@@ -1,5 +1,6 @@
 import { Argument, Command } from '@commander-js/extra-typings'
-import { maybeGetSnarkArtifacts, Project, projects } from '@zk-kit/artifacts'
+import { maybeGetSnarkArtifacts } from '../../../index.node'
+import { Project, projects } from '../../../projects'
 import { spinner } from '../../spinner'
 import { validateNonEmptyInput, validateOrThrow, validateProject } from '../../validators'
 import { getParametersInput, getProjectInput } from './prompts'

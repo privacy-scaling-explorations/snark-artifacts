@@ -1,6 +1,6 @@
-import { type Project, projects } from '@zk-kit/artifacts'
 import { existsSync } from 'node:fs'
 import { extname } from 'node:path'
+import { type Project, projects } from '../projects.ts'
 import { CliError } from './errors.ts'
 
 export function validateFilePath(input: string) {
