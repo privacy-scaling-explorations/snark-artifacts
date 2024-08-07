@@ -16,17 +16,8 @@ const banner = `/**
  * @license ${pkg.license}
  * @see [Github]{@link ${pkg.homepage}}
 */`
-const bannerCli = `#!/usr/bin/env node
-
-/**
- * @module ${pkg.name}
- * @version ${pkg.version}
- * @file ${pkg.description}
- * @copyright Ethereum Foundation ${new Date().getFullYear()}
- * @license ${pkg.license}
- * @see [Github]{@link ${pkg.homepage}}
-*/
-`
+const shebang = '#!/usr/bin/env node'
+const bannerCli = [shebang, banner].join('\n')
 
 const config: RollupOptions[] = [
   {
