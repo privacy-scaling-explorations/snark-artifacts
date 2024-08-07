@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 2.0.0
+
+### Major Changes
+
+- [#118](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/118) [`d3c650a`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/d3c650a2d5fc0e06bdfaea633d7d43ca97c32a0c) Thanks [@sripwoud](https://github.com/sripwoud)! - Move CLI into `@zk-kit/artifacts`
+
 ## 1.9.0
 
 ### Minor Changes
