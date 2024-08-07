@@ -1,4 +1,4 @@
-import type { Project } from '../projects'
+import type { Project } from 'projects'
 import type { Version } from './types'
 
 const BASE_URL = 'https://snark-artifacts.pse.dev'

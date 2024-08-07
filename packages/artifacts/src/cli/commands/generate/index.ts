@@ -1,5 +1,5 @@
 import { Command } from '@commander-js/extra-typings'
-import generateAction from './action.ts'
+import generateAction from './action'
 
 export const generate = new Command('generate').alias('g').description(
   'Generate snark artifacts for a given source circom circuit',

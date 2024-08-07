@@ -1,7 +1,7 @@
 import input from '@inquirer/input'
 import select from '@inquirer/select'
-import { projects as choices } from '@zk-kit/artifacts'
-import { validateNonEmptyInput } from '../../validators'
+import { validateNonEmptyInput } from 'cli/validators'
+import { projects as choices } from 'projects'
 
 export const getProjectInput = async () =>
   select({

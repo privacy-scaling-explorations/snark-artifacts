@@ -1,7 +1,8 @@
 import { Argument, Command } from '@commander-js/extra-typings'
-import { maybeGetSnarkArtifacts, Project, projects } from '@zk-kit/artifacts'
-import { spinner } from '../../spinner'
-import { validateNonEmptyInput, validateOrThrow, validateProject } from '../../validators'
+import { spinner } from 'cli/spinner'
+import { validateNonEmptyInput, validateOrThrow, validateProject } from 'cli/validators'
+import { maybeGetSnarkArtifacts } from 'index.node'
+import { Project, projects } from 'projects'
 import { getParametersInput, getProjectInput } from './prompts'
 
 export const download = new Command('download').alias('d').description(

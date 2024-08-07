@@ -16,6 +16,8 @@ const banner = `/**
  * @license ${pkg.license}
  * @see [Github]{@link ${pkg.homepage}}
 */`
+const shebang = '#!/usr/bin/env node'
+const bannerCli = [shebang, banner].join('\n')
 
 const config: RollupOptions[] = [
   {
@@ -36,6 +38,21 @@ const config: RollupOptions[] = [
     input: 'src/index.browser.ts',
     output: [{ file: pkg.exports['.'].browser, format: 'es', banner }],
     plugins,
+  },
+  {
+    input: 'src/cli/index.ts',
+    output: { file: pkg.bin.snarkli, format: 'es', banner: bannerCli },
+    plugins,
+    external: [
+      ...Object.keys(pkg.dependencies),
+      'node:console',
+      'node:fs',
+      'node:fs/promises',
+      'node:os',
+      'node:path',
+      'node:process',
+      'node:stream',
+    ],
   },
 ]
 
