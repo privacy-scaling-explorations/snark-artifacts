@@ -39,7 +39,7 @@
     "types": "./dist/types/index.node.d.ts",
     "exports": {
         ".": {
-            "types": "./dist/types/index.node.d.ts",
+            "types": "./dist/types/index.browser.d.ts",
             "node": {
                 "types": "./dist/types/index.node.d.ts",
                 "import": "./dist/index.node.js",
@@ -47,7 +47,7 @@
                 "default": "./dist/index.node.cjs"
             },
             "browser": "./dist/index.browser.js",
-            "default": "./dist/index.node.js"
+            "default": "./dist/index.browser.js"
         }
     },
     "files": [
