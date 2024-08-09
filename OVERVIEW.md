@@ -1,4 +1,4 @@
-# SNARK Artifacts Overview
+# SNARK Artifacts Registry Overview
 
 ## Table of Contents
 
@@ -12,11 +12,11 @@
 ## Summary
 
 This document outlines a strategy for efficient management and distribution of SNARK artifacts, which are essential for verifying or creating zero-knowledge proofs but are challenging to distribute due to their size.
-This project propose a solution leveraging [npm](https://www.npmjs.com/) and for version control, distribution, and integrity checks, focusing on ease of access and reusability within the community.
+This project propose a solution leveraging [npm](https://www.npmjs.com/) for versioning and integrity checks, and AWS [S3](https://aws.amazon.com/s3/)+[CloudFront](https://aws.amazon.com/de/cloudfront/) for distribution; focusing on ease of access and reusability within the community.
 
 ## Problem
 
-SNARK artifacts are relatively large binary files (typically `.wasm` and `.zkey` files) required across numerous projects for cryptographic operations. If these operations take place in a browser, including the SNARK artifacts in the JavaScript libraries can increase the size of the bundle by many MB, depending on the project.
+SNARK artifacts are relatively large binary files (typically `.wasm`, `.zkey` and `.json` files) required across numerous projects for cryptographic operations. If these operations take place in a browser, including the SNARK artifacts in the JavaScript libraries can increase the size of the bundle by many MBs depending on the project.
 Their size and frequent updates pose challenges for version control, efficient distribution, and project repository bloat, necessitating an effective management and distribution solution.
 
 ## Background
@@ -38,12 +38,13 @@ Cryptographic proofs, particularly those involving SNARKs, require specific arti
 
 ## Solution
 
-| Tool   | Purpose                                      | Pros                                                                                                                    | Cons                                                      |
-| ------ | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| Git    | - Version control.                           |                                                                                                                         |                                                           |
-| GitHub | - Repository management.<br>- Hosting.       |                                                                                                                         | - Centralization.<br>- Repository bloat.                  |
-| npm    | - Versioning.<br>- Distribution as packages. | - Integrity checks (`npm audit signatures`).                                                                            | - Centralization.<br>- Bloat if included as dependencies. |
-| CDN    | - Files distribution.                        | - Fast.<br>- Light: no need to include artifacts in project build as dependencies.<br>- Compatible with npm versioning. | - Centralized.<br>- No integrity check.                   |
+| Tool                    | Purpose                                            | Pros                                                                                                                    | Cons                                                      |
+| ----------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| Git                     | - Version control.                                 |                                                                                                                         |                                                           |
+| GitHub                  | - Repository management.<br>- Hosting.             |                                                                                                                         | - Centralization.<br>- Repository bloat.                  |
+| npm                     | - Versioning.<br>- Distribution as packages.       | - Integrity checks (`npm audit signatures`).                                                                            | - Centralization.<br>- Bloat if included as dependencies. |
+| AWS S3 + CloudFront CDN | - Files distribution.                              | - Fast.<br>- Light: no need to include artifacts in project build as dependencies.<br>- Compatible with npm versioning. | - Centralized.<br>- No integrity check.                   |
+| Web Application         | - Provide a simple GUI to download snark artifacts | - Simplicity.<br>- Convenience.<br>                                                                                     |                                                           |
 
 ### GitHub/Git
 
@@ -63,14 +64,18 @@ Beta releases contain artifacts generated with dummy setups and should therefore
 
 #### Relationship with source circuits files
 
-| source circuits are packaged |   artifacts package version    |               custom `npm` field in `package.json`                |                                                                                                   ex                                                                                                   |
-| :--------------------------: | :----------------------------: | :---------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|             yes              | should match circuits' version |               must be set to circuits package name                | [`@zk-kit/semaphore-identity-artifacts`](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/97381213be0f2cd1747c9d16989938d6731252e0/packages/semaphore-identity/package.json#L3-L5) |
-|              no              |      has its own version       | must be set to the remote commit sha url referring to the circuit |                                                                                                                                                                                                        |
+| source circuits are packaged |   artifacts package version    |             custom `circuit` field in `package.json`              |                                                                                        ex                                                                                         |
+| :--------------------------: | :----------------------------: | :---------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             yes              | should match circuits' version |               must be set to circuits package name                | [`@zk-kit/semaphore-artifacts`](https://github.com/privacy-scaling-explorations/snark-artifacts/blob/ca28f5b708c8df970239642db341753bca716166/packages/semaphore/package.json#L4) |
+|              no              |      has its own version       | must be set to the remote commit sha url referring to the circuit |                                                                                                                                                                                   |
 
-### CDN
+### Content Delivery Network (CDN)
 
-CDNs (e.g. [unpkg](https://unpkg.com)) provide a layer for the npm packages, enabling fast and reliable access to artifacts worldwide. This service allows projects to use artifacts without including them directly in their build, optimizing download times and minimizing bandwidth usage. Despite being a centralized distribution method, it offers unparalleled ease of access to the necessary files.
+We use [CloudFront](https://aws.amazon.com/de/cloudfront), a Content Delivery Network (CDN), to deliver content stored as static files on an [S3](https://aws.amazon.com/s3) instance. CDNs provide a layer for the npm packages, enabling fast and reliable access to artifacts worldwide. This service allows projects to use artifacts without including them directly in their build, optimizing download times and minimizing bandwidth usage. Despite being a centralized distribution method, it offers unparalleled ease of access to the necessary files.
+
+### Web Application
+
+The [snark-artifacts.pse.dev](https://snark-artifacts.pse.dev) web application provides a simple interface for users to download specific version of any artifacts supported by this project without requiring technical knowledge.
 
 ## Conclusion
 

@@ -1,6 +1,6 @@
 <p align="center">
     <h1 align="center">
-        🗄️ SNARK Artifacts
+        🗄️ SNARK Artifacts Registry
     </h1>
     <p align="center">A streamlined mechanism for distributing SNARK artifacts.</p>
     <p align="center">
@@ -164,7 +164,7 @@ Interested in contributing to this project? See the [board](https://github.com/o
 
 ## 🚀 Features
 
-- ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications across major CDNs.
+- ✅ **Reliable endpoints**: A curated set of SNARK artifacts ready for use in various zero-knowledge proof applications.
 - ⏳ **Easy Integration**: Seamless integration with existing cryptographic frameworks and systems through utility functions.
 - ⏳ **Linear versioning mechanism**: A simple and consistent versioning system that reflects changes in relative circuits.
 - ❌ **File integrity**: A system that guarantees the integrity of the artifacts.
@@ -207,6 +207,7 @@ After the first time clone, you can use the following npm scripts:
 
 You can download all artifacts either:
 
+- with the [snark-artifacts.pse.dev](https://snark-artifacts.pse.dev) web interface
 - directly from this repository with:
   ```bash
   bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
