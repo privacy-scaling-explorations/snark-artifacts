@@ -207,6 +207,7 @@ After the first time clone, you can use the following npm scripts:
 
 You can download all artifacts either:
 
+- with the [snark-artifacts.pse.dev](https://snark-artifacts.pse.dev) web interface
 - directly from this repository with:
   ```bash
   bash <(curl -sSL https://raw.githubusercontent.com/privacy-scaling-explorations/snark-artifacts/main/scripts/bin/dowload-artifacts.bash) -h
