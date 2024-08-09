@@ -14,7 +14,7 @@
 
 ## Downloading artifacts
 
-`@zk-kit/artifacts` provides a set of functions to automatically download your artifacts. For example:
+`@zk-kit/artifacts` provides a set of functions to automatically download artifacts from the snark artifacts registry hosted by [PSE](https://pse.dev) at [snark-artifacts.pse.dev](https://snark-artifacts.pse.dev). For example:
 
 ```ts
 import { maybeGetSnarkArtifacts, Project } from '@zk-kit/artifacts'
