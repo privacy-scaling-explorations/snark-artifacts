@@ -1,15 +1,12 @@
 {
-  "include": ["jest.config.ts"],
   "compilerOptions": {
-    "target": "es2022",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
+    "baseUrl": ".",
     "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
     "alwaysStrict": true,
-    "allowImportingTsExtensions": true,
-    "esModuleInterop": true,
-
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -19,7 +16,14 @@
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "preserveConstEnums": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strictNullChecks": true,
-    "useUnknownInCatchVariables": false
-  }
+    "useUnknownInCatchVariables": false,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "declarationDir": "types"
+  },
+  "include": ["jest.config.ts"]
 }

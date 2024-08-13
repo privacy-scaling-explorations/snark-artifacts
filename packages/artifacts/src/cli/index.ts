@@ -1,3 +1,3 @@
-import { run } from './cli.ts'
+import { run } from './cli'
 
 run()

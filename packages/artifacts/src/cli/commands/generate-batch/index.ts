@@ -1,9 +1,9 @@
 import { Command } from '@commander-js/extra-typings'
-import generateBatchAction from './action.ts'
+import generateBatchAction from './action'
 
-export const generateBatch = new Command('generate-batch').alias('gb').description(
-  'Generate snark artifacts for a list of circom circuits',
-)
+export const generateBatch = new Command('generate-batch')
+  .alias('gb')
+  .description('Generate snark artifacts for a list of circom circuits')
   .argument(
     '<optionsPath>',
     'Path to the options definition json file: { [circomkitJsonPath]: { circuit:string, params: string[][] }}',

@@ -1,7 +1,7 @@
 import { Command } from '@commander-js/extra-typings'
 import { error } from 'node:console'
 import { exit } from 'node:process'
-import COMMANDS from './commands/index.ts'
+import COMMANDS from './commands/index'
 
 export class Cli {
   cli: Command
