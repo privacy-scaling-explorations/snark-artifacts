@@ -1,6 +1,6 @@
-import { spinner } from 'cli/spinner'
 import { readFileSync } from 'node:fs'
 import { exit } from 'node:process'
+import { spinner } from '../../../cli/spinner'
 import { generateActionNoExit } from '../generate/action'
 
 export default async function generateBatch(optionsPath: string, destination: string) {
@@ -10,10 +10,8 @@ export default async function generateBatch(optionsPath: string, destination: st
   >
 
   spinner.start()
-  for (const [config, { circuit, paramsList }] of Object.entries(options)) {
-    for (const params of paramsList)
-      await generateActionNoExit(circuit, params, { config, destination })
-  }
+  for (const [config, { circuit, paramsList }] of Object.entries(options))
+    for (const params of paramsList) await generateActionNoExit(circuit, params, { config, destination })
 
   spinner.succeed(`All snark artifacts generated successfully in ${destination}`)
   exit(0)

@@ -1,11 +1,11 @@
 import { Circomkit, type CircomkitConfig, type CircuitConfig } from 'circomkit'
-import { spinner } from 'cli/spinner'
-import { validateJsonFileInput, validateOrThrow } from 'cli/validators'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname } from 'node:path'
 import { chdir, cwd, exit } from 'node:process'
 import { Writable } from 'node:stream'
+import { spinner } from '../../../cli/spinner'
+import { validateJsonFileInput, validateOrThrow } from '../../../cli/validators'
 import { getCircomkitConfigInput, getDestinationInput, selectCircuit } from './prompts'
 
 class SilentStream extends Writable {
@@ -62,7 +62,7 @@ export async function generateActionNoExit(
   validateOrThrow(destination, existsSync)
 
   config ??= await getCircomkitConfigInput()
-  const dirBuild = destination ?? await getDestinationInput(`${cwd()}/snark-artifacts`)
+  const dirBuild = destination ?? (await getDestinationInput(`${cwd()}/snark-artifacts`))
   const result = await setup(circuit, params, config, dirBuild)
 
   spinner.succeed(
@@ -72,9 +72,7 @@ export async function generateActionNoExit(
   )
 }
 
-async function generateAction(
-  ...params: Parameters<typeof generateActionNoExit>
-) {
+async function generateAction(...params: Parameters<typeof generateActionNoExit>) {
   await generateActionNoExit(...params)
   exit(0)
 }

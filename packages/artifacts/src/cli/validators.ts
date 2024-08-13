@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { extname } from 'node:path'
-import { type Project, projects } from 'projects'
+import { type Project, projects } from '../projects'
 import { CliError } from './errors'
 
 export function validateFilePath(input: string) {

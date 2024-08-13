@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs'
 import { rm } from 'node:fs/promises'
-import { CliError } from '../../../src/cli/errors.ts'
-import { validateFilePath, validateJsonFileInput, validateOrThrow } from '../../../src/cli/validators.ts'
+import { CliError } from '../../../src/cli/errors'
+import { validateFilePath, validateJsonFileInput, validateOrThrow } from '../../../src/cli/validators'
 
 describe('validateFilePath', () => {
   it('should return true if the file exists', () => {
@@ -16,7 +16,9 @@ describe('validateFilePath', () => {
 describe('validateJsonFileInput', () => {
   const jsonFile = 'file.json'
   afterAll(async () => {
-    await rm(jsonFile).catch(() => {/* swallow */})
+    await rm(jsonFile).catch(() => {
+      /* swallow */
+    })
   })
 
   it('should return true if the file exists and has a .json extension', () => {

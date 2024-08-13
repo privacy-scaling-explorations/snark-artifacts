@@ -1,7 +1,7 @@
 import input from '@inquirer/input'
 import select from '@inquirer/select'
-import { validateNonEmptyInput } from 'cli/validators'
-import { projects as choices } from 'projects'
+import { validateNonEmptyInput } from '../../../cli/validators'
+import { projects as choices } from '../../../projects'
 
 export const getProjectInput = async () =>
   select({
