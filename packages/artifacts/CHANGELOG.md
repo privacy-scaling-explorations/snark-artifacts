@@ -1,5 +1,11 @@
 # @zk-kit/artifacts
 
+## 2.0.1
+
+### Patch Changes
+
+- [#140](https://github.com/privacy-scaling-explorations/snark-artifacts/pull/140) [`d6611d2`](https://github.com/privacy-scaling-explorations/snark-artifacts/commit/d6611d2806e7a41ee3cd07bb1712b04d0c5680e0) Thanks [@cedoor](https://github.com/cedoor)! - Relative paths have been set in TS config files.
+
 ## 2.0.0
 
 ### Major Changes
