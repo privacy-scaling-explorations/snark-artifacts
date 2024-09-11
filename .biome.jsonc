@@ -1,7 +1,10 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
   "files": {
-    "ignore": ["coverage/**", "**/dist/**"],
+    "ignore": [
+      "coverage/**",
+      "**/dist/**",
+    ],
   },
   "formatter": {
     // use dprint instead
@@ -13,19 +16,48 @@
   },
   "overrides": [
     {
-      "include": ["packages/artifacts/src/cli/spinner.ts", "packages/artifacts/src/cli/commands/generate/action.ts"],
-      "linter": { "rules": { "suspicious": { "noExplicitAny": "off" } } },
+      "include": [
+        "packages/artifacts/src/cli/spinner.ts",
+        "packages/artifacts/src/cli/commands/generate/action.ts",
+      ],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off",
+          },
+        },
+      },
     },
     {
       "include": [
         "packages/artifacts/src/cli/commands/download/index.ts",
         "packages/artifacts/src/cli/commands/generate/action.ts",
       ],
-      "linter": { "rules": { "style": { "noParameterAssign": "off" } } },
+      "linter": {
+        "rules": {
+          "style": {
+            "noParameterAssign": "off",
+          },
+        },
+      },
     },
     {
-      "include": ["apps/web/src/main.tsx", "packages/artifacts/src/cli/commands/generate/action.ts"],
-      "linter": { "rules": { "style": { "noNonNullAssertion": "off" } } },
+      "include": [
+        "apps/web/src/main.tsx",
+        "packages/artifacts/src/cli/commands/generate/action.ts",
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noNonNullAssertion": "off",
+          },
+        },
+      },
     },
   ],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+  },
 }
