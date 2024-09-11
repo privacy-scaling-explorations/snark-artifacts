@@ -62,13 +62,13 @@ export async function generateActionNoExit(
   validateOrThrow(destination, existsSync)
 
   config ??= await getCircomkitConfigInput()
-  const dirBuild = destination ?? (await getDestinationInput(`${cwd()}/snark-artifacts`))
-  const result = await setup(circuit, params, config, dirBuild)
+  destination ??= await getDestinationInput(`${cwd()}/snark-artifacts`)
+  const result = await setup(circuit, params, config, destination)
 
   spinner.succeed(
     `Snark artifacts for ${circuit ?? result.circuit} with parameters ${
       params ?? result.params
-    } generated successfully in ${dirBuild}`,
+    } generated successfully in ${destination}`,
   )
 }
 
