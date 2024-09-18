@@ -6,7 +6,7 @@ import { getCurveFromName } from 'ffjavascript'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { after, before, describe, it } from 'node:test'
+import { after, before, describe, test } from 'node:test'
 import * as poseidons from 'poseidon-lite'
 import { groth16 } from 'snarkjs'
 
@@ -51,19 +51,17 @@ describe('poseidon', () => {
     await curve.terminate()
   })
 
-  it('Should verify a Poseidon proof', async () => {
-    const errors = []
-
+  test('Should verify all Poseidon proofs', async (t) => {
     for (const proof of proofs) {
-      const result = await verifyProof(proof)
-      try {
-        assert.strictEqual(result, true, `proof verification failed for ${proof.numberOfInputs}`)
-      } catch (error) {
-        errors.push(error)
-      }
+      const { numberOfInputs } = proof
+      await t.test(`Should verify a Poseidon proof with ${numberOfInputs} parameter(s)`, async (t) => {
+        const result = await verifyProof(proof)
+        assert.strictEqual(
+          result,
+          true,
+          `Proof verification failed for ${numberOfInputs} parameter${numberOfInputs > 1 ? 's' : ''}`,
+        )
+      })
     }
-
-    if (errors.length > 0)
-      throw new Error(errors.map(error => error.message).join('\n'))
   })
 })
