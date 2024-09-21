@@ -17,6 +17,8 @@
   "overrides": [
     {
       "include": [
+        "types/ffjavascript/index.d.ts",
+        "packages/poseidon/test/index.test.ts",
         "packages/artifacts/src/cli/spinner.ts",
         "packages/artifacts/src/cli/commands/generate/action.ts",
       ],
