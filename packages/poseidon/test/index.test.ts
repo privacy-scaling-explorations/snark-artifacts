@@ -1,8 +1,8 @@
 import { Project } from '@zk-kit/artifacts'
 import { generate } from '@zk-kit/poseidon-proof'
-import { SCOPE, verifyPoseidonProof } from '@zk-kit/test'
 import { getCurveFromName } from 'ffjavascript'
 import { join } from 'node:path'
+import { SCOPE, verifyPoseidonProof } from './utils'
 
 const INPUTS = Array.from({ length: 16 }, (_, i) => i + 1).map(i => ({
   inputs: Array.from({ length: i }, (_, j) => j + 1),

@@ -25,7 +25,9 @@
     "@types/snarkjs": "^0.7.8",
     "@zk-kit/artifacts": "workspace:^",
     "@zk-kit/poseidon-proof": "1.0.0-beta.4",
-    "@zk-kit/test": "workspace:^",
-    "ffjavascript": "^0.3.0"
+    "@zk-kit/utils": "^1.2.1",
+    "ethers": "^6.13.2",
+    "ffjavascript": "^0.3.0",
+    "snarkjs": "^0.7.4"
   }
 }
