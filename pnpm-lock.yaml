@@ -142,6 +142,25 @@ importers:
       '@types/snarkjs':
         specifier: ^0.7.8
         version: 0.7.8
+      '@zk-kit/test':
+        specifier: workspace:^
+        version: link:../test
+      ffjavascript:
+        specifier: ^0.3.0
+        version: 0.3.0
+
+  packages/semaphore: {}
+
+  packages/semaphore-identity: {}
+
+  packages/test:
+    devDependencies:
+      '@types/snarkjs':
+        specifier: ^0.7.8
+        version: 0.7.8
+      '@zk-kit/artifacts':
+        specifier: workspace:^
+        version: link:../artifacts
       '@zk-kit/poseidon-proof':
         specifier: 1.0.0-beta.4
         version: 1.0.0-beta.4
@@ -151,16 +170,9 @@ importers:
       ethers:
         specifier: ^6.13.1
         version: 6.13.2
-      ffjavascript:
-        specifier: ^0.3.0
-        version: 0.3.0
       snarkjs:
         specifier: ^0.7.4
         version: 0.7.4
-
-  packages/semaphore: {}
-
-  packages/semaphore-identity: {}
 
 packages:
 
