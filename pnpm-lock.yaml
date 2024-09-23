@@ -143,8 +143,8 @@ importers:
         specifier: ^0.7.8
         version: 0.7.8
       '@zk-kit/artifacts':
-        specifier: workspace:^
-        version: link:../artifacts
+        specifier: 1.9.0
+        version: 1.9.0
       '@zk-kit/poseidon-proof':
         specifier: 1.0.0-beta.4
         version: 1.0.0-beta.4
@@ -164,27 +164,6 @@ importers:
   packages/semaphore: {}
 
   packages/semaphore-identity: {}
-
-  packages/test:
-    devDependencies:
-      '@types/snarkjs':
-        specifier: ^0.7.8
-        version: 0.7.8
-      '@zk-kit/artifacts':
-        specifier: workspace:^
-        version: link:../artifacts
-      '@zk-kit/poseidon-proof':
-        specifier: 1.0.0-beta.4
-        version: 1.0.0-beta.4
-      '@zk-kit/utils':
-        specifier: ^1.2.0
-        version: 1.2.1
-      ethers:
-        specifier: ^6.13.1
-        version: 6.13.2
-      snarkjs:
-        specifier: ^0.7.4
-        version: 0.7.4
 
 packages:
 
