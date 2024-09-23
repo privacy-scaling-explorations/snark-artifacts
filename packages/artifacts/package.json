@@ -1,71 +1,71 @@
 {
-    "name": "@zk-kit/artifacts",
-    "version": "2.0.1",
-    "type": "module",
-    "bin": {
-        "snarkli": "./dist/cli/index.js"
-    },
-    "description": "Utilities for downloading snark artifacts",
-    "scripts": {
-        "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
-        "test": "jest -c test/jest.config.ts",
-        "prepublishOnly": "pnpm run build",
-        "start.cli": "[ ! -f dist/cli/index.js ] && pnpm run build; node dist/cli",
-        "typecheck": "tsc"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/privacy-scaling-explorations/snark-artifacts.git"
-    },
-    "keywords": [
-        "snark",
-        "artifacts",
-        "circom",
-        "zk"
-    ],
-    "contributors": [
-        "cedoor <me@cedoor.dev>",
-        "sripwoud <me@sripwoud.xyz"
-    ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
-    },
-    "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/artifacts",
-    "publishConfig": {
-        "access": "public"
-    },
-    "main": "./dist/index.node.js",
-    "types": "./dist/types/index.node.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/types/index.browser.d.ts",
-            "node": {
-                "types": "./dist/types/index.node.d.ts",
-                "import": "./dist/index.node.js",
-                "require": "./dist/index.node.cjs",
-                "default": "./dist/index.node.cjs"
-            },
-            "browser": "./dist/index.browser.js",
-            "default": "./dist/index.browser.js"
-        }
-    },
-    "files": [
-        "dist",
-        "src"
-    ],
-    "devDependencies": {
-        "@rollup/plugin-typescript": "^11.1.6",
-        "@types/node": "^20.12.10",
-        "rimraf": "^5.0.5",
-        "rollup": "^4.18.1"
-    },
-    "dependencies": {
-        "@commander-js/extra-typings": "^12.1.0",
-        "@inquirer/input": "^2.1.8",
-        "@inquirer/select": "^2.3.4",
-        "circomkit": "^0.2.1",
-        "ora": "^5.4.1",
-        "snarkjs": "^0.7.4"
+  "name": "@zk-kit/artifacts",
+  "version": "2.0.1",
+  "type": "module",
+  "bin": {
+    "snarkli": "./dist/cli/index.js"
+  },
+  "description": "Utilities for downloading snark artifacts",
+  "scripts": {
+    "build": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
+    "test": "jest -c test/jest.config.ts",
+    "prepublishOnly": "pnpm run build",
+    "start.cli": "pnpm run build && node dist/cli",
+    "typecheck": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privacy-scaling-explorations/snark-artifacts.git"
+  },
+  "keywords": [
+    "snark",
+    "artifacts",
+    "circom",
+    "zk"
+  ],
+  "contributors": [
+    "cedoor <me@cedoor.dev>",
+    "sripwoud <me@sripwoud.xyz"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/privacy-scaling-explorations/snark-artifacts/issues"
+  },
+  "homepage": "https://github.com/privacy-scaling-explorations/snark-artifacts/tree/main/packages/artifacts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.node.js",
+  "types": "./dist/types/index.node.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.browser.d.ts",
+      "node": {
+        "types": "./dist/types/index.node.d.ts",
+        "import": "./dist/index.node.js",
+        "require": "./dist/index.node.cjs",
+        "default": "./dist/index.node.cjs"
+      },
+      "browser": "./dist/index.browser.js",
+      "default": "./dist/index.browser.js"
     }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.12.10",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.18.1"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
+    "@inquirer/input": "^2.1.8",
+    "@inquirer/select": "^2.3.4",
+    "circomkit": "^0.2.1",
+    "ora": "^5.4.1",
+    "snarkjs": "^0.7.4"
+  }
 }

@@ -4,3 +4,4 @@ dist
 .envrc
 .tool-versions
 .DS_Store
+snark-artifacts
