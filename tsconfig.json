@@ -24,7 +24,13 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "declarationDir": "types",
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
-  "include": ["jest.config.ts", "packages/artifacts/test", "packages/poseidon/test"]
+  "include": [
+    "jest.config.ts",
+    "packages/*/test"
+  ]
 }
