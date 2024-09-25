@@ -139,21 +139,24 @@ importers:
       '@ethersproject/bignumber':
         specifier: ^5.7.0
         version: 5.7.0
+      '@types/snarkjs':
+        specifier: ^0.7.8
+        version: 0.7.8
+      '@zk-kit/artifacts':
+        specifier: 1.9.0
+        version: 1.9.0
       '@zk-kit/poseidon-proof':
         specifier: 1.0.0-beta.4
         version: 1.0.0-beta.4
       '@zk-kit/utils':
-        specifier: ^1.2.0
+        specifier: ^1.2.1
         version: 1.2.1
       ethers:
-        specifier: ^6.13.1
+        specifier: ^6.13.2
         version: 6.13.2
       ffjavascript:
         specifier: ^0.3.0
         version: 0.3.0
-      poseidon-lite:
-        specifier: ^0.2.0
-        version: 0.2.1
       snarkjs:
         specifier: ^0.7.4
         version: 0.7.4
@@ -2465,9 +2468,6 @@ packages:
   pkg-dir@4.2.0:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
-
-  poseidon-lite@0.2.1:
-    resolution: {integrity: sha512-xIr+G6HeYfOhCuswdqcFpSX47SPhm0EpisWJ6h7fHlWwaVIvH3dLnejpatrtw6Xc6HaLrpq05y7VRfvDmDGIog==}
 
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
@@ -5750,8 +5750,6 @@ snapshots:
   pkg-dir@4.2.0:
     dependencies:
       find-up: 4.1.0
-
-  poseidon-lite@0.2.1: {}
 
   possible-typed-array-names@1.0.0: {}
 

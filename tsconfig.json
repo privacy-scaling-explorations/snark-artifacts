@@ -23,7 +23,14 @@
     "useUnknownInCatchVariables": false,
     "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "declarationDir": "types"
+    "declarationDir": "types",
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ]
   },
-  "include": ["jest.config.ts"]
+  "include": [
+    "jest.config.ts",
+    "packages/*/test"
+  ]
 }

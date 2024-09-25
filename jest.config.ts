@@ -1,6 +1,5 @@
 import { join } from 'node:path'
 import type { JestConfigWithTsJest } from 'ts-jest'
-// import preset from 'ts-jest/'
 
 const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
@@ -12,7 +11,7 @@ const config: JestConfigWithTsJest = {
   },
   moduleDirectories: ['node_modules', '<rootDir>/node_modules', '<rootDir>/src'],
   moduleFileExtensions: ['js', 'ts'],
-  projects: ['packages/artifacts/test'],
+  projects: ['packages/artifacts/test', 'packages/poseidon/test'],
 }
 
 export default config
