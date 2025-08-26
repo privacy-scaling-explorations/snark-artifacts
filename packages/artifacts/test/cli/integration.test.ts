@@ -88,6 +88,7 @@ Commands:
           4.0.0-beta.17
           4.0.0-beta.18
           4.0.0
+          4.13.0-beta.0
         semaphore-identity
           1.0.0-beta
           1.0.0-beta.2
